@@ -29,4 +29,12 @@ validation:
 closed_days:
   month_day: [[12, 25]]
 
+features:
+  lags: [28, 35, 42, 49, 56, 364]   # semua >= horizon, jadi aman tanpa prediksi rekursif
+  rolling_windows: [7, 14, 28, 56]  # mean/std dari lag 28
+  price_max_window: 56              # hari, untuk harga relatif terhadap harga maks terakhir
+  discount_threshold: 0.99          # harga < 99% harga maks 56 hari -> dianggap diskon
+  moving_events:                    # nama event di calendar.csv: batas (clip) hari
+    Easter: 7
+
 seed: 42

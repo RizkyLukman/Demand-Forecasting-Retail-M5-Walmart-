@@ -67,6 +67,28 @@ Diselidiki dengan pengukuran, bukan tebakan (skrip diagnostik disimpan di luar r
 
 Model 4 kuantil 1.000 iterasi dengan `item_id` kategorikal berukuran **1,6 GB** setelah diserialisasi.
 
+## 3b. Profil ulang di Fase 4 dengan fitur final
+
+`python -m retailfc.hardware_profile --store CA_1 --features final`
+(angka: `reports/hardware_profile_phase4.json`). Setup sama dengan bagian 2 (CA_1, cutoff
+d_1885, parameter sama), tetapi memakai **36 fitur** dari tabel dasar Fase 4 dan
+mengeluarkan hari tutup dari baris train. RAM tersedia saat mulai: 7,6 GB. (Fitur ke-37,
+`zero_run_lag28`, ditambahkan sesudahnya; satu kolom float32 tambahan tidak mengubah
+kesimpulan memori.)
+
+| Langkah / model | `item_id` | Waktu | Iterasi (terbaik) | Model | Puncak RSS | VRAM (selisih) |
+|---|---|---|---|---:|---:|---:|
+| Muat tabel dasar + fitur per fold (523 MB) | – | – | – | – | 2,16 GB | – |
+| `reg:tweedie` | kategorikal | 17,2 s | 284 (183) | 86,2 MB | 4,58 GB | +562 MiB |
+| `reg:tweedie` | label | 14,4 s | 240 (139) | **3,7 MB** | 4,29 GB | +452 MiB |
+| 4 kuantil | label | 574,7 s | 3000 (2993) | 100,3 MB | **4,96 GB** | +774 MiB |
+
+- Dengan label encoding, puncak RAM model 4 kuantil turun dari **10,5 GB (Fase 1) ke 5,0 GB**,
+  meskipun fiturnya lebih banyak (36 vs 27).
+- Untuk tweedie, label encoding membuat model 23× lebih kecil (3,7 vs 86,2 MB).
+- **Masih terbuka:** model kuantil tetap tidak berhenti lebih awal di 3.000 iterasi
+  (~10 menit per toko per fold). Perlu `eta` lebih tinggi atau batas iterasi di Fase 5.
+
 ## 4. Kesimpulan untuk fase berikutnya
 
 - **VRAM bukan hambatan.** Satu toko memakai < 1,1 GB dari 4 GB, untuk kedua objective.

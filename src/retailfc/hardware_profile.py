@@ -68,7 +68,9 @@ def train_once(params: dict, dtrain, dvalid, rounds: int, early: int) -> dict:
                             evals=[(dvalid, "valid")], early_stopping_rounds=early,
                             verbose_eval=False)
         secs = time.perf_counter() - t
+    model_mb = round(len(booster.save_raw("ubj")) / 2**20, 1)
     return {
+        "model_mb": model_mb,
         "params": {k: (v.tolist() if isinstance(v, np.ndarray) else v) for k, v in params.items()},
         "seconds": round(secs, 1),
         "best_iteration": int(booster.best_iteration),
@@ -81,14 +83,74 @@ def train_once(params: dict, dtrain, dvalid, rounds: int, early: int) -> dict:
     }
 
 
+def profile_final(args, cfg: dict) -> None:
+    """Fase 4: profil ulang dengan fitur final (tabel dasar + fitur per fold).
+
+    Setup sama dengan Fase 1 (toko, cutoff, parameter), supaya angkanya bisa dibandingkan.
+    """
+    from retailfc.features import add_fold_features, feature_names, to_model_frame
+
+    out: dict = {
+        "started": datetime.now().isoformat(timespec="seconds"),
+        "machine": {"cpu": platform.processor(), "logical_cpus": psutil.cpu_count(),
+                    "ram_at_start": system_ram(), "xgboost": xgb.__version__,
+                    "pandas": pd.__version__},
+        "store": args.store, "cutoff": args.cutoff, "features_set": "final", "runs": [],
+    }
+    base_params = {"device": "cuda", "tree_method": "hist", "max_bin": 256, "eta": 0.05,
+                   "max_depth": 8, "min_child_weight": 10, "subsample": 0.8,
+                   "colsample_bytree": 0.8, "seed": cfg["seed"]}
+    configs = [
+        ("point_tweedie", "category", {"objective": "reg:tweedie", "tweedie_variance_power": 1.2,
+                                       "eval_metric": "rmse"}),
+        ("point_tweedie", "label", {"objective": "reg:tweedie", "tweedie_variance_power": 1.2,
+                                    "eval_metric": "rmse"}),
+        ("multi_quantile_4", "label", {"objective": "reg:quantileerror",
+                                       "quantile_alpha": np.array([0.1, 0.5, 0.8, 0.9])}),
+    ]
+    with PeakRSS() as rss_all:
+        t = time.perf_counter()
+        base = pd.read_parquet(Path(cfg["paths"]["processed"]) / "base" / f"store_id={args.store}"
+                               / "part-0.parquet")
+        df = add_fold_features(base, args.cutoff, 0)            # hanya d <= cutoff
+        del base
+        feats = feature_names(df)
+        closed = df["is_closed"].to_numpy().astype(bool)
+        valid_start = args.cutoff - 27
+        tr = (df["d"].to_numpy() < valid_start) & ~closed
+        va = (df["d"].to_numpy() >= valid_start) & ~closed
+        out["features"] = {"n": len(feats), "names": feats,
+                           "seconds": round(time.perf_counter() - t, 1),
+                           "table_mb": round(df.memory_usage(deep=True).sum() / 2**20, 1),
+                           "peak_rss_gb": round(rss_all.peak_gb, 2)}
+        y = df["sales"].to_numpy().astype(np.float32)
+        for name, enc, obj in configs:
+            X = to_model_frame(df, feats, enc)
+            dtrain = xgb.QuantileDMatrix(X[tr], y[tr], enable_categorical=True, max_bin=256)
+            dvalid = xgb.QuantileDMatrix(X[va], y[va], enable_categorical=True, ref=dtrain)
+            run = {"name": name, "item_encoding": enc,
+                   **train_once({**base_params, **obj}, dtrain, dvalid, args.rounds, 100)}
+            out["runs"].append(run)
+            print(json.dumps({k: v for k, v in run.items() if k != "params"}))
+            del dtrain, dvalid, X
+    out["peak_rss_gb_total"] = round(rss_all.peak_gb, 2)
+    path = Path(cfg["paths"]["reports"]) / "hardware_profile_phase4.json"
+    path.write_text(json.dumps(out, indent=2), encoding="utf-8")
+    print(f"Written to {path}")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="config.yaml")
     ap.add_argument("--store", default="CA_1")
     ap.add_argument("--cutoff", type=int, default=1885)
     ap.add_argument("--rounds", type=int, default=3000)
+    ap.add_argument("--features", choices=["provisional", "final"], default="provisional")
     args = ap.parse_args()
     cfg = load_config(args.config)
+    if args.features == "final":
+        profile_final(args, cfg)
+        return
     seed = cfg["seed"]
 
     out: dict = {

@@ -150,17 +150,22 @@ Laptop pengembang: **RAM 16 GB, GPU NVIDIA RTX 3050 Laptop dengan VRAM 4 GB.**
 - **VRAM bukan hambatan; RAM host yang jadi hambatan**, lewat ukuran model.
   `item_id` sebagai fitur kategorikal membuat model ~40× lebih besar daripada label
   encoding, dan `xgb.train` (xgboost 3.x) menyalin model di akhir training (`reset()`).
-- Masih estimasi (belum diukur): tabel fitur penuh semua toko (±47 juta baris × ±60 fitur
-  `float32`) ±11 GB, tetap **tidak muat** aman di RAM 16 GB. Fitur dibangun per toko.
+- Fase 4 (fitur final, 36 fitur): tabel dasar per toko ±430 MB di RAM, ±70 MB Parquet;
+  10 toko = 687 MB di disk. Training 1 toko: tweedie 4,3 GB RAM (label) / 4,6 GB
+  (kategorikal); 4 kuantil dengan label encoding **5,0 GB** (turun dari 10,5 GB).
+  Detail: `reports/hardware_profile.md` §3b.
 
 **Aturan:**
 1. **Granularitas default: satu model per toko** (`store_id`), dilatih di GPU dengan
    `device="cuda"`, `tree_method="hist"`. Perbandingan "global vs per toko" di Fase 5
    hanya boleh memakai model global yang dilatih dengan **sampel** data atau di CPU,
    dan batasan ini dicatat di laporan.
-2. **Pipeline fitur berjalan per toko** dan disimpan ke Parquet terpartisi
-   `data/processed/fold=<k>/store_id=<id>/`. Jangan pernah memuat seluruh tabel fitur
-   ke satu DataFrame.
+2. **Pipeline fitur berjalan per toko.** Fitur yang tidak bergantung cutoff (lag ≥ 28,
+   rolling dari lag 28, kalender, harga) disimpan sekali ke
+   `data/processed/base/store_id=<id>/`; fitur yang bergantung cutoff (target encoding,
+   harga relatif rata-rata item) dihitung per fold saat training. Keamanannya dibuktikan
+   tes anti-leakage di beberapa cutoff (`tests/test_features.py`). Jangan pernah memuat
+   seluruh tabel fitur semua toko ke satu DataFrame.
 3. **Kuantil:** coba dulu satu model multi-kuantil per toko. Kalau kena OOM di GPU,
    pindah ke **satu model per kuantil**, lalu catat pilihannya.
 4. **Fallback OOM:** kalau training GPU gagal karena memori, (a) turunkan `max_bin`
@@ -238,6 +243,9 @@ Jawab pertanyaan spesifik:
   di sekitar Easter tahun sebelumnya (mis. 2015-04-05 = d_1528). Baca `event_name_1`
   **dan** `event_name_2` (Easter 2011 ada di kolom kedua). Lihat `data/SOURCES.md`.
 - **Hierarki:** target encoding level item/dept/store **dihitung per fold** dari data train saja.
+- **Stok habis (ditambahkan setelah EDA P5):** `zero_run_lag28` = panjang deretan nol per
+  28 hari lalu. 62% item laris pernah tidak terjual ≥ 28 hari beruntun, indikasi kuat
+  censored demand (`reports/eda.md` §P5).
 
 ### Fase 5 — Model & baseline
 **Baseline wajib** (model harus dibandingkan secara jujur dengan semuanya):
@@ -273,6 +281,9 @@ Jawab pertanyaan spesifik:
   boleh diuji. Model global hanya dengan sampel atau CPU.
 - Seed tetap (`random_state`). Simpan config, versi `xgboost`, `best_iteration`, dan
   metrik setiap run ke `reports/runs/<timestamp>/`.
+- **Uji censored demand:** bandingkan training biasa vs training yang mengeluarkan baris di
+  dalam deretan nol panjang item laris (seperti hari tutup). Evaluasi tetap pada penjualan
+  aktual. Ambang deretan dan definisi "item laris" ditetapkan sebelum melihat hasil.
 
 **Metrik:**
 - WRMSSE (metrik resmi M5). Implementasikan sesuai panduan kompetisi M5 dan **verifikasi**
@@ -304,7 +315,8 @@ Jawab pertanyaan spesifik:
 - Output: tingkat layanan (fill rate), unit kehabisan stok, unit kelebihan stok,
   dan total biaya per kuantil, per segmen. Bandingkan model vs baseline.
 - Keterbatasan wajib disebut: penjualan historis ≠ permintaan asli (*censored demand*
-  saat stok habis).
+  saat stok habis). Pakai model yang dilatih tanpa deretan nol panjang (uji Fase 5),
+  karena yang disimulasikan adalah permintaan.
 
 ### Fase 8 — Transfer ke Indonesia (P5)
 **Langkah 1 — Audit kelayakan (wajib sebelum modeling):**
@@ -383,7 +395,9 @@ antar fold), temuan per segmen, hasil simulasi stok, hasil transfer Indonesia,
       (25 Des = tutup tapi tidak persis nol; efek Easter ±3 hari; SNAP nyata di FOODS)
 - [x] F3: definisi fold rolling origin + tes anti-leakage → `reports/validation_design.md`
       (4 fold CV + 3 fold khusus + holdout; `leaking_columns` untuk tiap fitur di Fase 4)
-- [ ] F4: fitur + ablation fitur hari libur bergerak (Easter)
+- [x] F4: fitur + ablation fitur hari libur bergerak (Easter) → `reports/easter_ablation.md`
+      (37 fitur termasuk `zero_run_lag28`; Easter: tidak terbukti di level item, membantu
+      di total harian FOODS; fitur tetap dipakai)
 - [ ] F5: baseline (naive, MA, Croston/TSB, ETS) + XGBoost point (`reg:tweedie`) & kuantil (`reg:quantileerror`)
 - [ ] F6: analisis error per segmen ADI/CV² + SHAP + studi kasus
 - [ ] F7: simulasi stok + analisis sensitivitas biaya

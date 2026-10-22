@@ -1,0 +1,130 @@
+{
+  "stores": [
+    {
+      "store_id": "CA_1",
+      "rows": 4781564,
+      "columns": 37,
+      "memory_mb": 451.7,
+      "parquet_mb": 76.1,
+      "seconds": 11.5,
+      "peak_rss_gb_so_far": 1.24
+    },
+    {
+      "store_id": "CA_2",
+      "rows": 4349224,
+      "columns": 37,
+      "memory_mb": 410.9,
+      "parquet_mb": 67.2,
+      "seconds": 10.6,
+      "peak_rss_gb_so_far": 1.26
+    },
+    {
+      "store_id": "CA_3",
+      "rows": 4750602,
+      "columns": 37,
+      "memory_mb": 448.8,
+      "parquet_mb": 83.1,
+      "seconds": 11.5,
+      "peak_rss_gb_so_far": 1.32
+    },
+    {
+      "store_id": "CA_4",
+      "rows": 4641287,
+      "columns": 37,
+      "memory_mb": 438.5,
+      "parquet_mb": 64.4,
+      "seconds": 11.6,
+      "peak_rss_gb_so_far": 1.32
+    },
+    {
+      "store_id": "TX_1",
+      "rows": 4790197,
+      "columns": 37,
+      "memory_mb": 452.5,
+      "parquet_mb": 68.7,
+      "seconds": 11.8,
+      "peak_rss_gb_so_far": 1.32
+    },
+    {
+      "store_id": "TX_2",
+      "rows": 4800179,
+      "columns": 37,
+      "memory_mb": 453.5,
+      "parquet_mb": 74.6,
+      "seconds": 11.6,
+      "peak_rss_gb_so_far": 1.32
+    },
+    {
+      "store_id": "TX_3",
+      "rows": 4729373,
+      "columns": 37,
+      "memory_mb": 446.8,
+      "parquet_mb": 68.9,
+      "seconds": 11.9,
+      "peak_rss_gb_so_far": 1.35
+    },
+    {
+      "store_id": "WI_1",
+      "rows": 4552239,
+      "columns": 37,
+      "memory_mb": 430.0,
+      "parquet_mb": 67.8,
+      "seconds": 11.1,
+      "peak_rss_gb_so_far": 1.35
+    },
+    {
+      "store_id": "WI_2",
+      "rows": 4636529,
+      "columns": 37,
+      "memory_mb": 438.0,
+      "parquet_mb": 67.9,
+      "seconds": 11.5,
+      "peak_rss_gb_so_far": 1.43
+    },
+    {
+      "store_id": "WI_3",
+      "rows": 4765026,
+      "columns": 37,
+      "memory_mb": 450.1,
+      "parquet_mb": 69.4,
+      "seconds": 11.6,
+      "peak_rss_gb_so_far": 1.66
+    }
+  ],
+  "feature_names_base": [
+    "item_id",
+    "dept_id",
+    "cat_id",
+    "lag_28",
+    "lag_35",
+    "lag_42",
+    "lag_49",
+    "lag_56",
+    "lag_364",
+    "rmean_7",
+    "rstd_7",
+    "rmean_14",
+    "rstd_14",
+    "rmean_28",
+    "rstd_28",
+    "rmean_56",
+    "rstd_56",
+    "zero_run_lag28",
+    "sell_price",
+    "price_change_7d",
+    "price_rel_dept",
+    "price_rel_max",
+    "is_discount",
+    "wday",
+    "mday",
+    "month",
+    "year",
+    "event_name_1",
+    "event_type_1",
+    "event_name_2",
+    "snap",
+    "days_to_easter",
+    "days_since_easter"
+  ],
+  "peak_rss_gb": 1.66
+}

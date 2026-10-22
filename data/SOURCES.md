@@ -74,6 +74,13 @@ sama, tidak ada yang hilang atau berlebih):
 **Harga (`sell_prices.csv`)**
 - 6.841.121 baris, 10 toko, 3.049 item, `wm_yr_wk` 11101 … 11621.
 - Rentang harga 0,01 … 107,32, tanpa NaN, tanpa kunci (toko, item, minggu) ganda.
+- Kandidat anomali (sampai minggu d_1913): 405 baris < 20% median item-toko dan 34 baris
+  > 5× median. Dibiarkan; lihat `reports/eda.md` §P5.
+
+**Deretan nol panjang (censored demand)**
+- 62% item laris (laku ≥ 50% hari) pernah tidak terjual ≥ 28 hari berturut-turut;
+  29,5% dari semua hari bernilai nol berada di dalam deretan seperti itu. Indikasi kuat
+  stok habis. Lihat `reports/eda.md` §P5.
 
 **File validation vs evaluation**
 - `sales_train_validation.csv` berakhir di `d_1913`; urutan deretnya sama dengan file

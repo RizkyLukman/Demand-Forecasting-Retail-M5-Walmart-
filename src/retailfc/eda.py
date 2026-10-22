@@ -164,6 +164,70 @@ def q4_easter(daily: pd.DataFrame, cal: pd.DataFrame, max_d: int, before: int = 
     return out, r
 
 
+def q5_data_quality(long_root: Path, raw: Path, cal: pd.DataFrame, cfg: dict, max_d: int) -> dict:
+    """Kualitas data: harga anomali dan deretan nol panjang (indikasi stok habis)."""
+    from retailfc.features import zero_run_length
+    from retailfc.folds import closed_day_mask
+    from retailfc.io import load_prices
+
+    # Harga: hanya minggu sampai minggu dari d_max (holdout tidak disentuh).
+    max_wk = int(cal.loc[cal["d_num"] == max_d, "wm_yr_wk"].iloc[0])
+    pr = load_prices(raw)
+    pr = pr[pr["wm_yr_wk"] <= max_wk]
+    med = pr.groupby(["store_id", "item_id"], observed=True)["sell_price"].transform("median")
+    ratio = pr["sell_price"] / med
+    low = pr["sell_price"] < 0.10
+    ex = (pr[low].groupby("item_id", observed=True)["sell_price"].agg(["min", "size"])
+          .join(pr.groupby("item_id", observed=True)["sell_price"].median().rename("median"))
+          .sort_values("size", ascending=False).head(8))
+    prices = {
+        "rows_checked": int(len(pr)),
+        "rows_below_0_10": int(low.sum()),
+        "items_below_0_10": int(pr.loc[low, "item_id"].nunique()),
+        "rows_below_20pct_of_item_store_median": int((ratio < 0.2).sum()),
+        "rows_above_5x_item_store_median": int((ratio > 5).sum()),
+        "examples_below_0_10": {i: {"min": round(float(r["min"]), 2), "weeks": int(r["size"]),
+                                    "median": round(float(r["median"]), 2)} for i, r in ex.iterrows()},
+    }
+
+    # Deretan nol: dihitung per deret item-toko, hari tutup tidak ikut dihitung.
+    per_series, zero_rows, zero_rows_long, zero_rows_busy, zero_rows_busy_long = [], 0, 0, 0, 0
+    for p in sorted(long_root.glob("store_id=*/part-0.parquet")):
+        df = pd.read_parquet(p, columns=["item_id", "d", "sales"])
+        df = df[df["d"] <= max_d].reset_index(drop=True)
+        closed = closed_day_mask(df["d"].to_numpy(), cal, cfg)
+        run = zero_run_length(df, closed)
+        item = df["item_id"].cat.codes.to_numpy()
+        new_item = np.r_[True, item[1:] != item[:-1]]
+        grp = np.cumsum(((df["sales"].to_numpy() > 0) & ~closed) | new_item)
+        run_total = pd.Series(run).groupby(grp).transform("max").to_numpy()   # panjang deretan penuh
+        is_zero = (df["sales"].to_numpy() == 0) & ~closed
+        open_day = ~closed
+        g = pd.DataFrame({"item": item, "run": run, "zero": is_zero, "open": open_day})
+        s = g.groupby("item", sort=False).agg(longest=("run", "max"), trailing=("run", "last"),
+                                              zeros=("zero", "sum"), open_days=("open", "sum"))
+        s["sell_share"] = 1 - s["zeros"] / s["open_days"]
+        per_series.append(s)
+        busy_item = s["sell_share"].reindex(item).to_numpy() >= 0.5
+        zero_rows += int(is_zero.sum())
+        zero_rows_long += int((is_zero & (run_total >= 28)).sum())
+        zero_rows_busy += int((is_zero & busy_item).sum())
+        zero_rows_busy_long += int((is_zero & busy_item & (run_total >= 28)).sum())
+    t = pd.concat(per_series, ignore_index=True)
+    busy = t["sell_share"] >= 0.5
+    runs = {
+        "series": int(len(t)),
+        "busy_series_sell_share_ge_0_5": int(busy.sum()),
+        **{f"busy_series_with_zero_run_ge_{L}": int((busy & (t["longest"] >= L)).sum()) for L in (28, 56, 90)},
+        "all_series_with_zero_run_ge_90": int((t["longest"] >= 90).sum()),
+        "series_zero_for_last_28plus_days": int((t["trailing"] >= 28).sum()),
+        "busy_series_zero_for_last_28plus_days": int((busy & (t["trailing"] >= 28)).sum()),
+        "share_of_zero_days_inside_runs_ge_28": round(zero_rows_long / zero_rows, 4),
+        "share_of_zero_days_inside_runs_ge_28_busy_series": round(zero_rows_busy_long / zero_rows_busy, 4),
+    }
+    return {"prices": prices, "zero_runs": runs}
+
+
 def fig_weekday(prof: pd.DataFrame, path: Path) -> None:
     fig, ax = plt.subplots(figsize=(7.2, 3.8), dpi=150, facecolor=SURFACE)
     style_axes(ax)
@@ -231,6 +295,8 @@ def main() -> None:
     out["q3_closed_days"], closed = q3_closed_days(daily, cal)
     out["q2_weekly_snap"], prof = q2_weekly_and_snap(daily, cal, closed)
     out["q4_easter"], easter = q4_easter(daily, cal, max_d)
+    out["q5_data_quality"] = q5_data_quality(Path(cfg["paths"]["interim"]) / "sales_long",
+                                             Path(cfg["paths"]["raw_m5"]), cal, cfg, max_d)
 
     fig_weekday(prof, figs / "eda_weekday.png")
     fig_easter(easter, figs / "eda_easter.png")

@@ -124,6 +124,64 @@ setelah d_1913.
 berakhir di Easter 2016 (d_1885) dan mencakup hari-hari sebelumnya. Fold tambahan di
 sekitar Easter 2015 (d_1528) dibutuhkan untuk hari-hari sesudahnya.
 
+## P5. Kualitas data: harga anomali dan deretan nol panjang
+
+Ditambahkan setelah pertanyaan "apakah data ini tidak perlu preprocessing?". Kode:
+`q5_data_quality` di `eda.py`; angka di `reports/eda.json → q5_data_quality`. Harga dicek
+sampai minggu d_1913, penjualan sampai d_1913.
+
+### Harga anomali: kecil
+
+| Pengecekan | Baris |
+|---|---:|
+| Baris harga yang dicek | 6.597.201 |
+| Harga < 0,10 dolar | 231 (26 item) |
+| Harga < 20% median item-toko itu sendiri | **405** |
+| Harga > 5× median item-toko itu sendiri | **34** |
+
+Harga absolut yang sangat rendah **belum tentu salah**: contoh terbanyak adalah item FOODS_3
+yang memang murah (0,05 dolar, median 0,20). Kandidat anomali yang lebih tepat adalah harga
+yang jauh dari median item-toko itu sendiri (405 + 34 baris, 0,007% data).
+
+**Keputusan:** dibiarkan dan didokumentasikan. Dampaknya sangat kecil, dan model pohon
+tahan terhadap nilai ekstrem. Fitur `price_rel_max` / `is_discount` akan membaca harga
+seperti itu sebagai diskon besar.
+
+### Deretan nol panjang: indikasi kuat stok habis (censored demand)
+
+Panjang deretan hari tanpa penjualan dihitung per deret item-toko (hari tutup tidak
+dihitung). "Item laris" = terjual di ≥ 50% hari bukanya.
+
+| Pengecekan | Jumlah |
+|---|---:|
+| Item laris | 10.004 dari 30.490 deret |
+| Item laris dengan deretan nol ≥ 28 hari | **6.235 (62%)** |
+| Item laris dengan deretan nol ≥ 56 hari | 4.591 (46%) |
+| Item laris dengan deretan nol ≥ 90 hari | 3.117 (31%) |
+| Deret yang nol terus di ≥ 28 hari terakhir sebelum d_1913 | 1.587 (240 di antaranya item laris) |
+| **Porsi semua hari bernilai nol yang berada di dalam deretan nol ≥ 28 hari** | **29,5%** |
+| Porsi yang sama, khusus item laris | 23,9% |
+
+**Analisis:** untuk item yang laku di lebih dari separuh harinya, tidak terjual 28 hari
+berturut-turut karena kebetulan hampir mustahil (peluangnya kira-kira 0,5²⁸ jika hari-hari
+saling bebas). Deretan seperti ini hampir pasti berarti barang **tidak tersedia di rak**
+(stok habis, ditarik, atau diganti), bukan tidak ada pembeli. Artinya sebagian nol di data
+adalah *penjualan nol*, bukan *permintaan nol*.
+
+**Dampak:** model belajar dari nol-nol ini, sehingga bisa terlalu rendah memprediksi item
+yang sebenarnya diminati. Untuk simulasi stok (Fase 7), yang dibutuhkan adalah permintaan,
+bukan penjualan.
+
+**Keputusan:**
+1. **Fase 4 (sudah dikerjakan):** fitur `zero_run_lag28` = panjang deretan nol per 28 hari
+   lalu. Fitur ini lolos tes anti-leakage. Pengecekan awal di CA_1: rata-rata penjualan hari
+   ini 0,44 unit bila `zero_run_lag28` ≥ 28, dibanding 1,78 unit bila tidak.
+2. **Fase 5:** uji pembanding, yaitu baris di dalam deretan nol panjang item laris
+   dikeluarkan dari training (diperlakukan seperti hari tutup). Dampaknya diukur, bukan
+   ditebak. Evaluasi tetap memakai penjualan aktual.
+3. **Fase 7:** simulasi stok sebaiknya memakai versi yang mengeluarkan stok habis dari
+   training, karena yang disimulasikan adalah permintaan.
+
 ---
 
 ## Ringkasan keputusan yang diteruskan
@@ -135,3 +193,5 @@ sekitar Easter 2015 (d_1528) dibutuhkan untuk hari-hari sesudahnya.
 | SNAP | Fitur `snap` sesuai negara bagian toko | 4 |
 | Easter | `days_to/since_easter`, dibatasi ±7; fold tambahan sekitar d_1528 | 3–4 |
 | Nol | Laporkan metrik per segmen dan bias; waspadai model yang "menang" karena menebak nol | 5–6 |
+| Stok habis | Fitur `zero_run_lag28` (sudah); uji keluarkan deretan nol panjang dari training | 4–5, 7 |
+| Harga anomali | Dibiarkan, didokumentasikan (405 + 34 baris) | – |

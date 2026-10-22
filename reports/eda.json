@@ -311,5 +311,68 @@
       "HOBBIES": 0.776,
       "HOUSEHOLD": 0.83
     }
+  },
+  "q5_data_quality": {
+    "prices": {
+      "rows_checked": 6597201,
+      "rows_below_0_10": 231,
+      "items_below_0_10": 26,
+      "rows_below_20pct_of_item_store_median": 405,
+      "rows_above_5x_item_store_median": 34,
+      "examples_below_0_10": {
+        "FOODS_3_547": {
+          "min": 0.05,
+          "weeks": 28,
+          "median": 0.2
+        },
+        "FOODS_3_711": {
+          "min": 0.05,
+          "weeks": 24,
+          "median": 0.2
+        },
+        "FOODS_3_007": {
+          "min": 0.05,
+          "weeks": 23,
+          "median": 0.2
+        },
+        "FOODS_3_580": {
+          "min": 0.05,
+          "weeks": 21,
+          "median": 0.2
+        },
+        "FOODS_3_752": {
+          "min": 0.05,
+          "weeks": 21,
+          "median": 0.2
+        },
+        "FOODS_3_498": {
+          "min": 0.02,
+          "weeks": 19,
+          "median": 0.2
+        },
+        "FOODS_3_454": {
+          "min": 0.05,
+          "weeks": 18,
+          "median": 0.2
+        },
+        "FOODS_3_234": {
+          "min": 0.05,
+          "weeks": 14,
+          "median": 0.2
+        }
+      }
+    },
+    "zero_runs": {
+      "series": 30490,
+      "busy_series_sell_share_ge_0_5": 10004,
+      "busy_series_with_zero_run_ge_28": 6235,
+      "busy_series_with_zero_run_ge_56": 4591,
+      "busy_series_with_zero_run_ge_90": 3117,
+      "all_series_with_zero_run_ge_90": 15062,
+      "series_zero_for_last_28plus_days": 1587,
+      "busy_series_zero_for_last_28plus_days": 240,
+      "share_of_zero_days_inside_runs_ge_28": 0.295,
+      "share_of_zero_days_inside_runs_ge_28_busy_series": 0.2393
+    }
   }
 }
