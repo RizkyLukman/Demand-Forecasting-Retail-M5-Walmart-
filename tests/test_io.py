@@ -1,7 +1,7 @@
-"""Checks the Phase 1 output against the raw M5 files.
+"""Mengecek output Fase 1 terhadap file mentah M5.
 
-Uses the real data in data/raw/m5 and data/interim; skipped when it is not present
-(raw data is not tracked by git).
+Memakai data asli di data/raw/m5 dan data/interim; dilewati jika data tidak ada
+(data mentah tidak di-track git).
 """
 
 from pathlib import Path
@@ -37,7 +37,7 @@ def raw():
 
 
 def test_small_real_slice(raw):
-    """First 20 series of CA_1, first 120 days: drop rule, values and price join."""
+    """20 deret pertama CA_1, 120 hari pertama: aturan buang baris, nilai, dan join harga."""
     wide = raw["wide"]
     d_cols = raw["d_cols"][:120]
     ws = wide[wide["store_id"] == "CA_1"].head(20)
@@ -50,18 +50,18 @@ def test_small_real_slice(raw):
         if len(nz) == 0:
             assert sub.empty
             continue
-        # Starts exactly at the first sale and keeps every later day.
+        # Mulai tepat di penjualan pertama dan menyimpan semua hari sesudahnya.
         assert sub["d"].iloc[0] == nz[0] + 1
         assert sub["d"].tolist() == list(range(nz[0] + 1, len(d_cols) + 1))
         assert np.array_equal(sub["sales"].to_numpy(), values[i, nz[0]:])
 
-    # Prices equal a direct lookup in sell_prices.csv.
+    # Harga sama dengan hasil lookup langsung di sell_prices.csv.
     p = raw["prices"]
     lookup = p[p["store_id"] == "CA_1"].astype({"item_id": str}).set_index(["item_id", "wm_yr_wk"])["sell_price"]
     keys = list(zip(long["item_id"].astype(str), long["wm_yr_wk"]))
     expected = lookup.reindex(keys).to_numpy()
     assert np.allclose(long["sell_price"].to_numpy(), expected, equal_nan=True)
-    # Dropped cells are all zero, so no units are lost.
+    # Sel yang dibuang semuanya nol, jadi tidak ada unit yang hilang.
     assert stats["sales_total_wide"] == stats["sales_total_long"] == int(values.sum())
 
 
@@ -72,7 +72,7 @@ def test_parquet_matches_wide(raw, store):
     ws = raw["wide"][raw["wide"]["store_id"] == store]
     values = ws[raw["d_cols"]].to_numpy()
 
-    # Dtypes as specified in PROJECT_PLAN.md (Phase 1).
+    # Dtype sesuai PROJECT_PLAN.md (Fase 1).
     assert long["sales"].dtype == np.int16
     assert long["d"].dtype == np.int16
     assert long["wm_yr_wk"].dtype == np.int16
@@ -80,14 +80,14 @@ def test_parquet_matches_wide(raw, store):
     for c in ["item_id", "dept_id", "cat_id", "state_id"]:
         assert isinstance(long[c].dtype, pd.CategoricalDtype)
 
-    # Totals and row count.
+    # Total dan jumlah baris.
     first = (values > 0).argmax(axis=1)
     assert len(long) == int((values.shape[1] - first).sum())
     assert int(long["sales"].sum()) == int(values.sum(dtype=np.int64))
     assert not long.duplicated(["item_id", "d"]).any()
     assert long["sell_price"].notna().all()
 
-    # Random sample of series: exact values from first sale onward.
+    # Sampel acak deret: nilai harus persis sama sejak penjualan pertama.
     rng = np.random.default_rng(0)
     for i in rng.choice(len(ws), size=25, replace=False):
         item = ws["item_id"].iloc[i]

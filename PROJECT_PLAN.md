@@ -1,7 +1,8 @@
 # Project Plan — Demand Forecasting Retail (M5 Walmart → Indonesia) dengan XGBoost
 
 > Dokumen acuan proyek: tujuan, data, batasan hardware, fase kerja, dan aturan.
-> Bahasa diskusi: Indonesia. Nama variabel, fungsi, dan komentar kode: Inggris.
+> Bahasa diskusi, laporan (`reports/`, `data/SOURCES.md`), teks grafik, serta komentar
+> dan docstring kode: **Indonesia**. Nama variabel, fungsi, kolom, dan kunci JSON: Inggris.
 
 ---
 
@@ -211,6 +212,10 @@ Jawab pertanyaan spesifik:
   28 hari dari d_1913, contoh: d_1801, d_1829, d_1857, d_1885 (setiap fold memprediksi
   28 hari setelah cutoff-nya; fold terakhir memprediksi d_1886–d_1913). Fold tambahan
   yang mencakup akhir tahun disarankan.
+- **Fold khusus** (dilaporkan terpisah, tidak dirata-rata ke skor utama):
+  `easter_2014` (cutoff d_1164), `easter_2015` (d_1514), `year_end_2015` (d_1773).
+  Detail & aturan: `reports/validation_design.md`, `config.yaml → validation`.
+- Early stopping: 28 hari terakhir **sebelum** cutoff (di dalam jendela train).
 - **Holdout final:** d_1914–d_1941 (cutoff d_1913). Hanya disentuh sekali di akhir.
   Tidak boleh ada fold CV yang horizon-nya masuk ke rentang ini.
 - Semua fitur dihitung hanya dari data ≤ cutoff fold tersebut. Setiap fungsi fitur
@@ -376,7 +381,8 @@ antar fold), temuan per segmen, hasil simulasi stok, hasil transfer Indonesia,
       (ulang profil di Fase 4 dengan fitur final)
 - [x] F2: EDA terarah (nol per kategori, SNAP, hari tutup, Easter) → `reports/eda.md`
       (25 Des = tutup tapi tidak persis nol; efek Easter ±3 hari; SNAP nyata di FOODS)
-- [ ] F3: definisi fold rolling origin + tes anti-leakage
+- [x] F3: definisi fold rolling origin + tes anti-leakage → `reports/validation_design.md`
+      (4 fold CV + 3 fold khusus + holdout; `leaking_columns` untuk tiap fitur di Fase 4)
 - [ ] F4: fitur + ablation fitur hari libur bergerak (Easter)
 - [ ] F5: baseline (naive, MA, Croston/TSB, ETS) + XGBoost point (`reg:tweedie`) & kuantil (`reg:quantileerror`)
 - [ ] F6: analisis error per segmen ADI/CV² + SHAP + studi kasus

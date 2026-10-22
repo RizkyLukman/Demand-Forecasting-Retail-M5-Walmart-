@@ -1,13 +1,13 @@
-"""Phase 2: targeted EDA. Answers four questions from PROJECT_PLAN.md with numbers.
+"""Fase 2: EDA terarah. Menjawab empat pertanyaan dari PROJECT_PLAN.md dengan angka.
 
-1. Share of zero-sales days per category (after each item's first sale).
-2. Weekly pattern strength, and SNAP effect per state (with a non-food placebo).
-3. Days a store is closed (e.g. 25 December): verified from sales, not assumed.
-4. Sales around Easter (moving holiday), as preparation for P4.
+1. Proporsi hari tanpa penjualan per kategori (setelah penjualan pertama tiap item).
+2. Kekuatan pola mingguan, dan efek SNAP per negara bagian (dengan placebo non-makanan).
+3. Hari toko tutup (mis. 25 Desember): diverifikasi dari penjualan, bukan diasumsikan.
+4. Penjualan di sekitar Easter (hari libur bergerak), sebagai persiapan P4.
 
-Only days d <= holdout_cutoff are used, so the final holdout stays untouched.
+Hanya hari d <= holdout_cutoff yang dipakai, jadi holdout final tidak tersentuh.
 
-Usage:
+Cara pakai:
     python -m retailfc.eda --config config.yaml
 """
 
@@ -26,8 +26,8 @@ import pandas as pd
 
 from retailfc.io import load_calendar, load_config
 
-# Reference palette (light), see the dataviz skill: first three categorical slots
-# validate all-pairs for colour-vision deficiency.
+# Palet referensi (mode terang): tiga slot kategorikal pertama lolos uji buta warna
+# untuk semua pasangan warna.
 SERIES = ["#2a78d6", "#eb6834", "#1baf7a"]
 INK, INK_2, MUTED, GRID, BASE, SURFACE = "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#c3c2b7", "#fcfcfb"
 CATS = ["FOODS", "HOBBIES", "HOUSEHOLD"]
@@ -44,7 +44,7 @@ def style_axes(ax) -> None:
 
 
 def daily_store_cat(long_root: Path, max_d: int) -> pd.DataFrame:
-    """Per store x category x day: total units, rows (active items), zero rows."""
+    """Per toko x kategori x hari: total unit, jumlah baris (item aktif), baris bernilai nol."""
     parts = []
     for p in sorted(long_root.glob("store_id=*/part-0.parquet")):
         store = p.parent.name.split("=", 1)[1]
@@ -61,7 +61,7 @@ def daily_store_cat(long_root: Path, max_d: int) -> pd.DataFrame:
 
 
 def detrended(series: pd.Series, window: int = 28) -> pd.Series:
-    """Daily value divided by its centred rolling mean (removes trend and yearly season)."""
+    """Nilai harian dibagi rata-rata rolling berpusat (menghilangkan tren dan musim tahunan)."""
     return series / series.rolling(window, center=True, min_periods=window // 2).mean()
 
 
@@ -98,7 +98,7 @@ def q2_weekly_and_snap(daily: pd.DataFrame, cal: pd.DataFrame, closed: set[int])
         r = detrended(s).dropna()
         snap = c.loc[r.index, f"snap_{state}"].to_numpy() == 1
         wdays = c.loc[r.index, "wday"].to_numpy()
-        # Weekday-adjusted: compare SNAP vs non-SNAP within each weekday, then average.
+        # Disesuaikan per hari: bandingkan SNAP vs non-SNAP di hari yang sama, lalu rata-ratakan.
         lifts = []
         for w in range(1, 8):
             m = wdays == w
@@ -117,7 +117,7 @@ def q3_closed_days(daily: pd.DataFrame, cal: pd.DataFrame) -> tuple[dict, set[in
     total = per_store.sum(axis=1)
     zero_all = total.index[total == 0].tolist()
     store_zero = {s: per_store.index[per_store[s] == 0].tolist() for s in per_store.columns}
-    # Days where the whole chain sells < 10% of its centred 28-day mean: near-closures.
+    # Hari ketika seluruh jaringan menjual < 10% rata-rata 28 hari berpusat: hampir tutup.
     rel = detrended(total)
     near = rel.index[(rel < 0.10) & (total > 0)].tolist()
 
@@ -132,13 +132,13 @@ def q3_closed_days(daily: pd.DataFrame, cal: pd.DataFrame) -> tuple[dict, set[in
         "days_below_10pct_of_rolling_mean_but_nonzero": label(near),
         "store_days_with_zero_total": {s: label(v) for s, v in store_zero.items() if v},
     }
-    # Treat both fully-zero and near-zero chain days as closed for later analyses.
+    # Hari yang benar-benar nol maupun hampir nol dianggap tutup untuk analisis berikutnya.
     return out, set(zero_all) | set(near)
 
 
 def q4_easter(daily: pd.DataFrame, cal: pd.DataFrame, max_d: int, before: int = 14, after: int = 7) -> tuple[dict, pd.DataFrame]:
-    """Units per category on each day around Easter, relative to the same weekday
-    2-5 weeks before and after (excludes the event window itself)."""
+    """Unit per kategori di setiap hari sekitar Easter, relatif terhadap hari yang sama
+    2-5 minggu sebelum dan sesudahnya (jendela event sendiri tidak ikut dihitung)."""
     tot = daily.groupby(["cat_id", "d"])["units"].sum().unstack(0)
     easter = cal.loc[(cal["event_name_1"] == "Easter") | (cal["event_name_2"] == "Easter"), "d_num"]
     easter = [int(d) for d in easter if d + after + 35 <= max_d]
@@ -171,7 +171,7 @@ def fig_weekday(prof: pd.DataFrame, path: Path) -> None:
     for i, cat in enumerate(CATS):
         ax.plot(x, prof[cat].to_numpy(), color=SERIES[i], linewidth=2, marker="o", markersize=5,
                 markeredgecolor=SURFACE, markeredgewidth=1.5, label=cat)
-    # Direct labels at the last point, pushed apart so they never overlap.
+    # Label langsung di titik terakhir, digeser agar tidak saling menumpuk.
     ends = sorted(((prof[c].iloc[6], c) for c in CATS))
     min_gap, placed = 0.03, []
     for y, cat in ends:
@@ -180,11 +180,11 @@ def fig_weekday(prof: pd.DataFrame, path: Path) -> None:
         ax.annotate(cat, (6, y), xytext=(6.25, y_lab), textcoords="data", va="center",
                     fontsize=9, color=INK_2)
     ax.axhline(1.0, color=BASE, linewidth=1)
-    ax.set_xticks(x, ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"])
+    ax.set_xticks(x, ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"])
     ax.set_xlim(-0.3, 7.6)
-    ax.set_ylabel("Units vs. weekly average", color=INK_2, fontsize=9)
-    ax.set_title("Sales peak on the weekend; HOBBIES falls back on Sunday", loc="left",
-                 fontsize=11, color=INK)
+    ax.set_ylabel("Unit vs. rata-rata mingguan", color=INK_2, fontsize=9)
+    ax.set_title("Penjualan memuncak di akhir pekan; HOBBIES turun lagi di hari Minggu",
+                 loc="left", fontsize=11, color=INK)
     ax.legend(frameon=False, fontsize=8, loc="upper left", labelcolor=INK_2)
     fig.tight_layout()
     fig.savefig(path, facecolor=SURFACE)
@@ -203,10 +203,10 @@ def fig_easter(r: pd.DataFrame, path: Path) -> None:
         ax.axhline(1.0, color=BASE, linewidth=1)
         ax.axvline(0, color=MUTED, linewidth=0.8, linestyle=":")
         ax.set_title(cat, loc="left", fontsize=10, color=INK)
-        ax.set_xlabel("Days from Easter Sunday", color=INK_2, fontsize=9)
-    axes[0].set_ylabel("Units vs. same weekday, ±2–5 wk", color=INK_2, fontsize=9)
-    fig.suptitle("Sales around Easter (thin: single years, thick: mean)", x=0.01, ha="left",
-                 fontsize=11, color=INK)
+        ax.set_xlabel("Hari dari Minggu Easter", color=INK_2, fontsize=9)
+    axes[0].set_ylabel("Unit vs. hari sama, ±2–5 minggu", color=INK_2, fontsize=9)
+    fig.suptitle("Penjualan di sekitar Easter (tipis: per tahun, tebal: rata-rata)", x=0.01,
+                 ha="left", fontsize=11, color=INK)
     fig.tight_layout()
     fig.savefig(path, facecolor=SURFACE)
     plt.close(fig)

@@ -1,10 +1,10 @@
-"""Phase 0: verify the raw M5 files against the documented schema.
+"""Fase 0: verifikasi file mentah M5 terhadap skema yang terdokumentasi.
 
-Reads only the real files in `paths.raw_m5`, prints a report and writes it to
-`reports/m5_verification.json`. Nothing here is assumed; every number comes
-from the files.
+Hanya membaca file asli di `paths.raw_m5`, mencetak laporan, lalu menyimpannya ke
+`reports/m5_verification.json`. Tidak ada yang diasumsikan; setiap angka berasal
+dari file.
 
-Usage:
+Cara pakai:
     python -m retailfc.verify_m5 --config config.yaml
 """
 
@@ -121,7 +121,7 @@ def check_sales(path: Path, cal: pd.DataFrame) -> tuple[dict, pd.DataFrame]:
     d_nums = d_index(df.columns)
     values = df[[f"d_{i}" for i in d_nums]].to_numpy()
 
-    # Leading zeros = days before the first recorded sale of each item-store.
+    # Nol di awal = hari sebelum penjualan pertama yang tercatat untuk tiap item-toko.
     nonzero = values > 0
     has_sale = nonzero.any(axis=1)
     first_sale = np.where(has_sale, nonzero.argmax(axis=1), values.shape[1])
@@ -172,7 +172,7 @@ def main() -> None:
     report["sell_prices"] = check_prices(raw)
     report["sales_train_evaluation"], ev = check_sales(raw / cfg["m5"]["sales_file"], cal)
 
-    # The validation file should equal the first 1913 days of the evaluation file.
+    # File validation seharusnya sama dengan 1913 hari pertama file evaluation.
     va = read_sales(raw / "sales_train_validation.csv")
     va_d = [c for c in va.columns if c.startswith("d_")]
     ev_aligned = ev.set_index("id").loc[va["id"].str.replace("_validation", "_evaluation")]

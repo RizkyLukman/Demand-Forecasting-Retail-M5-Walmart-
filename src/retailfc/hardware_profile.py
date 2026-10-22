@@ -1,13 +1,13 @@
-"""Phase 1: measure RAM / VRAM / time for training XGBoost on one store.
+"""Fase 1: ukur RAM / VRAM / waktu training XGBoost untuk satu toko.
 
-The feature set here is PROVISIONAL and exists only to give the profile a
-realistic shape (row count, feature count, categorical columns). The real,
-cutoff-tested features are built in Phase 4; re-run this profile then.
+Set fitur di sini SEMENTARA dan hanya dipakai agar profil punya bentuk yang
+realistis (jumlah baris, jumlah fitur, kolom kategorikal). Fitur final yang
+diuji terhadap cutoff dibuat di Fase 4; jalankan ulang profil ini saat itu.
 
-Only rows with d <= cutoff are used. Early stopping uses the last 28 days
-inside that window, so no fold horizon is touched.
+Hanya baris dengan d <= cutoff yang dipakai. Early stopping memakai 28 hari
+terakhir di dalam jendela itu, jadi horizon fold tidak tersentuh.
 
-Usage:
+Cara pakai:
     python -m retailfc.hardware_profile --config config.yaml --store CA_1
 """
 
@@ -33,7 +33,7 @@ WINDOWS = [7, 14, 28, 56]
 
 
 def provisional_features(long: pd.DataFrame, cal: pd.DataFrame, state: str) -> pd.DataFrame:
-    """`long` must be one store, sorted by item_id then d, with contiguous days per item."""
+    """`long` harus satu toko, terurut per item_id lalu d, dengan hari berurutan per item."""
     df = long
     g = df.groupby("item_id", observed=True, sort=False)["sales"]
     for k in LAGS:

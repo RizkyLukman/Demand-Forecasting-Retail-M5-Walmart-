@@ -1,14 +1,14 @@
-"""Phase 1: load M5, downcast, convert to long format per store, write Parquet.
+"""Fase 1: muat M5, downcast, ubah ke format panjang per toko, simpan ke Parquet.
 
 Output: data/interim/sales_long/store_id=<id>/part-0.parquet
-Columns: item_id, dept_id, cat_id, state_id (category), d (int16),
-         wm_yr_wk (int16), sell_price (float32, NaN if no price), sales (int16).
+Kolom: item_id, dept_id, cat_id, state_id (category), d (int16),
+       wm_yr_wk (int16), sell_price (float32, NaN jika tidak ada harga), sales (int16).
 
-Rows before each item-store's first sale are dropped: the product was not on sale
-yet, so those zeros are not demand. Whether a price exists in that period is
-checked and reported, not assumed.
+Baris sebelum penjualan pertama tiap item-toko dibuang: produk belum dijual saat
+itu, jadi nol-nya bukan permintaan. Ada tidaknya harga di periode itu dicek dan
+dilaporkan, bukan diasumsikan.
 
-Usage:
+Cara pakai:
     python -m retailfc.io --config config.yaml [--stores CA_1 TX_2]
 """
 
@@ -68,24 +68,24 @@ def store_to_long(
     d_cols: list[str],
     categories: dict[str, pd.Index],
 ) -> tuple[pd.DataFrame, dict]:
-    """Long table for one store's rows of the wide sales file.
+    """Tabel format panjang untuk baris-baris satu toko dari file penjualan lebar.
 
-    `wide` must contain exactly one store. `prices` may contain all stores.
+    `wide` harus berisi tepat satu toko. `prices` boleh berisi semua toko.
     """
     store = wide["store_id"].iloc[0]
     assert (wide["store_id"] == store).all()
-    values = wide[d_cols].to_numpy()                       # (n_series, n_days) int16
+    values = wide[d_cols].to_numpy()                       # (jumlah deret, jumlah hari) int16
     n_series, n_days = values.shape
     d_first = int(d_cols[0][2:])
     d_nums = np.arange(d_first, d_first + n_days, dtype=np.int16)
 
-    # Calendar week of every day column.
+    # Minggu kalender (wm_yr_wk) untuk setiap kolom hari.
     week_of_d = cal.set_index("d_num")["wm_yr_wk"].reindex(d_nums).to_numpy()
     assert not pd.isna(week_of_d).any(), "sales day missing from calendar"
     weeks = np.unique(week_of_d)
     week_pos_of_day = np.searchsorted(weeks, week_of_d)
 
-    # Price matrix: series x week (NaN = no price that week).
+    # Matriks harga: deret x minggu (NaN = tidak ada harga di minggu itu).
     item_codes = pd.Categorical(wide["item_id"], categories=categories["item_id"]).codes
     row_of_item = np.full(len(categories["item_id"]), -1, dtype=np.int64)
     row_of_item[item_codes] = np.arange(n_series)
@@ -96,9 +96,9 @@ def store_to_long(
     in_range &= weeks[np.minimum(p_week_pos, len(weeks) - 1)] == ps["wm_yr_wk"].to_numpy()
     price_mat = np.full((n_series, len(weeks)), np.nan, dtype=np.float32)
     price_mat[p_rows[in_range], p_week_pos[in_range]] = ps["sell_price"].to_numpy()[in_range]
-    has_price = ~np.isnan(price_mat[:, week_pos_of_day])  # (n_series, n_days) bool
+    has_price = ~np.isnan(price_mat[:, week_pos_of_day])  # (jumlah deret, jumlah hari) bool
 
-    # First sale per series; keep day >= first sale.
+    # Penjualan pertama per deret; simpan hari >= penjualan pertama.
     nonzero = values > 0
     any_sale = nonzero.any(axis=1)
     first_sale = np.where(any_sale, nonzero.argmax(axis=1), n_days)
@@ -106,8 +106,8 @@ def store_to_long(
 
     has_any_price = has_price.any(axis=1)
     first_price = np.where(has_any_price, has_price.argmax(axis=1), n_days)
-    # Prices are weekly, so a price a few days before the first sale inside the same
-    # week is expected. What matters is a price in an EARLIER week than the first sale.
+    # Harga dicatat per minggu, jadi harga beberapa hari sebelum penjualan pertama di
+    # minggu yang sama itu wajar. Yang penting: harga di minggu yang LEBIH AWAL.
     first_price_wk = week_pos_of_day[np.minimum(first_price, n_days - 1)]
     first_sale_wk = week_pos_of_day[np.minimum(first_sale, n_days - 1)]
     price_weeks_early = np.where(any_sale & has_any_price, first_sale_wk - first_price_wk, 0)
@@ -128,7 +128,7 @@ def store_to_long(
         "sales_total_wide": int(values.sum(dtype=np.int64)),
     }
 
-    # Build the long table directly from the kept cells (row-major: series, then day).
+    # Bangun tabel panjang langsung dari sel yang disimpan (urut per deret, lalu hari).
     rows, cols = np.nonzero(keep)
     long = pd.DataFrame({
         "item_id": pd.Categorical.from_codes(item_codes[rows], categories["item_id"]),

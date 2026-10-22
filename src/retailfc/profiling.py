@@ -1,4 +1,4 @@
-"""Lightweight resource measurement: peak process RAM (psutil) and peak GPU memory (nvidia-smi)."""
+"""Pengukuran sumber daya ringan: puncak RAM proses (psutil) dan puncak memori GPU (nvidia-smi)."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ import psutil
 
 
 class PeakRSS:
-    """Samples this process's RSS in a background thread and keeps the maximum."""
+    """Mengambil sampel RSS proses ini di thread latar belakang dan menyimpan nilai maksimumnya."""
 
     def __init__(self, interval: float = 0.1):
         self.interval = interval
@@ -41,7 +41,8 @@ class PeakRSS:
 
 
 class PeakVRAM:
-    """Polls `nvidia-smi` for used GPU memory (whole device, MiB) and keeps the maximum."""
+    """Membaca memori GPU terpakai lewat `nvidia-smi` (seluruh device, MiB) secara berkala
+    dan menyimpan nilai maksimumnya."""
 
     def __init__(self, interval: float = 0.5, gpu_index: int = 0):
         self.interval = interval
@@ -77,7 +78,7 @@ class PeakVRAM:
 
 @contextmanager
 def timed():
-    """Yields a dict whose 'seconds' key is filled in on exit."""
+    """Menghasilkan dict yang kunci 'seconds'-nya diisi saat blok selesai."""
     out = {"seconds": None}
     t0 = time.perf_counter()
     try:

@@ -1,0 +1,9 @@
+fold,role,cutoff,early_stopping,horizon,horizon_dates,closed_days_in_horizon,events_in_horizon
+cv1,cv,d_1801 (2016-01-03),d_1774-d_1801,d_1802-d_1829,2016-01-04 -> 2016-01-31,0,"MartinLutherKingDay, OrthodoxChristmas"
+cv2,cv,d_1829 (2016-01-31),d_1802-d_1829,d_1830-d_1857,2016-02-01 -> 2016-02-28,0,"LentStart, LentWeek2, PresidentsDay, SuperBowl, ValentinesDay"
+cv3,cv,d_1857 (2016-02-28),d_1830-d_1857,d_1858-d_1885,2016-02-29 -> 2016-03-27,0,"Easter, Purim End, StPatricksDay"
+cv4,cv,d_1885 (2016-03-27),d_1858-d_1885,d_1886-d_1913,2016-03-28 -> 2016-04-24,0,
+easter_2014,special,d_1164 (2014-04-06),d_1137-d_1164,d_1165-d_1192,2014-04-07 -> 2014-05-04,0,"Easter, OrthodoxEaster, Pesach End"
+easter_2015,special,d_1514 (2015-03-22),d_1487-d_1514,d_1515-d_1542,2015-03-23 -> 2015-04-19,0,"Easter, OrthodoxEaster, Pesach End"
+year_end_2015,special,d_1773 (2015-12-06),d_1746-d_1773,d_1774-d_1801,2015-12-07 -> 2016-01-03,1,"Chanukah End, Christmas, NewYear"
+holdout,holdout,d_1913 (2016-04-24),d_1886-d_1913,d_1914-d_1941,2016-04-25 -> 2016-05-22,0,"Cinco De Mayo, Mother's day, OrthodoxEaster, Pesach End"

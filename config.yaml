@@ -13,8 +13,20 @@ m5:
 
 validation:
   horizon: 28
-  # Each CV fold predicts the 28 days after its cutoff; none may overlap the holdout.
+  # Tiap fold CV memprediksi 28 hari setelah cutoff-nya; tidak boleh menyentuh holdout.
   cv_cutoffs: [1801, 1829, 1857, 1885]
-  holdout_cutoff: 1913   # holdout = d_1914 .. d_1941, touched once at the end
+  holdout_cutoff: 1913   # holdout = d_1914 .. d_1941, hanya disentuh sekali di akhir
+  # Fold khusus: dilaporkan terpisah, tidak pernah dirata-rata ke skor CV utama.
+  extra_folds:
+    easter_2014: 1164    # horizon d_1165-d_1192 memuat Easter 2014 (d_1178, juga OrthodoxEaster)
+    easter_2015: 1514    # horizon d_1515-d_1542 memuat Easter 2015 (d_1528)
+    year_end_2015: 1773  # horizon d_1774-d_1801 memuat Natal + Tahun Baru
+  early_stopping_days: 28  # N hari terakhir jendela train tiap fold, di dalam cutoff
+  min_history_days: 420    # lag 364 + rolling 56 harus tersedia sebelum cutoff pertama
+
+# Hari toko praktis tutup (Fase 2: <10% penjualan normal, hanya 25 Des).
+# Dikeluarkan dari target training dan statistik rolling; forecast diisi 0.
+closed_days:
+  month_day: [[12, 25]]
 
 seed: 42

@@ -1,9 +1,9 @@
-# Data (only SOURCES.md and the external calendar are tracked)
+# Data (yang di-track hanya SOURCES.md dan kalender eksternal)
 data/raw/
 data/interim/
 data/processed/
 
-# Credentials
+# Kredensial
 kaggle.json
 .kaggle/
 .env
@@ -16,7 +16,7 @@ __pycache__/
 .pytest_cache/
 .ipynb_checkpoints/
 
-# Run outputs that can be large
+# Output run yang bisa berukuran besar
 reports/runs/**/*.parquet
 reports/runs/**/*.ubj
 reports/runs/**/*.json.gz
