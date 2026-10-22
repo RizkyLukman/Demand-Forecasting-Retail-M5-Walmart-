@@ -1,0 +1,114 @@
+{
+  "started": "2026-10-22T23:44:14",
+  "machine": {
+    "cpu": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+    "logical_cpus": 16,
+    "ram_at_start": {
+      "total_gb": 15.26,
+      "available_gb": 4.74
+    },
+    "xgboost": "3.4.1",
+    "pandas": "2.3.3"
+  },
+  "store": "CA_1",
+  "cutoff": 1885,
+  "features": {
+    "n": 27,
+    "names": [
+      "item_id",
+      "dept_id",
+      "cat_id",
+      "sell_price",
+      "lag_28",
+      "lag_35",
+      "lag_42",
+      "lag_49",
+      "lag_56",
+      "lag_364",
+      "rmean_7",
+      "rstd_7",
+      "rmean_14",
+      "rstd_14",
+      "rmean_28",
+      "rstd_28",
+      "rmean_56",
+      "rstd_56",
+      "wday",
+      "month",
+      "mday",
+      "year",
+      "snap",
+      "event_name_1",
+      "event_type_1",
+      "price_rel_item_mean",
+      "price_change_7d"
+    ],
+    "seconds": 5.1,
+    "table_mb": 382.8,
+    "peak_rss_gb": 1.0
+  },
+  "dmatrix": {
+    "train_rows": 4525448,
+    "valid_rows": 85372,
+    "valid_days": "d_1858..d_1885",
+    "seconds": 6.1,
+    "peak_rss_gb_so_far": 3.01
+  },
+  "runs": [
+    {
+      "name": "point_tweedie",
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42,
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.2,
+        "eval_metric": "rmse"
+      },
+      "seconds": 11.8,
+      "best_iteration": 124,
+      "rounds_run": 225,
+      "sec_per_round": 0.053,
+      "vram_baseline_mib": 63,
+      "vram_peak_mib": 577,
+      "vram_delta_mib": 514,
+      "peak_rss_gb_during_train": 2.34
+    },
+    {
+      "name": "multi_quantile_4",
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42,
+        "objective": "reg:quantileerror",
+        "quantile_alpha": [
+          0.1,
+          0.5,
+          0.8,
+          0.9
+        ]
+      },
+      "seconds": 632.1,
+      "best_iteration": 2989,
+      "rounds_run": 3000,
+      "sec_per_round": 0.211,
+      "vram_baseline_mib": 307,
+      "vram_peak_mib": 1097,
+      "vram_delta_mib": 790,
+      "peak_rss_gb_during_train": 10.54
+    }
+  ],
+  "peak_rss_gb_total": 10.54
+}

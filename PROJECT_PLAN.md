@@ -140,14 +140,17 @@ pytest -q
 
 Laptop pengembang: **RAM 16 GB, GPU NVIDIA RTX 3050 Laptop dengan VRAM 4 GB.**
 
-**Estimasi kasar** (belum diukur, harus diganti angka nyata di Fase 1):
-- Data penjualan format panjang setelah downcast (±59 juta baris × kolom ID kategori +
-  `int16`): ±1–2 GB. Muat di RAM, tetapi `melt` di pandas bisa memakan 2–3× memori
-  saat proses. Lakukan melt **per toko** kalau RAM puncak > 12 GB.
-- Tabel fitur penuh (±59 juta baris × ±60 fitur `float32`): ±14 GB. **Tidak muat**
-  di RAM 16 GB secara aman. Bangun fitur **per toko** (±5,9 juta baris ≈ ±1,5 GB).
-- Training XGBoost di GPU untuk data penuh: diperkirakan ±3–8 GB VRAM. **Tidak muat
-  di 4 GB.** Per toko (±0,5–1 GB) diperkirakan muat.
+**Angka terukur di Fase 1** (detail: `reports/hardware_profile.md`):
+- Format panjang, semua toko, setelah buang hari sebelum penjualan pertama: 46,8 juta
+  baris, 672 MB di RAM, 99,8 MB Parquet. Konversi per toko dengan numpy: puncak RAM 0,51 GB.
+- Training 1 toko (CA_1, 4,5 juta baris, 27 fitur sementara) di GPU:
+  `reg:tweedie` +514 MiB VRAM, puncak RAM 2,3 GB, 12 detik.
+  4 kuantil dalam satu model: +790 MiB VRAM, tetapi **puncak RAM 10,5 GB**, 10,5 menit.
+- **VRAM bukan hambatan; RAM host yang jadi hambatan**, lewat ukuran model.
+  `item_id` sebagai fitur kategorikal membuat model ~40× lebih besar daripada label
+  encoding, dan `xgb.train` (xgboost 3.x) menyalin model di akhir training (`reset()`).
+- Masih estimasi (belum diukur): tabel fitur penuh semua toko (±47 juta baris × ±60 fitur
+  `float32`) ±11 GB, tetap **tidak muat** aman di RAM 16 GB. Fitur dibangun per toko.
 
 **Aturan:**
 1. **Granularitas default: satu model per toko** (`store_id`), dilatih di GPU dengan
@@ -250,8 +253,11 @@ Jawab pertanyaan spesifik:
   seberapa sering itu terjadi.
 - **Fitur kategorikal** (`item_id`, `dept_id`, `store_id`, dll.): pakai dtype `category`
   pandas + `enable_categorical=True` dengan `tree_method="hist"`. Bandingkan dengan
-  label encoding biasa. Kardinalitas `item_id` tinggi (3.049), jadi pantau overfit dan
-  waktu training.
+  label encoding biasa. Kardinalitas `item_id` tinggi (3.049), jadi pantau overfit,
+  waktu training, **ukuran model dan puncak RAM** (Fase 1: kategorikal ~40× lebih besar,
+  model 4 kuantil 1.000 iterasi = 1,6 GB).
+- Model kuantil di `eta=0.05` tidak berhenti sebelum 3.000 iterasi (Fase 1). Tentukan
+  `eta`/batas iterasi khusus kuantil supaya 10 toko × 4 fold tetap masuk akal waktunya.
 - **Parameter awal yang di-tuning:** `max_depth`, `learning_rate` (eta), `min_child_weight`,
   `subsample`, `colsample_bytree`, `reg_lambda`, `max_bin`. Gunakan **early stopping**
   pada set validasi internal **di dalam** periode train fold (bukan pada horizon
@@ -365,8 +371,9 @@ antar fold), temuan per segmen, hasil simulasi stok, hasil transfer Indonesia,
 
 - [x] F0: akun Kaggle + token, unduh M5, verifikasi skema → `SOURCES.md`
       (sisa: kutip lisensi/aturan data M5 dari halaman Rules Kaggle)
-- [ ] F1: pipeline load/downcast/melt → Parquet, laporan jumlah baris & memori,
+- [x] F1: pipeline load/downcast/melt → Parquet, laporan jumlah baris & memori,
       profil RAM/VRAM training 1 toko → `reports/hardware_profile.md`
+      (ulang profil di Fase 4 dengan fitur final)
 - [ ] F2: EDA terarah (nol per kategori, SNAP, hari tutup, Easter)
 - [ ] F3: definisi fold rolling origin + tes anti-leakage
 - [ ] F4: fitur + ablation fitur hari libur bergerak (Easter)

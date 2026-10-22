@@ -59,6 +59,15 @@ nothing missing, nothing extra):
 - Cells before each series' first sale: 12,384,870. Every series has at least one sale.
   Removing them (Phase 1) leaves **46,796,220** rows, with a zero share of 59.5%.
 
+**Price vs first sale (checked in Phase 1, `reports/phase1_io.json`)**
+- No item-store sells before it has a price (0 series), and no kept row lacks a price.
+- For 30,346 of 30,490 series (99.5%), the first price week **equals** the first sale
+  week. Prices are weekly, so 85,457 dropped rows (days earlier in that same week)
+  carry a price.
+- **144 series** have a price 1–225 weeks (median 3.5) before their first sale. Those
+  weeks are dropped by the "before first sale" rule, although the product was listed.
+  They may be true zero demand or unrecorded stock-outs. Kept as a known exception.
+
 **Prices (`sell_prices.csv`)**
 - 6,841,121 rows, 10 stores, 3,049 items, `wm_yr_wk` 11101 … 11621.
 - Price range 0.01 … 107.32, no NaN, no duplicate (store, item, week) keys.
