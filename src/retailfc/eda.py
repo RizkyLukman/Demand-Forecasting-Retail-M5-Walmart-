@@ -1,0 +1,242 @@
+"""Phase 2: targeted EDA. Answers four questions from PROJECT_PLAN.md with numbers.
+
+1. Share of zero-sales days per category (after each item's first sale).
+2. Weekly pattern strength, and SNAP effect per state (with a non-food placebo).
+3. Days a store is closed (e.g. 25 December): verified from sales, not assumed.
+4. Sales around Easter (moving holiday), as preparation for P4.
+
+Only days d <= holdout_cutoff are used, so the final holdout stays untouched.
+
+Usage:
+    python -m retailfc.eda --config config.yaml
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+
+import matplotlib
+
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+from retailfc.io import load_calendar, load_config
+
+# Reference palette (light), see the dataviz skill: first three categorical slots
+# validate all-pairs for colour-vision deficiency.
+SERIES = ["#2a78d6", "#eb6834", "#1baf7a"]
+INK, INK_2, MUTED, GRID, BASE, SURFACE = "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#c3c2b7", "#fcfcfb"
+CATS = ["FOODS", "HOBBIES", "HOUSEHOLD"]
+
+
+def style_axes(ax) -> None:
+    ax.set_facecolor(SURFACE)
+    for side in ("top", "right", "left"):
+        ax.spines[side].set_visible(False)
+    ax.spines["bottom"].set_color(BASE)
+    ax.tick_params(colors=MUTED, labelsize=9, length=0)
+    ax.grid(axis="y", color=GRID, linewidth=0.8)
+    ax.set_axisbelow(True)
+
+
+def daily_store_cat(long_root: Path, max_d: int) -> pd.DataFrame:
+    """Per store x category x day: total units, rows (active items), zero rows."""
+    parts = []
+    for p in sorted(long_root.glob("store_id=*/part-0.parquet")):
+        store = p.parent.name.split("=", 1)[1]
+        df = pd.read_parquet(p, columns=["cat_id", "d", "sales"])
+        df = df[df["d"] <= max_d]
+        g = df.assign(zero=(df["sales"] == 0)).groupby(["cat_id", "d"], observed=True)
+        a = g.agg(units=("sales", "sum"), rows=("sales", "size"), zeros=("zero", "sum")).reset_index()
+        a["store_id"] = store
+        parts.append(a)
+    out = pd.concat(parts, ignore_index=True)
+    out["cat_id"] = out["cat_id"].astype(str)
+    out["state_id"] = out["store_id"].str.slice(0, 2)
+    return out
+
+
+def detrended(series: pd.Series, window: int = 28) -> pd.Series:
+    """Daily value divided by its centred rolling mean (removes trend and yearly season)."""
+    return series / series.rolling(window, center=True, min_periods=window // 2).mean()
+
+
+def q1_zero_share(daily: pd.DataFrame) -> dict:
+    by_cat = daily.groupby("cat_id")[["zeros", "rows"]].sum()
+    by_cat_store = daily.groupby(["cat_id", "store_id"])[["zeros", "rows"]].sum()
+    zs = (by_cat_store["zeros"] / by_cat_store["rows"]).unstack()
+    return {
+        "zero_share_by_cat": (by_cat["zeros"] / by_cat["rows"]).round(4).to_dict(),
+        "zero_share_all": round(float(daily["zeros"].sum() / daily["rows"].sum()), 4),
+        "zero_share_by_cat_store_min": zs.min(axis=1).round(4).to_dict(),
+        "zero_share_by_cat_store_max": zs.max(axis=1).round(4).to_dict(),
+        "zero_share_by_cat_store": zs.round(4).to_dict(orient="index"),
+    }
+
+
+def q2_weekly_and_snap(daily: pd.DataFrame, cal: pd.DataFrame, closed: set[int]) -> tuple[dict, pd.DataFrame]:
+    c = cal.set_index("d_num")
+    out: dict = {"weekday_index": {}, "weekday_max_over_min": {}, "snap": {}}
+
+    tot = daily[~daily["d"].isin(closed)].groupby(["cat_id", "d"])["units"].sum().unstack(0)
+    ratio = tot.apply(detrended)
+    wd = c.loc[ratio.index, "weekday"]
+    order = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    prof = ratio.groupby(wd.values).mean().reindex(order)
+    prof = prof / prof.mean()
+    for cat in CATS:
+        out["weekday_index"][cat] = prof[cat].round(3).to_dict()
+        out["weekday_max_over_min"][cat] = round(float(prof[cat].max() / prof[cat].min()), 3)
+
+    st = daily[~daily["d"].isin(closed)].groupby(["state_id", "cat_id", "d"])["units"].sum()
+    for (state, cat), s in st.groupby(level=[0, 1]):
+        s = s.droplevel([0, 1])
+        r = detrended(s).dropna()
+        snap = c.loc[r.index, f"snap_{state}"].to_numpy() == 1
+        wdays = c.loc[r.index, "wday"].to_numpy()
+        # Weekday-adjusted: compare SNAP vs non-SNAP within each weekday, then average.
+        lifts = []
+        for w in range(1, 8):
+            m = wdays == w
+            if (m & snap).any() and (m & ~snap).any():
+                lifts.append(r[m & snap].mean() / r[m & ~snap].mean() - 1)
+        out["snap"].setdefault(state, {})[cat] = round(float(np.mean(lifts)), 4)
+    out["snap_days_of_month"] = {
+        s: sorted(cal.loc[cal[f"snap_{s}"] == 1, "date"].dt.day.unique().tolist()) for s in ["CA", "TX", "WI"]
+    }
+    return out, prof
+
+
+def q3_closed_days(daily: pd.DataFrame, cal: pd.DataFrame) -> tuple[dict, set[int]]:
+    c = cal.set_index("d_num")
+    per_store = daily.groupby(["store_id", "d"])["units"].sum().unstack(0)
+    total = per_store.sum(axis=1)
+    zero_all = total.index[total == 0].tolist()
+    store_zero = {s: per_store.index[per_store[s] == 0].tolist() for s in per_store.columns}
+    # Days where the whole chain sells < 10% of its centred 28-day mean: near-closures.
+    rel = detrended(total)
+    near = rel.index[(rel < 0.10) & (total > 0)].tolist()
+
+    def label(ds):
+        return [f"d_{d} {c.loc[d, 'date'].date()} {c.loc[d, 'weekday']}" for d in ds]
+
+    christmas = cal.loc[(cal["date"].dt.month == 12) & (cal["date"].dt.day == 25), "d_num"].tolist()
+    out = {
+        "days_zero_all_stores": label(zero_all),
+        "christmas_days_in_range": label([d for d in christmas if d in total.index]),
+        "christmas_total_units": {str(c.loc[d, "date"].date()): int(total.loc[d]) for d in christmas if d in total.index},
+        "days_below_10pct_of_rolling_mean_but_nonzero": label(near),
+        "store_days_with_zero_total": {s: label(v) for s, v in store_zero.items() if v},
+    }
+    # Treat both fully-zero and near-zero chain days as closed for later analyses.
+    return out, set(zero_all) | set(near)
+
+
+def q4_easter(daily: pd.DataFrame, cal: pd.DataFrame, max_d: int, before: int = 14, after: int = 7) -> tuple[dict, pd.DataFrame]:
+    """Units per category on each day around Easter, relative to the same weekday
+    2-5 weeks before and after (excludes the event window itself)."""
+    tot = daily.groupby(["cat_id", "d"])["units"].sum().unstack(0)
+    easter = cal.loc[(cal["event_name_1"] == "Easter") | (cal["event_name_2"] == "Easter"), "d_num"]
+    easter = [int(d) for d in easter if d + after + 35 <= max_d]
+    rows = []
+    for e in easter:
+        for off in range(-before, after + 1):
+            d = e + off
+            base_days = [d + 7 * k for k in (-5, -4, -3, -2, 2, 3, 4, 5)]
+            base = tot.loc[[b for b in base_days if b in tot.index]].mean()
+            for cat in CATS:
+                rows.append({"easter_d": e, "year": int(cal.loc[cal["d_num"] == e, "year"].iloc[0]),
+                             "offset": off, "cat_id": cat, "ratio": tot.loc[d, cat] / base[cat]})
+    r = pd.DataFrame(rows)
+    mean = r.groupby(["cat_id", "offset"])["ratio"].mean().unstack(0)
+    out = {
+        "easter_years_used": sorted(r["year"].unique().tolist()),
+        "excluded_easter_reason": f"needs d+{after}+35 <= d_{max_d} for the baseline",
+        "mean_ratio_by_offset": mean.round(3).to_dict(),
+        "peak_offset": {cat: int(mean[cat].idxmax()) for cat in CATS},
+        "peak_ratio": {cat: round(float(mean[cat].max()), 3) for cat in CATS},
+        "easter_day_ratio": {cat: round(float(mean.loc[0, cat]), 3) for cat in CATS},
+    }
+    return out, r
+
+
+def fig_weekday(prof: pd.DataFrame, path: Path) -> None:
+    fig, ax = plt.subplots(figsize=(7.2, 3.8), dpi=150, facecolor=SURFACE)
+    style_axes(ax)
+    x = np.arange(7)
+    for i, cat in enumerate(CATS):
+        ax.plot(x, prof[cat].to_numpy(), color=SERIES[i], linewidth=2, marker="o", markersize=5,
+                markeredgecolor=SURFACE, markeredgewidth=1.5, label=cat)
+    # Direct labels at the last point, pushed apart so they never overlap.
+    ends = sorted(((prof[c].iloc[6], c) for c in CATS))
+    min_gap, placed = 0.03, []
+    for y, cat in ends:
+        y_lab = max(y, placed[-1] + min_gap) if placed else y
+        placed.append(y_lab)
+        ax.annotate(cat, (6, y), xytext=(6.25, y_lab), textcoords="data", va="center",
+                    fontsize=9, color=INK_2)
+    ax.axhline(1.0, color=BASE, linewidth=1)
+    ax.set_xticks(x, ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"])
+    ax.set_xlim(-0.3, 7.6)
+    ax.set_ylabel("Units vs. weekly average", color=INK_2, fontsize=9)
+    ax.set_title("Sales peak on the weekend; HOBBIES falls back on Sunday", loc="left",
+                 fontsize=11, color=INK)
+    ax.legend(frameon=False, fontsize=8, loc="upper left", labelcolor=INK_2)
+    fig.tight_layout()
+    fig.savefig(path, facecolor=SURFACE)
+    plt.close(fig)
+
+
+def fig_easter(r: pd.DataFrame, path: Path) -> None:
+    fig, axes = plt.subplots(1, 3, figsize=(10, 3.4), dpi=150, sharey=True, facecolor=SURFACE)
+    for ax, (i, cat) in zip(axes, enumerate(CATS)):
+        style_axes(ax)
+        sub = r[r["cat_id"] == cat]
+        for _, y in sub.groupby("year"):
+            ax.plot(y["offset"], y["ratio"], color=SERIES[i], alpha=0.25, linewidth=1)
+        m = sub.groupby("offset")["ratio"].mean()
+        ax.plot(m.index, m.to_numpy(), color=SERIES[i], linewidth=2)
+        ax.axhline(1.0, color=BASE, linewidth=1)
+        ax.axvline(0, color=MUTED, linewidth=0.8, linestyle=":")
+        ax.set_title(cat, loc="left", fontsize=10, color=INK)
+        ax.set_xlabel("Days from Easter Sunday", color=INK_2, fontsize=9)
+    axes[0].set_ylabel("Units vs. same weekday, ±2–5 wk", color=INK_2, fontsize=9)
+    fig.suptitle("Sales around Easter (thin: single years, thick: mean)", x=0.01, ha="left",
+                 fontsize=11, color=INK)
+    fig.tight_layout()
+    fig.savefig(path, facecolor=SURFACE)
+    plt.close(fig)
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--config", default="config.yaml")
+    args = ap.parse_args()
+    cfg = load_config(args.config)
+    max_d = cfg["validation"]["holdout_cutoff"]
+    cal = load_calendar(Path(cfg["paths"]["raw_m5"]))
+    reports = Path(cfg["paths"]["reports"])
+    figs = reports / "figures"
+    figs.mkdir(parents=True, exist_ok=True)
+
+    daily = daily_store_cat(Path(cfg["paths"]["interim"]) / "sales_long", max_d)
+    daily.to_parquet(Path(cfg["paths"]["interim"]) / "daily_store_cat.parquet", index=False)
+
+    out: dict = {"days_used": f"d_1..d_{max_d}"}
+    out["q1_zero_share"] = q1_zero_share(daily)
+    out["q3_closed_days"], closed = q3_closed_days(daily, cal)
+    out["q2_weekly_snap"], prof = q2_weekly_and_snap(daily, cal, closed)
+    out["q4_easter"], easter = q4_easter(daily, cal, max_d)
+
+    fig_weekday(prof, figs / "eda_weekday.png")
+    fig_easter(easter, figs / "eda_easter.png")
+    (reports / "eda.json").write_text(json.dumps(out, indent=2, default=str), encoding="utf-8")
+    print(json.dumps(out, indent=2, default=str))
+
+
+if __name__ == "__main__":
+    main()

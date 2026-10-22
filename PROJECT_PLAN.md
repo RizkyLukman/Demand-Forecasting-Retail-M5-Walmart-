@@ -374,7 +374,8 @@ antar fold), temuan per segmen, hasil simulasi stok, hasil transfer Indonesia,
 - [x] F1: pipeline load/downcast/melt → Parquet, laporan jumlah baris & memori,
       profil RAM/VRAM training 1 toko → `reports/hardware_profile.md`
       (ulang profil di Fase 4 dengan fitur final)
-- [ ] F2: EDA terarah (nol per kategori, SNAP, hari tutup, Easter)
+- [x] F2: EDA terarah (nol per kategori, SNAP, hari tutup, Easter) → `reports/eda.md`
+      (25 Des = tutup tapi tidak persis nol; efek Easter ±3 hari; SNAP nyata di FOODS)
 - [ ] F3: definisi fold rolling origin + tes anti-leakage
 - [ ] F4: fitur + ablation fitur hari libur bergerak (Easter)
 - [ ] F5: baseline (naive, MA, Croston/TSB, ETS) + XGBoost point (`reg:tweedie`) & kuantil (`reg:quantileerror`)
