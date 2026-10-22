@@ -1,0 +1,132 @@
+{
+  "files": {
+    "calendar.csv": {
+      "bytes": 103469,
+      "sha256": "d12b5914ef03e66649adf5dd9e996e6602251c22b7a6af8f1f7e3aa12f8860f5"
+    },
+    "m5-forecasting-accuracy.zip": {
+      "bytes": 48009163,
+      "sha256": "0349ba38a2efd30d0f5acc6394c1110e140e1a990c650d7b5ca44c5b25dd12f5"
+    },
+    "sales_train_evaluation.csv": {
+      "bytes": 121736518,
+      "sha256": "4b4a47c44c38380d2a9168216fea8c9ff2f31b1ddb772f8a0995952a038b8aa0"
+    },
+    "sales_train_validation.csv": {
+      "bytes": 120007726,
+      "sha256": "f368e66ed1dbecb48b2cc8fc589bf68b3deddbbb36bf5c88b4d6d0a09b9b6724"
+    },
+    "sample_submission.csv": {
+      "bytes": 5228786,
+      "sha256": "eb7597afbec367475ef25dc6dbbc009b8faa47fa2107252c72a029e3cdf72343"
+    },
+    "sell_prices.csv": {
+      "bytes": 203395785,
+      "sha256": "9da3ad1f8b8ccacdbdc70612191dd375ec24a4ac6625c24b75b3bc60b0bed2ef"
+    },
+    "_missing_expected": []
+  },
+  "calendar": {
+    "columns": {
+      "match": true,
+      "missing": [],
+      "unexpected": []
+    },
+    "rows": 1969,
+    "date_min": "2011-01-29",
+    "date_max": "2016-06-19",
+    "dates_contiguous": true,
+    "d_min": 1,
+    "d_max": 1969,
+    "d_contiguous": true,
+    "d1_date": "2011-01-29",
+    "n_event_days": 162,
+    "n_event_days_with_second_event": 5,
+    "event_types": [
+      "Cultural",
+      "National",
+      "Religious",
+      "Sporting"
+    ]
+  },
+  "sell_prices": {
+    "columns": {
+      "match": true,
+      "missing": [],
+      "unexpected": []
+    },
+    "rows": 6841121,
+    "n_stores": 10,
+    "n_items": 3049,
+    "wm_yr_wk_min": 11101,
+    "wm_yr_wk_max": 11621,
+    "price_min": 0.009999999776482582,
+    "price_max": 107.31999969482422,
+    "price_nan": 0,
+    "duplicate_keys": 0
+  },
+  "sales_train_evaluation": {
+    "id_columns": {
+      "match": true,
+      "missing": [],
+      "unexpected": []
+    },
+    "rows": 30490,
+    "id_unique": true,
+    "d_min": 1,
+    "d_max": 1941,
+    "n_d_columns": 1941,
+    "d_contiguous": true,
+    "all_d_in_calendar": true,
+    "n_items": 3049,
+    "n_stores": 10,
+    "n_depts": 7,
+    "n_cats": 3,
+    "n_states": 3,
+    "stores": [
+      "CA_1",
+      "CA_2",
+      "CA_3",
+      "CA_4",
+      "TX_1",
+      "TX_2",
+      "TX_3",
+      "WI_1",
+      "WI_2",
+      "WI_3"
+    ],
+    "cats": [
+      "FOODS",
+      "HOBBIES",
+      "HOUSEHOLD"
+    ],
+    "depts": [
+      "FOODS_1",
+      "FOODS_2",
+      "FOODS_3",
+      "HOBBIES_1",
+      "HOBBIES_2",
+      "HOUSEHOLD_1",
+      "HOUSEHOLD_2"
+    ],
+    "states": [
+      "CA",
+      "TX",
+      "WI"
+    ],
+    "min_value": 0,
+    "max_value": 763,
+    "fits_int16": true,
+    "long_format_rows": 59181090,
+    "zero_share_all_cells": 0.6799776584040612,
+    "series_without_any_sale": 0,
+    "leading_zero_cells": 12384870,
+    "zero_share_after_first_sale": 0.5952820334633866,
+    "memory_mb_int16": 115.6
+  },
+  "validation_vs_evaluation": {
+    "validation_d_max": 1913,
+    "same_series_order": true,
+    "overlap_identical": true
+  }
+}

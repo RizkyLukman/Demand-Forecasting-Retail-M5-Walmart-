@@ -1,0 +1,20 @@
+paths:
+  raw_m5: data/raw/m5
+  raw_id_pharmacy: data/raw/id_pharmacy
+  external: data/external
+  interim: data/interim
+  processed: data/processed
+  reports: reports
+
+m5:
+  sales_file: sales_train_evaluation.csv
+  calendar_file: calendar.csv
+  prices_file: sell_prices.csv
+
+validation:
+  horizon: 28
+  # Each CV fold predicts the 28 days after its cutoff; none may overlap the holdout.
+  cv_cutoffs: [1801, 1829, 1857, 1885]
+  holdout_cutoff: 1913   # holdout = d_1914 .. d_1941, touched once at the end
+
+seed: 42

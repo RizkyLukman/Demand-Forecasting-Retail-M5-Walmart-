@@ -1,0 +1,28 @@
+# Data (only SOURCES.md and the external calendar are tracked)
+data/raw/
+data/interim/
+data/processed/
+
+# Credentials
+kaggle.json
+.kaggle/
+.env
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Run outputs that can be large
+reports/runs/**/*.parquet
+reports/runs/**/*.ubj
+reports/runs/**/*.json.gz
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
