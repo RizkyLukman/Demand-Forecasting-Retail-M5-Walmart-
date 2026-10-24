@@ -78,4 +78,21 @@ model:
       max_rounds: 1000              # uji hingga 3.000 tidak membantu (reports/quantile_cap3000_comparison.md)
       early_stopping: 100
 
+# Fase 7: simulasi stok. M5 tidak memuat data biaya maupun persediaan, jadi SEMUA nilai di
+# bawah adalah ASUMSI (bukan data), dan diuji sensitivitasnya.
+inventory:
+  review_period_days: 7             # asumsi: stok dicek dan dipesan seminggu sekali
+  lead_time_days: 2                 # asumsi: pesanan tiba 2 hari setelah dipesan
+  service_quantiles: [0.5, 0.8, 0.9]              # kuantil model XGBoost yang tersedia (dilatih di Fase 5)
+  baseline_quantiles: [0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.98, 0.99, 0.995]   # metode normal/empiris: grid lebih rapat untuk kurva trade-off
+  cover_grid_days: [4, 6, 8, 10, 12, 14]           # stok rata-rata (hari) untuk membandingkan fill rate antar metode
+  holding_cost_annual_rate: 0.25    # asumsi: biaya simpan per tahun = 25% harga barang
+  stockout_cost_rate: 0.30          # asumsi: kerugian per unit tidak terlayani = 30% harga (margin)
+  sensitivity:
+    holding_cost_annual_rate: [0.15, 0.25, 0.40]
+    stockout_cost_rate: [0.10, 0.30, 0.50, 1.00]
+  sigma_window_days: 56             # simpangan baku harian untuk safety stock (baseline normal)
+  empirical_window_days: 364        # riwayat untuk kuantil empiris permintaan selama periode proteksi
+  growth_risk_ratio: 2.0            # item "tumbuh cepat" (Fase 6 §8.5): rata-rata 56 hari / rata-rata riwayat > 2
+
 seed: 42

@@ -419,6 +419,12 @@ antar fold), temuan per segmen, hasil simulasi stok, hasil transfer Indonesia,
       yang tumbuh −7% s.d. −32% dan item yang turun +5% s.d. +21%. Eksperimen te_item_mean jendela
       terbaru ditunda sampai Fase 7. SHAP GPU tidak aditif untuk fitur kategorikal, jadi
       dihitung di CPU)
-- [ ] F7: simulasi stok + analisis sensitivitas biaya
+- [ ] F7: simulasi stok + analisis sensitivitas biaya → `reports/inventory_sim.md`
+      (**selesai di fold CV; simulasi holdout dijalankan sekali di akhir proyek.** Periodic review
+      R=7, L=2, lost sales, biaya = asumsi. XGBoost point + safety stock paling efisien di stok
+      6–10 hari; di layanan ≥ 98% empiris paling efisien. Asumsi dasar: empiris termurah,
+      XGBoost kuantil +8,4%; empiris termurah di 10 dari 12 asumsi biaya. Jumlah kuantil harian
+      tidak terkalibrasi (P50 → 28%, P90 → 97%). Metode gabungan ditolak. Item tumbuh cepat:
+      classical termurah)
 - [ ] F8: audit data apotek Indonesia → transfer atau studi efek Ramadan
 - [ ] F9: README hasil & keterbatasan
