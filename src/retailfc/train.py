@@ -44,6 +44,7 @@ class TrainOptions:
     busy_share: float = 0.5
     refit: bool = False
     checkpoints: tuple[int, ...] = ()
+    save_model: str = ""        # jika diisi: path file model (.ubj) untuk disimpan setelah training
 
 
 def emulate_cap(es_curve, cap: int, patience: int) -> tuple[int, bool]:
@@ -199,6 +200,9 @@ def fit_predict(
             "n_censored_excluded": n_censored, "refit": opt.refit,
             "item_encoding": opt.item_encoding, "model_mb": round(len(booster.save_raw("ubj")) / 2**20, 2),
             **es_info}
+    if opt.save_model:
+        # Model penuh disimpan; prediksi memakai pohon 0..best (`best_iteration` di info).
+        booster.save_model(opt.save_model)
     return out, info
 
 

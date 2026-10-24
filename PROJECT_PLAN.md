@@ -411,7 +411,14 @@ antar fold), temuan per segmen, hasil simulasi stok, hasil transfer Indonesia,
       batas 1.000 (uji hingga 3.000 tidak membantu); P80/P90 coverage 81,0%/89,4%, tanpa
       crossing. Sisa: tuning parameter pohon (depth, min_child_weight, dll.) belum dilakukan;
       baseline kuantil dan model kuantil untuk fold khusus belum dibuat)
-- [ ] F6: analisis error per segmen ADI/CV² + SHAP + studi kasus
+- [x] F6: analisis error per segmen ADI/CV² + SHAP + studi kasus → `reports/error_analysis.md`
+      (per item XGBoost hanya 1–3% lebih baik dari classical di semua segmen, tetapi saat
+      dijumlahkan ±54% lebih baik di intermittent/lumpy. XGBoost tidak lebih baik untuk total
+      segmen erratic (bias +9%), akhir pekan per item, dan fold Easter 2015 per item. SHAP:
+      te_item_mean 42%, harga 3%, event 0,3%; model lambat menyesuaikan level, sehingga item
+      yang tumbuh −7% s.d. −32% dan item yang turun +5% s.d. +21%. Eksperimen te_item_mean jendela
+      terbaru ditunda sampai Fase 7. SHAP GPU tidak aditif untuk fitur kategorikal, jadi
+      dihitung di CPU)
 - [ ] F7: simulasi stok + analisis sensitivitas biaya
 - [ ] F8: audit data apotek Indonesia → transfer atau studi efek Ramadan
 - [ ] F9: README hasil & keterbatasan
