@@ -1,0 +1,60 @@
+{
+  "name": "xgb_point",
+  "model": {
+    "params": {
+      "objective": "reg:tweedie",
+      "tweedie_variance_power": 1.1,
+      "max_bin": 256,
+      "eta": 0.05,
+      "max_depth": 8,
+      "min_child_weight": 10,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "seed": 42
+    },
+    "options": {
+      "item_encoding": "label",
+      "exclude_censored": true,
+      "censor_run": 28,
+      "busy_share": 0.5,
+      "refit": false,
+      "max_rounds": 3000,
+      "early_stopping": 100
+    }
+  },
+  "params_used": {
+    "device": "cuda",
+    "tree_method": "hist",
+    "eval_metric": "rmse",
+    "objective": "reg:tweedie",
+    "tweedie_variance_power": 1.1,
+    "max_bin": 256,
+    "eta": 0.05,
+    "max_depth": 8,
+    "min_child_weight": 10,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "seed": 42
+  },
+  "options": {
+    "item_encoding": "label",
+    "max_rounds": 3000,
+    "early_stopping": 100,
+    "exclude_censored": true,
+    "censor_run": 28,
+    "busy_share": 0.5,
+    "refit": false
+  },
+  "folds": [
+    "cv1",
+    "cv2",
+    "cv3",
+    "cv4",
+    "easter_2014",
+    "easter_2015",
+    "year_end_2015"
+  ],
+  "xgboost": "3.4.1",
+  "python": "3.12.5",
+  "seed": 42
+}

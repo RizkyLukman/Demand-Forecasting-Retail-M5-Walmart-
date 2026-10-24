@@ -173,10 +173,16 @@ def add_fold_features(base: pd.DataFrame, cutoff: int, horizon: int) -> pd.DataF
 
 
 NON_FEATURES = {"d", "wm_yr_wk", "sales", "is_closed"}
+FOLD_FEATURE_NAMES = ["te_item_mean", "te_item_zero_share", "te_dept_mean", "price_rel_item"]
 
 
 def feature_names(df: pd.DataFrame, drop: tuple[str, ...] = ()) -> list[str]:
     return [c for c in df.columns if c not in NON_FEATURES and c not in drop]
+
+
+def all_feature_names(base: pd.DataFrame, drop: tuple[str, ...] = ()) -> list[str]:
+    """Fitur dasar dari tabel `base` + fitur per fold (yang baru dibuat saat training)."""
+    return [c for c in feature_names(base) + FOLD_FEATURE_NAMES if c not in drop]
 
 
 def to_model_frame(df: pd.DataFrame, feats: list[str], item_encoding: str = "label") -> pd.DataFrame:

@@ -37,4 +37,45 @@ features:
   moving_events:                    # nama event di calendar.csv: batas (clip) hari
     Easter: 7
 
+# Konfigurasi model final, dipilih lewat reports/xgb_experiments.json (Fase 5).
+model:
+  xgb_point:
+    params:
+      objective: "reg:tweedie"
+      tweedie_variance_power: 1.1   # E1: terbaik dari 1,1/1,2/1,3/1,5, poisson, squarederror
+      max_bin: 256
+      eta: 0.05
+      max_depth: 8
+      min_child_weight: 10
+      subsample: 0.8
+      colsample_bytree: 0.8
+      seed: 42
+    options:
+      item_encoding: label          # E2: kategorikal lebih buruk dan model 18x lebih besar
+      exclude_censored: true        # E3: deretan nol >= 28 hari item laris dikeluarkan dari training
+      censor_run: 28
+      busy_share: 0.5
+      refit: false                  # E4 + tahap 3: latih ulang tidak membantu
+      max_rounds: 3000
+      early_stopping: 100
+  xgb_quantile:
+    params:
+      objective: "reg:quantileerror"
+      quantile_alpha: [0.1, 0.5, 0.8, 0.9]
+      max_bin: 256
+      eta: 0.2                      # reports/quantile_experiments.json: pinball terendah (7 dari 8 run); lihat phase5_models.md §8.2
+      max_depth: 8
+      min_child_weight: 10
+      subsample: 0.8
+      colsample_bytree: 0.8
+      seed: 42
+    options:
+      item_encoding: label
+      exclude_censored: true        # Fase 7 mensimulasikan permintaan, bukan penjualan
+      censor_run: 28
+      busy_share: 0.5
+      refit: false
+      max_rounds: 1000              # uji hingga 3.000 tidak membantu (reports/quantile_cap3000_comparison.md)
+      early_stopping: 100
+
 seed: 42

@@ -61,6 +61,31 @@ def load_prices(raw: Path) -> pd.DataFrame:
     return pr
 
 
+def load_wide_matrices(cfg: dict, max_d: int) -> tuple[pd.DataFrame, np.ndarray, np.ndarray]:
+    """ID deret, matriks penjualan (n_deret × max_d) dan matriks harga harian sejajar.
+
+    Kolom ke-j = d_(j+1). Harga NaN jika item belum/tidak punya harga di minggu itu.
+    Dipakai untuk WRMSSE dan baseline, yang butuh semua 30.490 deret dalam bentuk lebar.
+    """
+    raw = Path(cfg["paths"]["raw_m5"])
+    wide = load_sales_wide(raw / cfg["m5"]["sales_file"])
+    d_cols = [f"d_{i}" for i in range(1, max_d + 1)]
+    ids = wide[["id"] + CAT_COLS].reset_index(drop=True)
+    sales = wide[d_cols].to_numpy()
+    cal = load_calendar(raw)
+    week = cal.set_index("d_num")["wm_yr_wk"].reindex(np.arange(1, max_d + 1)).to_numpy()
+    weeks = np.unique(week)
+    pr = load_prices(raw)
+    pr = pr[pr["wm_yr_wk"].isin(weeks)]
+    key = pd.MultiIndex.from_frame(ids[["store_id", "item_id"]].astype(str))
+    row = key.get_indexer(pd.MultiIndex.from_arrays([pr["store_id"].astype(str), pr["item_id"].astype(str)]))
+    col = np.searchsorted(weeks, pr["wm_yr_wk"].to_numpy())
+    pw = np.full((len(ids), len(weeks)), np.nan, dtype=np.float32)
+    pw[row, col] = pr["sell_price"].to_numpy()
+    prices = pw[:, np.searchsorted(weeks, week)]
+    return ids, sales, prices
+
+
 def store_to_long(
     wide: pd.DataFrame,
     prices: pd.DataFrame,

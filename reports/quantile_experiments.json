@@ -1,0 +1,607 @@
+{
+  "runs": [
+    {
+      "variant": "eta_0.2",
+      "store_id": "CA_3",
+      "fold": "cv1",
+      "eta": 0.2,
+      "best_iteration": 999,
+      "rounds_used": 1000,
+      "seconds": 170.6,
+      "n_fit": 4120056,
+      "n_es": 80272,
+      "n_horizon": 85288,
+      "n_features": 37,
+      "n_censored_excluded": 110968,
+      "refit": false,
+      "item_encoding": "label",
+      "model_mb": 25.47,
+      "hit_cap": true,
+      "crossing_rate": 0.0,
+      "pinball": {
+        "0.1": 0.1893,
+        "0.5": 0.65142,
+        "0.8": 0.58542,
+        "0.9": 0.41711
+      },
+      "pinball_mean": 0.46081,
+      "coverage": {
+        "0.1": 0.5172,
+        "0.5": 0.6273,
+        "0.8": 0.8105,
+        "0.9": 0.8962
+      },
+      "n_rows": 85288
+    },
+    {
+      "variant": "eta_0.3",
+      "store_id": "CA_3",
+      "fold": "cv1",
+      "eta": 0.3,
+      "best_iteration": 990,
+      "rounds_used": 991,
+      "seconds": 170.5,
+      "n_fit": 4120056,
+      "n_es": 80272,
+      "n_horizon": 85288,
+      "n_features": 37,
+      "n_censored_excluded": 110968,
+      "refit": false,
+      "item_encoding": "label",
+      "model_mb": 24.83,
+      "hit_cap": true,
+      "crossing_rate": 0.0,
+      "pinball": {
+        "0.1": 0.18994,
+        "0.5": 0.6526,
+        "0.8": 0.58715,
+        "0.9": 0.42001
+      },
+      "pinball_mean": 0.46242,
+      "coverage": {
+        "0.1": 0.5174,
+        "0.5": 0.6282,
+        "0.8": 0.8082,
+        "0.9": 0.8953
+      },
+      "n_rows": 85288
+    },
+    {
+      "variant": "eta_0.2",
+      "store_id": "CA_3",
+      "fold": "cv2",
+      "eta": 0.2,
+      "best_iteration": 782,
+      "rounds_used": 783,
+      "seconds": 159.1,
+      "n_fit": 4199161,
+      "n_es": 83537,
+      "n_horizon": 85288,
+      "n_features": 37,
+      "n_censored_excluded": 113886,
+      "refit": false,
+      "item_encoding": "label",
+      "model_mb": 22.92,
+      "hit_cap": false,
+      "crossing_rate": 0.0,
+      "pinball": {
+        "0.1": 0.1951,
+        "0.5": 0.66429,
+        "0.8": 0.59028,
+        "0.9": 0.41639
+      },
+      "pinball_mean": 0.46652,
+      "coverage": {
+        "0.1": 0.4917,
+        "0.5": 0.5965,
+        "0.8": 0.7942,
+        "0.9": 0.885
+      },
+      "n_rows": 85288
+    },
+    {
+      "variant": "eta_0.3",
+      "store_id": "CA_3",
+      "fold": "cv2",
+      "eta": 0.3,
+      "best_iteration": 550,
+      "rounds_used": 551,
+      "seconds": 117.5,
+      "n_fit": 4199161,
+      "n_es": 83537,
+      "n_horizon": 85288,
+      "n_features": 37,
+      "n_censored_excluded": 113886,
+      "refit": false,
+      "item_encoding": "label",
+      "model_mb": 16.12,
+      "hit_cap": false,
+      "crossing_rate": 0.0,
+      "pinball": {
+        "0.1": 0.19466,
+        "0.5": 0.6672,
+        "0.8": 0.59324,
+        "0.9": 0.4166
+      },
+      "pinball_mean": 0.46793,
+      "coverage": {
+        "0.1": 0.4917,
+        "0.5": 0.6015,
+        "0.8": 0.789,
+        "0.9": 0.8817
+      },
+      "n_rows": 85288
+    },
+    {
+      "variant": "eta_0.2",
+      "store_id": "CA_3",
+      "fold": "cv3",
+      "eta": 0.2,
+      "best_iteration": 744,
+      "rounds_used": 745,
+      "seconds": 156.1,
+      "n_fit": 4281881,
+      "n_es": 84227,
+      "n_horizon": 85372,
+      "n_features": 37,
+      "n_censored_excluded": 115819,
+      "refit": false,
+      "item_encoding": "label",
+      "model_mb": 21.84,
+      "hit_cap": false,
+      "crossing_rate": 0.0,
+      "pinball": {
+        "0.1": 0.19926,
+        "0.5": 0.67246,
+        "0.8": 0.59807,
+        "0.9": 0.42655
+      },
+      "pinball_mean": 0.47408,
+      "coverage": {
+        "0.1": 0.4839,
+        "0.5": 0.602,
+        "0.8": 0.7999,
+        "0.9": 0.8931
+      },
+      "n_rows": 85372
+    },
+    {
+      "variant": "eta_0.3",
+      "store_id": "CA_3",
+      "fold": "cv3",
+      "eta": 0.3,
+      "best_iteration": 915,
+      "rounds_used": 916,
+      "seconds": 180.5,
+      "n_fit": 4281881,
+      "n_es": 84227,
+      "n_horizon": 85372,
+      "n_features": 37,
+      "n_censored_excluded": 115819,
+      "refit": false,
+      "item_encoding": "label",
+      "model_mb": 26.14,
+      "hit_cap": true,
+      "crossing_rate": 0.0,
+      "pinball": {
+        "0.1": 0.20014,
+        "0.5": 0.67428,
+        "0.8": 0.60003,
+        "0.9": 0.42776
+      },
+      "pinball_mean": 0.47555,
+      "coverage": {
+        "0.1": 0.4846,
+        "0.5": 0.6027,
+        "0.8": 0.8004,
+        "0.9": 0.8933
+      },
+      "n_rows": 85372
+    },
+    {
+      "variant": "eta_0.2",
+      "store_id": "CA_3",
+      "fold": "cv4",
+      "eta": 0.2,
+      "best_iteration": 996,
+      "rounds_used": 997,
+      "seconds": 187.3,
+      "n_fit": 4363758,
+      "n_es": 84233,
+      "n_horizon": 85372,
+      "n_features": 37,
+      "n_censored_excluded": 119308,
+      "refit": false,
+      "item_encoding": "label",
+      "model_mb": 26.22,
+      "hit_cap": true,
+      "crossing_rate": 0.0,
+      "pinball": {
+        "0.1": 0.1919,
+        "0.5": 0.64349,
+        "0.8": 0.56666,
+        "0.9": 0.3995
+      },
+      "pinball_mean": 0.45039,
+      "coverage": {
+        "0.1": 0.4785,
+        "0.5": 0.6071,
+        "0.8": 0.8103,
+        "0.9": 0.9016
+      },
+      "n_rows": 85372
+    },
+    {
+      "variant": "eta_0.3",
+      "store_id": "CA_3",
+      "fold": "cv4",
+      "eta": 0.3,
+      "best_iteration": 996,
+      "rounds_used": 997,
+      "seconds": 184.1,
+      "n_fit": 4363758,
+      "n_es": 84233,
+      "n_horizon": 85372,
+      "n_features": 37,
+      "n_censored_excluded": 119308,
+      "refit": false,
+      "item_encoding": "label",
+      "model_mb": 26.48,
+      "hit_cap": true,
+      "crossing_rate": 0.0,
+      "pinball": {
+        "0.1": 0.19239,
+        "0.5": 0.64534,
+        "0.8": 0.56625,
+        "0.9": 0.39929
+      },
+      "pinball_mean": 0.45082,
+      "coverage": {
+        "0.1": 0.4788,
+        "0.5": 0.6078,
+        "0.8": 0.8106,
+        "0.9": 0.9022
+      },
+      "n_rows": 85372
+    },
+    {
+      "variant": "eta_0.2",
+      "store_id": "WI_2",
+      "fold": "cv1",
+      "eta": 0.2,
+      "best_iteration": 999,
+      "rounds_used": 1000,
+      "seconds": 176.2,
+      "n_fit": 4000824,
+      "n_es": 79994,
+      "n_horizon": 85288,
+      "n_features": 37,
+      "n_censored_excluded": 116601,
+      "refit": false,
+      "item_encoding": "label",
+      "model_mb": 31.77,
+      "hit_cap": true,
+      "crossing_rate": 0.0,
+      "pinball": {
+        "0.1": 0.15065,
+        "0.5": 0.54453,
+        "0.8": 0.4916,
+        "0.9": 0.34861
+      },
+      "pinball_mean": 0.38385,
+      "coverage": {
+        "0.1": 0.6077,
+        "0.5": 0.677,
+        "0.8": 0.8155,
+        "0.9": 0.8913
+      },
+      "n_rows": 85288
+    },
+    {
+      "variant": "eta_0.3",
+      "store_id": "WI_2",
+      "fold": "cv1",
+      "eta": 0.3,
+      "best_iteration": 647,
+      "rounds_used": 648,
+      "seconds": 131.6,
+      "n_fit": 4000824,
+      "n_es": 79994,
+      "n_horizon": 85288,
+      "n_features": 37,
+      "n_censored_excluded": 116601,
+      "refit": false,
+      "item_encoding": "label",
+      "model_mb": 23.03,
+      "hit_cap": false,
+      "crossing_rate": 0.0,
+      "pinball": {
+        "0.1": 0.15119,
+        "0.5": 0.54363,
+        "0.8": 0.49112,
+        "0.9": 0.34938
+      },
+      "pinball_mean": 0.38383,
+      "coverage": {
+        "0.1": 0.6077,
+        "0.5": 0.6765,
+        "0.8": 0.8147,
+        "0.9": 0.8921
+      },
+      "n_rows": 85288
+    },
+    {
+      "variant": "eta_0.2",
+      "store_id": "WI_2",
+      "fold": "cv2",
+      "eta": 0.2,
+      "best_iteration": 431,
+      "rounds_used": 432,
+      "seconds": 102.4,
+      "n_fit": 4081170,
+      "n_es": 83728,
+      "n_horizon": 85316,
+      "n_features": 37,
+      "n_censored_excluded": 117814,
+      "refit": false,
+      "item_encoding": "label",
+      "model_mb": 19.35,
+      "hit_cap": false,
+      "crossing_rate": 0.0,
+      "pinball": {
+        "0.1": 0.17715,
+        "0.5": 0.63563,
+        "0.8": 0.5691,
+        "0.9": 0.40205
+      },
+      "pinball_mean": 0.44598,
+      "coverage": {
+        "0.1": 0.5768,
+        "0.5": 0.6421,
+        "0.8": 0.7893,
+        "0.9": 0.8774
+      },
+      "n_rows": 85316
+    },
+    {
+      "variant": "eta_0.3",
+      "store_id": "WI_2",
+      "fold": "cv2",
+      "eta": 0.3,
+      "best_iteration": 359,
+      "rounds_used": 360,
+      "seconds": 86.9,
+      "n_fit": 4081170,
+      "n_es": 83728,
+      "n_horizon": 85316,
+      "n_features": 37,
+      "n_censored_excluded": 117814,
+      "refit": false,
+      "item_encoding": "label",
+      "model_mb": 15.5,
+      "hit_cap": false,
+      "crossing_rate": 0.0,
+      "pinball": {
+        "0.1": 0.17602,
+        "0.5": 0.63496,
+        "0.8": 0.57202,
+        "0.9": 0.40295
+      },
+      "pinball_mean": 0.44649,
+      "coverage": {
+        "0.1": 0.5768,
+        "0.5": 0.6427,
+        "0.8": 0.7897,
+        "0.9": 0.8764
+      },
+      "n_rows": 85316
+    },
+    {
+      "variant": "eta_0.2",
+      "store_id": "WI_2",
+      "fold": "cv3",
+      "eta": 0.2,
+      "best_iteration": 781,
+      "rounds_used": 782,
+      "seconds": 162.2,
+      "n_fit": 4162772,
+      "n_es": 84355,
+      "n_horizon": 85372,
+      "n_features": 37,
+      "n_censored_excluded": 120940,
+      "refit": false,
+      "item_encoding": "label",
+      "model_mb": 28.72,
+      "hit_cap": false,
+      "crossing_rate": 0.0,
+      "pinball": {
+        "0.1": 0.1801,
+        "0.5": 0.58801,
+        "0.8": 0.5265,
+        "0.9": 0.3756
+      },
+      "pinball_mean": 0.41755,
+      "coverage": {
+        "0.1": 0.5722,
+        "0.5": 0.6489,
+        "0.8": 0.8032,
+        "0.9": 0.8844
+      },
+      "n_rows": 85372
+    },
+    {
+      "variant": "eta_0.3",
+      "store_id": "WI_2",
+      "fold": "cv3",
+      "eta": 0.3,
+      "best_iteration": 423,
+      "rounds_used": 424,
+      "seconds": 98.8,
+      "n_fit": 4162772,
+      "n_es": 84355,
+      "n_horizon": 85372,
+      "n_features": 37,
+      "n_censored_excluded": 120940,
+      "refit": false,
+      "item_encoding": "label",
+      "model_mb": 17.01,
+      "hit_cap": false,
+      "crossing_rate": 0.0,
+      "pinball": {
+        "0.1": 0.17953,
+        "0.5": 0.5914,
+        "0.8": 0.52576,
+        "0.9": 0.37479
+      },
+      "pinball_mean": 0.41787,
+      "coverage": {
+        "0.1": 0.5722,
+        "0.5": 0.6486,
+        "0.8": 0.8032,
+        "0.9": 0.8841
+      },
+      "n_rows": 85372
+    },
+    {
+      "variant": "eta_0.2",
+      "store_id": "WI_2",
+      "fold": "cv4",
+      "eta": 0.2,
+      "best_iteration": 594,
+      "rounds_used": 595,
+      "seconds": 132.4,
+      "n_fit": 4244046,
+      "n_es": 84311,
+      "n_horizon": 85372,
+      "n_features": 37,
+      "n_censored_excluded": 125082,
+      "refit": false,
+      "item_encoding": "label",
+      "model_mb": 23.42,
+      "hit_cap": false,
+      "crossing_rate": 0.0,
+      "pinball": {
+        "0.1": 0.17378,
+        "0.5": 0.57952,
+        "0.8": 0.51527,
+        "0.9": 0.364
+      },
+      "pinball_mean": 0.40814,
+      "coverage": {
+        "0.1": 0.5594,
+        "0.5": 0.6512,
+        "0.8": 0.8213,
+        "0.9": 0.8973
+      },
+      "n_rows": 85372
+    },
+    {
+      "variant": "eta_0.3",
+      "store_id": "WI_2",
+      "fold": "cv4",
+      "eta": 0.3,
+      "best_iteration": 622,
+      "rounds_used": 623,
+      "seconds": 132.9,
+      "n_fit": 4244046,
+      "n_es": 84311,
+      "n_horizon": 85372,
+      "n_features": 37,
+      "n_censored_excluded": 125082,
+      "refit": false,
+      "item_encoding": "label",
+      "model_mb": 22.36,
+      "hit_cap": false,
+      "crossing_rate": 0.0,
+      "pinball": {
+        "0.1": 0.17626,
+        "0.5": 0.57954,
+        "0.8": 0.51701,
+        "0.9": 0.36479
+      },
+      "pinball_mean": 0.4094,
+      "coverage": {
+        "0.1": 0.5603,
+        "0.5": 0.6518,
+        "0.8": 0.8213,
+        "0.9": 0.9
+      },
+      "n_rows": 85372
+    }
+  ],
+  "stores": [
+    "CA_3",
+    "WI_2"
+  ],
+  "alphas": [
+    0.1,
+    0.5,
+    0.8,
+    0.9
+  ],
+  "max_rounds": 1000,
+  "early_stopping": 100,
+  "reference_eta_0.1": [
+    {
+      "store_id": "CA_3",
+      "fold": "cv1",
+      "best_iteration": 2989,
+      "seconds": 523.5,
+      "pinball_mean": 0.4611,
+      "crossing_rate": 0.0
+    },
+    {
+      "store_id": "CA_3",
+      "fold": "cv2",
+      "best_iteration": 1482,
+      "seconds": 292.5,
+      "pinball_mean": 0.4667,
+      "crossing_rate": 0.0
+    },
+    {
+      "store_id": "CA_3",
+      "fold": "cv3",
+      "best_iteration": 2142,
+      "seconds": 413.9,
+      "pinball_mean": 0.4746,
+      "crossing_rate": 0.0
+    }
+  ],
+  "peak_rss_gb": 4.59,
+  "updated": "2026-10-24T04:50:36",
+  "summary": {
+    "eta_0.2": {
+      "pinball_mean": 0.43842,
+      "seconds_mean": 155.7875,
+      "best_iter_mean": 790.75,
+      "hit_cap": 3,
+      "crossing_mean": 0.0,
+      "n": 8
+    },
+    "eta_0.3": {
+      "pinball_mean": 0.43929,
+      "seconds_mean": 137.85,
+      "best_iter_mean": 687.75,
+      "hit_cap": 3,
+      "crossing_mean": 0.0,
+      "n": 8
+    }
+  },
+  "vs_eta_0.1_reference": {
+    "eta_0.1_reference": {
+      "pinball_mean": 0.46747,
+      "seconds_mean": 409.96667,
+      "n": 3
+    },
+    "eta_0.2": {
+      "pinball_mean": 0.46714,
+      "seconds_mean": 161.93333,
+      "n": 3
+    },
+    "eta_0.3": {
+      "pinball_mean": 0.46863,
+      "seconds_mean": 156.16667,
+      "n": 3
+    }
+  }
+}

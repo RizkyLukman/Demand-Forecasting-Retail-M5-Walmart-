@@ -154,6 +154,11 @@ Laptop pengembang: **RAM 16 GB, GPU NVIDIA RTX 3050 Laptop dengan VRAM 4 GB.**
   10 toko = 687 MB di disk. Training 1 toko: tweedie 4,3 GB RAM (label) / 4,6 GB
   (kategorikal); 4 kuantil dengan label encoding **5,0 GB** (turun dari 10,5 GB).
   Detail: `reports/hardware_profile.md` §3b.
+- Fase 5: puncak RAM satu model terjadi saat `QuantileDMatrix` dibangun, bukan saat
+  training. Melepas tabel fold sebelum konversi menurunkan puncak 4,87 → 4,43 GB (CA_3),
+  dengan prediksi identik. Pembatas yang sebenarnya adalah **total RAM laptop**: aplikasi
+  lain (VS Code, browser, Discord, dll.) bisa memakai ±7–11 GB dari 15,26 GB (terukur 24 Okt 2026). Eksperimen
+  kuantil pertama dihentikan sistem karena itu. Tutup aplikasi besar saat training panjang.
 
 **Aturan:**
 1. **Granularitas default: satu model per toko** (`store_id`), dilatih di GPU dengan
@@ -398,7 +403,14 @@ antar fold), temuan per segmen, hasil simulasi stok, hasil transfer Indonesia,
 - [x] F4: fitur + ablation fitur hari libur bergerak (Easter) → `reports/easter_ablation.md`
       (37 fitur termasuk `zero_run_lag28`; Easter: tidak terbukti di level item, membantu
       di total harian FOODS; fitur tetap dipakai)
-- [ ] F5: baseline (naive, MA, Croston/TSB, ETS) + XGBoost point (`reg:tweedie`) & kuantil (`reg:quantileerror`)
+- [x] F5: baseline (naive, MA, Croston/TSB, ETS) + XGBoost point (`reg:tweedie`) & kuantil (`reg:quantileerror`)
+      → `reports/phase5_models.md`, `reports/quantile_cap1000.md`, `reports/quantile_cap3000_comparison.md`
+      (WRMSSE diverifikasi terhadap bobot resmi M5. Point: tweedie 1,1, label encoding, tanpa
+      deretan nol panjang, tanpa refit; CV WRMSSE 0,582 ± 0,051 vs classical 0,916, tetapi
+      keunggulan di level item hanya 2–3%. Kuantil: satu model 4 kuantil per toko, eta 0,2,
+      batas 1.000 (uji hingga 3.000 tidak membantu); P80/P90 coverage 81,0%/89,4%, tanpa
+      crossing. Sisa: tuning parameter pohon (depth, min_child_weight, dll.) belum dilakukan;
+      baseline kuantil dan model kuantil untuk fold khusus belum dibuat)
 - [ ] F6: analisis error per segmen ADI/CV² + SHAP + studi kasus
 - [ ] F7: simulasi stok + analisis sensitivitas biaya
 - [ ] F8: audit data apotek Indonesia → transfer atau studi efek Ramadan

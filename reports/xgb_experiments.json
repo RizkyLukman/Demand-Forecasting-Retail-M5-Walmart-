@@ -1,0 +1,1992 @@
+{
+  "runs": {
+    "tweedie_1.1": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "max_bin": 256,
+        "eval_metric": "rmse",
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42,
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1
+      },
+      "options": {
+        "item_encoding": "label",
+        "max_rounds": 3000,
+        "early_stopping": 100,
+        "exclude_censored": false,
+        "censor_run": 28,
+        "busy_share": 0.5,
+        "refit": false
+      },
+      "per_fold": {
+        "cv1": {
+          "wrmsse": 0.71466,
+          "mae": 1.26149,
+          "rmse": 3.04226,
+          "bias": -0.09175
+        },
+        "cv2": {
+          "wrmsse": 0.88155,
+          "mae": 1.35584,
+          "rmse": 3.18781,
+          "bias": -0.16573
+        },
+        "cv3": {
+          "wrmsse": 0.78435,
+          "mae": 1.33998,
+          "rmse": 3.13291,
+          "bias": -0.10975
+        },
+        "cv4": {
+          "wrmsse": 0.64465,
+          "mae": 1.29735,
+          "rmse": 2.86447,
+          "bias": -0.0416
+        }
+      },
+      "wrmsse_mean": 0.7563,
+      "wrmsse_std": 0.10112,
+      "infos": [
+        {
+          "fold": "cv1",
+          "best_iteration": 741,
+          "rounds_used": 742,
+          "seconds": 49.5,
+          "n_fit": 4229077,
+          "n_es": 82219,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 12.36,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 140,
+          "rounds_used": 141,
+          "seconds": 21.6,
+          "n_fit": 4311296,
+          "n_es": 85288,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.81,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 73,
+          "rounds_used": 74,
+          "seconds": 17.7,
+          "n_fit": 4396584,
+          "n_es": 85343,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 2.87,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 234,
+          "rounds_used": 235,
+          "seconds": 26.9,
+          "n_fit": 4481927,
+          "n_es": 85372,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 5.16,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv1",
+          "best_iteration": 157,
+          "rounds_used": 158,
+          "seconds": 20.5,
+          "n_fit": 4115177,
+          "n_es": 82242,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.77,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 214,
+          "rounds_used": 215,
+          "seconds": 23.9,
+          "n_fit": 4197419,
+          "n_es": 85293,
+          "n_horizon": 85316,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 4.5,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 129,
+          "rounds_used": 130,
+          "seconds": 20.8,
+          "n_fit": 4282712,
+          "n_es": 85355,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.51,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 85,
+          "rounds_used": 86,
+          "seconds": 18.1,
+          "n_fit": 4368067,
+          "n_es": 85372,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 2.96,
+          "store_id": "WI_2"
+        }
+      ]
+    },
+    "tweedie_1.2": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "max_bin": 256,
+        "eval_metric": "rmse",
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42,
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.2
+      },
+      "options": {
+        "item_encoding": "label",
+        "max_rounds": 3000,
+        "early_stopping": 100,
+        "exclude_censored": false,
+        "censor_run": 28,
+        "busy_share": 0.5,
+        "refit": false
+      },
+      "per_fold": {
+        "cv1": {
+          "wrmsse": 0.7562,
+          "mae": 1.26186,
+          "rmse": 3.05709,
+          "bias": -0.10805
+        },
+        "cv2": {
+          "wrmsse": 0.94546,
+          "mae": 1.35853,
+          "rmse": 3.24899,
+          "bias": -0.19316
+        },
+        "cv3": {
+          "wrmsse": 0.80687,
+          "mae": 1.33538,
+          "rmse": 3.12986,
+          "bias": -0.12234
+        },
+        "cv4": {
+          "wrmsse": 0.65741,
+          "mae": 1.30013,
+          "rmse": 2.88282,
+          "bias": -0.04184
+        }
+      },
+      "wrmsse_mean": 0.79148,
+      "wrmsse_std": 0.11995,
+      "infos": [
+        {
+          "fold": "cv1",
+          "best_iteration": 418,
+          "rounds_used": 419,
+          "seconds": 34.4,
+          "n_fit": 4229077,
+          "n_es": 82219,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 7.78,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 131,
+          "rounds_used": 132,
+          "seconds": 20.8,
+          "n_fit": 4311296,
+          "n_es": 85288,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.66,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 90,
+          "rounds_used": 91,
+          "seconds": 18.7,
+          "n_fit": 4396584,
+          "n_es": 85343,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.08,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 190,
+          "rounds_used": 191,
+          "seconds": 24.5,
+          "n_fit": 4481927,
+          "n_es": 85372,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 4.52,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv1",
+          "best_iteration": 149,
+          "rounds_used": 150,
+          "seconds": 20.3,
+          "n_fit": 4115177,
+          "n_es": 82242,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.71,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 596,
+          "rounds_used": 597,
+          "seconds": 43.0,
+          "n_fit": 4197419,
+          "n_es": 85293,
+          "n_horizon": 85316,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 9.23,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 145,
+          "rounds_used": 146,
+          "seconds": 21.3,
+          "n_fit": 4282712,
+          "n_es": 85355,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.67,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 97,
+          "rounds_used": 98,
+          "seconds": 18.7,
+          "n_fit": 4368067,
+          "n_es": 85372,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.12,
+          "store_id": "WI_2"
+        }
+      ]
+    },
+    "tweedie_1.3": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "max_bin": 256,
+        "eval_metric": "rmse",
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42,
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.3
+      },
+      "options": {
+        "item_encoding": "label",
+        "max_rounds": 3000,
+        "early_stopping": 100,
+        "exclude_censored": false,
+        "censor_run": 28,
+        "busy_share": 0.5,
+        "refit": false
+      },
+      "per_fold": {
+        "cv1": {
+          "wrmsse": 0.78038,
+          "mae": 1.25312,
+          "rmse": 3.03409,
+          "bias": -0.1312
+        },
+        "cv2": {
+          "wrmsse": 0.93008,
+          "mae": 1.35504,
+          "rmse": 3.2039,
+          "bias": -0.18711
+        },
+        "cv3": {
+          "wrmsse": 0.82356,
+          "mae": 1.33502,
+          "rmse": 3.15387,
+          "bias": -0.13461
+        },
+        "cv4": {
+          "wrmsse": 0.64513,
+          "mae": 1.2989,
+          "rmse": 2.89843,
+          "bias": -0.04515
+        }
+      },
+      "wrmsse_mean": 0.79479,
+      "wrmsse_std": 0.11795,
+      "infos": [
+        {
+          "fold": "cv1",
+          "best_iteration": 505,
+          "rounds_used": 506,
+          "seconds": 38.8,
+          "n_fit": 4229077,
+          "n_es": 82219,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 8.85,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 115,
+          "rounds_used": 116,
+          "seconds": 19.9,
+          "n_fit": 4311296,
+          "n_es": 85288,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.42,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 99,
+          "rounds_used": 100,
+          "seconds": 19.2,
+          "n_fit": 4396584,
+          "n_es": 85343,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.23,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 297,
+          "rounds_used": 298,
+          "seconds": 30.5,
+          "n_fit": 4481927,
+          "n_es": 85372,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 6.02,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv1",
+          "best_iteration": 276,
+          "rounds_used": 277,
+          "seconds": 26.5,
+          "n_fit": 4115177,
+          "n_es": 82242,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 5.23,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 445,
+          "rounds_used": 446,
+          "seconds": 35.6,
+          "n_fit": 4197419,
+          "n_es": 85293,
+          "n_horizon": 85316,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 7.3,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 140,
+          "rounds_used": 141,
+          "seconds": 21.5,
+          "n_fit": 4282712,
+          "n_es": 85355,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.64,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 112,
+          "rounds_used": 113,
+          "seconds": 19.6,
+          "n_fit": 4368067,
+          "n_es": 85372,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.33,
+          "store_id": "WI_2"
+        }
+      ]
+    },
+    "tweedie_1.5": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "max_bin": 256,
+        "eval_metric": "rmse",
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42,
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.5
+      },
+      "options": {
+        "item_encoding": "label",
+        "max_rounds": 3000,
+        "early_stopping": 100,
+        "exclude_censored": false,
+        "censor_run": 28,
+        "busy_share": 0.5,
+        "refit": false
+      },
+      "per_fold": {
+        "cv1": {
+          "wrmsse": 0.81119,
+          "mae": 1.25804,
+          "rmse": 3.08658,
+          "bias": -0.14771
+        },
+        "cv2": {
+          "wrmsse": 0.93733,
+          "mae": 1.35729,
+          "rmse": 3.21765,
+          "bias": -0.18865
+        },
+        "cv3": {
+          "wrmsse": 0.86689,
+          "mae": 1.33298,
+          "rmse": 3.18218,
+          "bias": -0.15483
+        },
+        "cv4": {
+          "wrmsse": 0.70553,
+          "mae": 1.30166,
+          "rmse": 2.9109,
+          "bias": -0.05163
+        }
+      },
+      "wrmsse_mean": 0.83024,
+      "wrmsse_std": 0.09786,
+      "infos": [
+        {
+          "fold": "cv1",
+          "best_iteration": 640,
+          "rounds_used": 641,
+          "seconds": 45.4,
+          "n_fit": 4229077,
+          "n_es": 82219,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 10.19,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 130,
+          "rounds_used": 131,
+          "seconds": 20.1,
+          "n_fit": 4311296,
+          "n_es": 85288,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.54,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 116,
+          "rounds_used": 117,
+          "seconds": 19.7,
+          "n_fit": 4396584,
+          "n_es": 85343,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.38,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 118,
+          "rounds_used": 119,
+          "seconds": 20.2,
+          "n_fit": 4481927,
+          "n_es": 85372,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.44,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv1",
+          "best_iteration": 163,
+          "rounds_used": 164,
+          "seconds": 20.8,
+          "n_fit": 4115177,
+          "n_es": 82242,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.91,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 176,
+          "rounds_used": 177,
+          "seconds": 22.1,
+          "n_fit": 4197419,
+          "n_es": 85293,
+          "n_horizon": 85316,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 4.07,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 129,
+          "rounds_used": 130,
+          "seconds": 20.7,
+          "n_fit": 4282712,
+          "n_es": 85355,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.48,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 106,
+          "rounds_used": 107,
+          "seconds": 18.8,
+          "n_fit": 4368067,
+          "n_es": 85372,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.23,
+          "store_id": "WI_2"
+        }
+      ]
+    },
+    "poisson": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "max_bin": 256,
+        "eval_metric": "rmse",
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42,
+        "objective": "count:poisson"
+      },
+      "options": {
+        "item_encoding": "label",
+        "max_rounds": 3000,
+        "early_stopping": 100,
+        "exclude_censored": false,
+        "censor_run": 28,
+        "busy_share": 0.5,
+        "refit": false
+      },
+      "per_fold": {
+        "cv1": {
+          "wrmsse": 0.71416,
+          "mae": 1.26278,
+          "rmse": 3.05737,
+          "bias": -0.09202
+        },
+        "cv2": {
+          "wrmsse": 0.92292,
+          "mae": 1.3653,
+          "rmse": 3.33397,
+          "bias": -0.18138
+        },
+        "cv3": {
+          "wrmsse": 0.80222,
+          "mae": 1.34575,
+          "rmse": 3.2603,
+          "bias": -0.12594
+        },
+        "cv4": {
+          "wrmsse": 0.69621,
+          "mae": 1.30496,
+          "rmse": 2.89331,
+          "bias": -0.02687
+        }
+      },
+      "wrmsse_mean": 0.78388,
+      "wrmsse_std": 0.10363,
+      "infos": [
+        {
+          "fold": "cv1",
+          "best_iteration": 1394,
+          "rounds_used": 1395,
+          "seconds": 89.9,
+          "n_fit": 4229077,
+          "n_es": 82219,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 22.4,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 245,
+          "rounds_used": 246,
+          "seconds": 29.3,
+          "n_fit": 4311296,
+          "n_es": 85288,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 5.63,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 181,
+          "rounds_used": 182,
+          "seconds": 25.7,
+          "n_fit": 4396584,
+          "n_es": 85343,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 4.66,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 197,
+          "rounds_used": 198,
+          "seconds": 27.3,
+          "n_fit": 4481927,
+          "n_es": 85372,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 4.95,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv1",
+          "best_iteration": 387,
+          "rounds_used": 388,
+          "seconds": 35.1,
+          "n_fit": 4115177,
+          "n_es": 82242,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 7.45,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 862,
+          "rounds_used": 863,
+          "seconds": 60.3,
+          "n_fit": 4197419,
+          "n_es": 85293,
+          "n_horizon": 85316,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 13.66,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 307,
+          "rounds_used": 308,
+          "seconds": 32.7,
+          "n_fit": 4282712,
+          "n_es": 85355,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 6.45,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 255,
+          "rounds_used": 256,
+          "seconds": 30.2,
+          "n_fit": 4368067,
+          "n_es": 85372,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 5.82,
+          "store_id": "WI_2"
+        }
+      ]
+    },
+    "squarederror": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "max_bin": 256,
+        "eval_metric": "rmse",
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42,
+        "objective": "reg:squarederror"
+      },
+      "options": {
+        "item_encoding": "label",
+        "max_rounds": 3000,
+        "early_stopping": 100,
+        "exclude_censored": false,
+        "censor_run": 28,
+        "busy_share": 0.5,
+        "refit": false
+      },
+      "per_fold": {
+        "cv1": {
+          "wrmsse": 0.7532,
+          "mae": 1.28481,
+          "rmse": 3.04607,
+          "bias": -0.04525
+        },
+        "cv2": {
+          "wrmsse": 0.91162,
+          "mae": 1.37112,
+          "rmse": 3.19058,
+          "bias": -0.16149
+        },
+        "cv3": {
+          "wrmsse": 0.75364,
+          "mae": 1.34936,
+          "rmse": 3.16782,
+          "bias": -0.08555
+        },
+        "cv4": {
+          "wrmsse": 0.70467,
+          "mae": 1.31435,
+          "rmse": 2.884,
+          "bias": -0.00738
+        }
+      },
+      "wrmsse_mean": 0.78078,
+      "wrmsse_std": 0.0902,
+      "infos": [
+        {
+          "fold": "cv1",
+          "best_iteration": 262,
+          "rounds_used": 263,
+          "seconds": 21.4,
+          "n_fit": 4229077,
+          "n_es": 82219,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.04,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 254,
+          "rounds_used": 255,
+          "seconds": 21.7,
+          "n_fit": 4311296,
+          "n_es": 85288,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.04,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 83,
+          "rounds_used": 84,
+          "seconds": 15.0,
+          "n_fit": 4396584,
+          "n_es": 85343,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 1.77,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 303,
+          "rounds_used": 304,
+          "seconds": 24.3,
+          "n_fit": 4481927,
+          "n_es": 85372,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.41,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv1",
+          "best_iteration": 257,
+          "rounds_used": 258,
+          "seconds": 20.5,
+          "n_fit": 4115177,
+          "n_es": 82242,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 2.89,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 106,
+          "rounds_used": 107,
+          "seconds": 15.0,
+          "n_fit": 4197419,
+          "n_es": 85293,
+          "n_horizon": 85316,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 1.9,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 115,
+          "rounds_used": 116,
+          "seconds": 15.8,
+          "n_fit": 4282712,
+          "n_es": 85355,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 1.98,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 81,
+          "rounds_used": 82,
+          "seconds": 14.4,
+          "n_fit": 4368067,
+          "n_es": 85372,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 1.81,
+          "store_id": "WI_2"
+        }
+      ]
+    },
+    "tweedie_1.2_seed43": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "max_bin": 256,
+        "eval_metric": "rmse",
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 43,
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.2
+      },
+      "options": {
+        "item_encoding": "label",
+        "max_rounds": 3000,
+        "early_stopping": 100,
+        "exclude_censored": false,
+        "censor_run": 28,
+        "busy_share": 0.5,
+        "refit": false
+      },
+      "per_fold": {
+        "cv1": {
+          "wrmsse": 0.72683,
+          "mae": 1.25549,
+          "rmse": 3.00632,
+          "bias": -0.10406
+        },
+        "cv2": {
+          "wrmsse": 0.95097,
+          "mae": 1.35576,
+          "rmse": 3.25693,
+          "bias": -0.19807
+        },
+        "cv3": {
+          "wrmsse": 0.81331,
+          "mae": 1.33436,
+          "rmse": 3.14065,
+          "bias": -0.12575
+        },
+        "cv4": {
+          "wrmsse": 0.69005,
+          "mae": 1.30374,
+          "rmse": 2.87709,
+          "bias": -0.0394
+        }
+      },
+      "wrmsse_mean": 0.79529,
+      "wrmsse_std": 0.11594,
+      "infos": [
+        {
+          "fold": "cv1",
+          "best_iteration": 490,
+          "rounds_used": 491,
+          "seconds": 39.1,
+          "n_fit": 4229077,
+          "n_es": 82219,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 8.74,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 160,
+          "rounds_used": 161,
+          "seconds": 22.4,
+          "n_fit": 4311296,
+          "n_es": 85288,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 4.09,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 98,
+          "rounds_used": 99,
+          "seconds": 19.1,
+          "n_fit": 4396584,
+          "n_es": 85343,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.23,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 97,
+          "rounds_used": 98,
+          "seconds": 19.7,
+          "n_fit": 4481927,
+          "n_es": 85372,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.21,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv1",
+          "best_iteration": 186,
+          "rounds_used": 187,
+          "seconds": 22.2,
+          "n_fit": 4115177,
+          "n_es": 82242,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 4.21,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 606,
+          "rounds_used": 607,
+          "seconds": 44.1,
+          "n_fit": 4197419,
+          "n_es": 85293,
+          "n_horizon": 85316,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 9.51,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 162,
+          "rounds_used": 163,
+          "seconds": 21.8,
+          "n_fit": 4282712,
+          "n_es": 85355,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.87,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 89,
+          "rounds_used": 90,
+          "seconds": 18.4,
+          "n_fit": 4368067,
+          "n_es": 85372,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.02,
+          "store_id": "WI_2"
+        }
+      ]
+    },
+    "tweedie_1.1_category": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "max_bin": 256,
+        "eval_metric": "rmse",
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42,
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1
+      },
+      "options": {
+        "item_encoding": "category",
+        "max_rounds": 3000,
+        "early_stopping": 100,
+        "exclude_censored": false,
+        "censor_run": 28,
+        "busy_share": 0.5,
+        "refit": false
+      },
+      "per_fold": {
+        "cv1": {
+          "wrmsse": 0.73532,
+          "mae": 1.26691,
+          "rmse": 3.00026,
+          "bias": -0.06367
+        },
+        "cv2": {
+          "wrmsse": 0.93346,
+          "mae": 1.35949,
+          "rmse": 3.20306,
+          "bias": -0.18066
+        },
+        "cv3": {
+          "wrmsse": 0.83963,
+          "mae": 1.34188,
+          "rmse": 3.19799,
+          "bias": -0.1284
+        },
+        "cv4": {
+          "wrmsse": 0.72477,
+          "mae": 1.31082,
+          "rmse": 2.92427,
+          "bias": -0.05208
+        }
+      },
+      "wrmsse_mean": 0.80829,
+      "wrmsse_std": 0.09823,
+      "infos": [
+        {
+          "fold": "cv1",
+          "best_iteration": 175,
+          "rounds_used": 176,
+          "seconds": 21.6,
+          "n_fit": 4229077,
+          "n_es": 82219,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "category",
+          "model_mb": 86.74,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 155,
+          "rounds_used": 156,
+          "seconds": 22.1,
+          "n_fit": 4311296,
+          "n_es": 85288,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "category",
+          "model_mb": 84.28,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 141,
+          "rounds_used": 142,
+          "seconds": 22.4,
+          "n_fit": 4396584,
+          "n_es": 85343,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "category",
+          "model_mb": 83.1,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 87,
+          "rounds_used": 88,
+          "seconds": 20.1,
+          "n_fit": 4481927,
+          "n_es": 85372,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "category",
+          "model_mb": 75.07,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv1",
+          "best_iteration": 362,
+          "rounds_used": 363,
+          "seconds": 31.9,
+          "n_fit": 4115177,
+          "n_es": 82242,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "category",
+          "model_mb": 112.89,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 92,
+          "rounds_used": 93,
+          "seconds": 18.4,
+          "n_fit": 4197419,
+          "n_es": 85293,
+          "n_horizon": 85316,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "category",
+          "model_mb": 75.59,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 199,
+          "rounds_used": 200,
+          "seconds": 24.1,
+          "n_fit": 4282712,
+          "n_es": 85355,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "category",
+          "model_mb": 90.83,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 155,
+          "rounds_used": 156,
+          "seconds": 22.0,
+          "n_fit": 4368067,
+          "n_es": 85372,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": false,
+          "item_encoding": "category",
+          "model_mb": 86.83,
+          "store_id": "WI_2"
+        }
+      ]
+    },
+    "tweedie_1.1_censored_excluded": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "max_bin": 256,
+        "eval_metric": "rmse",
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42,
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1
+      },
+      "options": {
+        "item_encoding": "label",
+        "max_rounds": 3000,
+        "early_stopping": 100,
+        "exclude_censored": true,
+        "censor_run": 28,
+        "busy_share": 0.5,
+        "refit": false
+      },
+      "per_fold": {
+        "cv1": {
+          "wrmsse": 0.64215,
+          "mae": 1.28814,
+          "rmse": 3.08386,
+          "bias": -0.02042
+        },
+        "cv2": {
+          "wrmsse": 0.81742,
+          "mae": 1.37807,
+          "rmse": 3.21094,
+          "bias": -0.10734
+        },
+        "cv3": {
+          "wrmsse": 0.68246,
+          "mae": 1.34497,
+          "rmse": 3.06125,
+          "bias": -0.03914
+        },
+        "cv4": {
+          "wrmsse": 0.61897,
+          "mae": 1.31638,
+          "rmse": 2.86443,
+          "bias": 0.03756
+        }
+      },
+      "wrmsse_mean": 0.69025,
+      "wrmsse_std": 0.08875,
+      "infos": [
+        {
+          "fold": "cv1",
+          "best_iteration": 701,
+          "rounds_used": 702,
+          "seconds": 45.3,
+          "n_fit": 4120056,
+          "n_es": 80272,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 110968,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 11.91,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 129,
+          "rounds_used": 130,
+          "seconds": 19.4,
+          "n_fit": 4199161,
+          "n_es": 83537,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 113886,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.7,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 79,
+          "rounds_used": 80,
+          "seconds": 17.4,
+          "n_fit": 4281881,
+          "n_es": 84227,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 115819,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.0,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 238,
+          "rounds_used": 239,
+          "seconds": 26.4,
+          "n_fit": 4363758,
+          "n_es": 84233,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 119308,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 5.28,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv1",
+          "best_iteration": 150,
+          "rounds_used": 151,
+          "seconds": 20.0,
+          "n_fit": 4000824,
+          "n_es": 79994,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 116601,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.77,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 86,
+          "rounds_used": 87,
+          "seconds": 16.5,
+          "n_fit": 4081170,
+          "n_es": 83728,
+          "n_horizon": 85316,
+          "n_features": 37,
+          "n_censored_excluded": 117814,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.01,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 141,
+          "rounds_used": 142,
+          "seconds": 19.4,
+          "n_fit": 4162772,
+          "n_es": 84355,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 120940,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 3.64,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 81,
+          "rounds_used": 82,
+          "seconds": 16.8,
+          "n_fit": 4244046,
+          "n_es": 84311,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 125082,
+          "refit": false,
+          "item_encoding": "label",
+          "model_mb": 2.94,
+          "store_id": "WI_2"
+        }
+      ]
+    },
+    "tweedie_1.1_refit": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "max_bin": 256,
+        "eval_metric": "rmse",
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42,
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1
+      },
+      "options": {
+        "item_encoding": "label",
+        "max_rounds": 3000,
+        "early_stopping": 100,
+        "exclude_censored": false,
+        "censor_run": 28,
+        "busy_share": 0.5,
+        "refit": true
+      },
+      "per_fold": {
+        "cv1": {
+          "wrmsse": 0.79209,
+          "mae": 1.25013,
+          "rmse": 3.0714,
+          "bias": -0.13743
+        },
+        "cv2": {
+          "wrmsse": 0.85596,
+          "mae": 1.35072,
+          "rmse": 3.22065,
+          "bias": -0.15349
+        },
+        "cv3": {
+          "wrmsse": 0.69447,
+          "mae": 1.33763,
+          "rmse": 3.09293,
+          "bias": -0.05224
+        },
+        "cv4": {
+          "wrmsse": 0.6325,
+          "mae": 1.29594,
+          "rmse": 2.85167,
+          "bias": -0.02501
+        }
+      },
+      "wrmsse_mean": 0.74375,
+      "wrmsse_std": 0.09955,
+      "infos": [
+        {
+          "fold": "cv1",
+          "best_iteration": 741,
+          "rounds_used": 742,
+          "seconds": 94.6,
+          "n_fit": 4229077,
+          "n_es": 82219,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": true,
+          "item_encoding": "label",
+          "model_mb": 10.91,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 140,
+          "rounds_used": 141,
+          "seconds": 35.1,
+          "n_fit": 4311296,
+          "n_es": 85288,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": true,
+          "item_encoding": "label",
+          "model_mb": 2.39,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 73,
+          "rounds_used": 74,
+          "seconds": 29.4,
+          "n_fit": 4396584,
+          "n_es": 85343,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": true,
+          "item_encoding": "label",
+          "model_mb": 1.32,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 234,
+          "rounds_used": 235,
+          "seconds": 48.4,
+          "n_fit": 4481927,
+          "n_es": 85372,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": true,
+          "item_encoding": "label",
+          "model_mb": 3.74,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv1",
+          "best_iteration": 157,
+          "rounds_used": 158,
+          "seconds": 35.6,
+          "n_fit": 4115177,
+          "n_es": 82242,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": true,
+          "item_encoding": "label",
+          "model_mb": 2.62,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 214,
+          "rounds_used": 215,
+          "seconds": 41.5,
+          "n_fit": 4197419,
+          "n_es": 85293,
+          "n_horizon": 85316,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": true,
+          "item_encoding": "label",
+          "model_mb": 3.29,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 129,
+          "rounds_used": 130,
+          "seconds": 33.7,
+          "n_fit": 4282712,
+          "n_es": 85355,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": true,
+          "item_encoding": "label",
+          "model_mb": 2.23,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 85,
+          "rounds_used": 86,
+          "seconds": 29.2,
+          "n_fit": 4368067,
+          "n_es": 85372,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 0,
+          "refit": true,
+          "item_encoding": "label",
+          "model_mb": 1.55,
+          "store_id": "WI_2"
+        }
+      ]
+    },
+    "tweedie_1.1_censored_excluded_refit": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "max_bin": 256,
+        "eval_metric": "rmse",
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42,
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1
+      },
+      "options": {
+        "item_encoding": "label",
+        "max_rounds": 3000,
+        "early_stopping": 100,
+        "exclude_censored": true,
+        "censor_run": 28,
+        "busy_share": 0.5,
+        "refit": true
+      },
+      "per_fold": {
+        "cv1": {
+          "wrmsse": 0.70088,
+          "mae": 1.26959,
+          "rmse": 3.06767,
+          "bias": -0.0721
+        },
+        "cv2": {
+          "wrmsse": 0.79873,
+          "mae": 1.37141,
+          "rmse": 3.17746,
+          "bias": -0.09658
+        },
+        "cv3": {
+          "wrmsse": 0.65007,
+          "mae": 1.34637,
+          "rmse": 3.03286,
+          "bias": 0.01082
+        },
+        "cv4": {
+          "wrmsse": 0.62279,
+          "mae": 1.31062,
+          "rmse": 2.83218,
+          "bias": 0.03491
+        }
+      },
+      "wrmsse_mean": 0.69312,
+      "wrmsse_std": 0.07749,
+      "infos": [
+        {
+          "fold": "cv1",
+          "best_iteration": 701,
+          "rounds_used": 702,
+          "seconds": 88.9,
+          "n_fit": 4120056,
+          "n_es": 80272,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 110968,
+          "refit": true,
+          "item_encoding": "label",
+          "model_mb": 10.54,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 129,
+          "rounds_used": 130,
+          "seconds": 33.5,
+          "n_fit": 4199161,
+          "n_es": 83537,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 113886,
+          "refit": true,
+          "item_encoding": "label",
+          "model_mb": 2.25,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 79,
+          "rounds_used": 80,
+          "seconds": 28.1,
+          "n_fit": 4281881,
+          "n_es": 84227,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 115819,
+          "refit": true,
+          "item_encoding": "label",
+          "model_mb": 1.43,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 238,
+          "rounds_used": 239,
+          "seconds": 46.1,
+          "n_fit": 4363758,
+          "n_es": 84233,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 119308,
+          "refit": true,
+          "item_encoding": "label",
+          "model_mb": 3.87,
+          "store_id": "CA_3"
+        },
+        {
+          "fold": "cv1",
+          "best_iteration": 150,
+          "rounds_used": 151,
+          "seconds": 33.7,
+          "n_fit": 4000824,
+          "n_es": 79994,
+          "n_horizon": 85288,
+          "n_features": 37,
+          "n_censored_excluded": 116601,
+          "refit": true,
+          "item_encoding": "label",
+          "model_mb": 2.53,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv2",
+          "best_iteration": 86,
+          "rounds_used": 87,
+          "seconds": 27.4,
+          "n_fit": 4081170,
+          "n_es": 83728,
+          "n_horizon": 85316,
+          "n_features": 37,
+          "n_censored_excluded": 117814,
+          "refit": true,
+          "item_encoding": "label",
+          "model_mb": 1.57,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv3",
+          "best_iteration": 141,
+          "rounds_used": 142,
+          "seconds": 33.6,
+          "n_fit": 4162772,
+          "n_es": 84355,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 120940,
+          "refit": true,
+          "item_encoding": "label",
+          "model_mb": 2.44,
+          "store_id": "WI_2"
+        },
+        {
+          "fold": "cv4",
+          "best_iteration": 81,
+          "rounds_used": 82,
+          "seconds": 27.7,
+          "n_fit": 4244046,
+          "n_es": 84311,
+          "n_horizon": 85372,
+          "n_features": 37,
+          "n_censored_excluded": 125082,
+          "refit": true,
+          "item_encoding": "label",
+          "model_mb": 1.49,
+          "store_id": "WI_2"
+        }
+      ]
+    }
+  },
+  "stores": [
+    "CA_3",
+    "WI_2"
+  ],
+  "folds": [
+    "cv1",
+    "cv2",
+    "cv3",
+    "cv4"
+  ],
+  "xgboost_version": "3.4.1",
+  "peak_rss_gb_last_stage": 5.2,
+  "updated": "2026-10-24T01:13:42",
+  "baselines_same_stores": {
+    "snaive": {
+      "wrmsse_mean": 1.19284,
+      "wrmsse_std": 0.11596,
+      "per_fold": {
+        "cv1": 1.271,
+        "cv2": 1.30413,
+        "cv3": 1.05397,
+        "cv4": 1.14228
+      }
+    },
+    "ma28": {
+      "wrmsse_mean": 1.16893,
+      "wrmsse_std": 0.06101,
+      "per_fold": {
+        "cv1": 1.23117,
+        "cv2": 1.16667,
+        "cv3": 1.08655,
+        "cv4": 1.19135
+      }
+    },
+    "croston": {
+      "wrmsse_mean": 1.14776,
+      "wrmsse_std": 0.08035,
+      "per_fold": {
+        "cv1": 1.14938,
+        "cv2": 1.07563,
+        "cv3": 1.10659,
+        "cv4": 1.25943
+      }
+    },
+    "tsb": {
+      "wrmsse_mean": 1.17433,
+      "wrmsse_std": 0.05408,
+      "per_fold": {
+        "cv1": 1.213,
+        "cv2": 1.16302,
+        "cv3": 1.10244,
+        "cv4": 1.21886
+      }
+    },
+    "classical": {
+      "wrmsse_mean": 1.02431,
+      "wrmsse_std": 0.04939,
+      "per_fold": {
+        "cv1": 1.04561,
+        "cv2": 1.04679,
+        "cv3": 0.95045,
+        "cv4": 1.05437
+      }
+    }
+  }
+}

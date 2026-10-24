@@ -106,6 +106,32 @@ dimulai sehari sesudahnya. Tidak ada satu fold pun yang mencakup jendela sekitar
 
 ---
 
+## 1b. Bobot referensi WRMSSE (verifikasi metrik, Fase 5)
+
+| Kolom | Nilai |
+|---|---|
+| Asal | `datasets/m5.zip` di repo GitHub Nixtla/m5-forecasts: https://github.com/Nixtla/m5-forecasts/raw/main/datasets/m5.zip |
+| Tanggal akses | 2026-10-23 |
+| Lisensi | **Belum diverifikasi.** Dipakai hanya sebagai pembanding di tes, tidak disebarkan ulang. |
+| File yang disimpan | `data/raw/m5_reference/weights_validation.csv` (tidak di-track git) |
+| Ukuran | 2.242.706 byte, 42.840 baris data + 1 header |
+| SHA-256 | `c957ad6429e59ac148918ddca13656d71784957c38af19e3314cad5c931572ab` |
+| Kolom | `Level_id, Agg_Level_1, Agg_Level_2, Dollar_Sales, weight` |
+| Dipakai di | `tests/test_metrics.py::test_weights_match_official_m5` |
+
+- Bobot ini dihitung dari omzet 28 hari d_1886–d_1913, jadi **tidak memakai data holdout**
+  (d_1914–d_1941).
+- Hasil verifikasi: bobot yang dihitung `src/retailfc/metrics.py` untuk cutoff d_1913 cocok
+  dengan file ini di ke-42.840 deret. Selisih bobot maksimum 2,3e-9, selisih relatif omzet
+  maksimum 3,8e-7 (harga disimpan `float32`).
+- **Hanya file ini yang diambil dari zip.** Zip itu juga memuat `sales_test_validation.csv`
+  (penjualan d_1914–d_1941, yaitu jawaban holdout), `sales_test_evaluation.csv`, dan
+  `weights_evaluation.csv`. Karena itu zip dihapus setelah file ini diekstrak, supaya jawaban
+  holdout tidak tersedia di luar jalur resmi (`sales_train_evaluation.csv`, yang kolom
+  holdout-nya hanya dibaca sekali di akhir proyek).
+
+---
+
 ## 2. Retail sales dataset of a pharmacy in Indonesia
 
 Belum diunduh (Fase 8). DOI `10.17632/2ym7v78wtd.1`, CC BY 4.0.

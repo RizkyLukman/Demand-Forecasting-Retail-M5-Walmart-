@@ -1,0 +1,37 @@
+{
+  "summary_a": {
+    "run": "20261024_075605_xgb_quantile",
+    "cv_summary": {
+      "pinball_mean": 0.34133,
+      "pinball_std": 0.00777,
+      "coverage_mean": {
+        "0.1": 0.5813,
+        "0.5": 0.6541,
+        "0.8": 0.8101,
+        "0.9": 0.8938
+      },
+      "crossing_rate_max": 0.0,
+      "hit_cap": 21,
+      "n_models": 40,
+      "train_seconds_total": 6240.1
+    },
+    "hit_cap_by_fold": {
+      "cv1": 10,
+      "cv2": 1,
+      "cv3": 3,
+      "cv4": 7
+    },
+    "hit_cap_by_store": {
+      "CA_1": 3,
+      "CA_2": 1,
+      "CA_3": 2,
+      "CA_4": 1,
+      "TX_1": 2,
+      "TX_2": 3,
+      "TX_3": 3,
+      "WI_1": 2,
+      "WI_2": 1,
+      "WI_3": 3
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "Level1":{
+    "XGBoost":0.32375,
+    "classical (ETS+TSB)":0.86253,
+    "seasonal naive":0.81224,
+    "xgb_vs_classical_%":-62.46478
+  },
+  "Level2":{
+    "XGBoost":0.40959,
+    "classical (ETS+TSB)":0.8669,
+    "seasonal naive":0.85041,
+    "xgb_vs_classical_%":-52.75229
+  },
+  "Level3":{
+    "XGBoost":0.52286,
+    "classical (ETS+TSB)":0.89766,
+    "seasonal naive":0.90926,
+    "xgb_vs_classical_%":-41.75297
+  },
+  "Level4":{
+    "XGBoost":0.36994,
+    "classical (ETS+TSB)":0.91078,
+    "seasonal naive":0.88383,
+    "xgb_vs_classical_%":-59.38163
+  },
+  "Level5":{
+    "XGBoost":0.45943,
+    "classical (ETS+TSB)":0.9853,
+    "seasonal naive":0.99552,
+    "xgb_vs_classical_%":-53.372
+  },
+  "Level6":{
+    "XGBoost":0.46343,
+    "classical (ETS+TSB)":0.90819,
+    "seasonal naive":0.92891,
+    "xgb_vs_classical_%":-48.97199
+  },
+  "Level7":{
+    "XGBoost":0.54512,
+    "classical (ETS+TSB)":0.96396,
+    "seasonal naive":1.0092,
+    "xgb_vs_classical_%":-43.45051
+  },
+  "Level8":{
+    "XGBoost":0.5893,
+    "classical (ETS+TSB)":0.92778,
+    "seasonal naive":0.98487,
+    "xgb_vs_classical_%":-36.4829
+  },
+  "Level9":{
+    "XGBoost":0.66287,
+    "classical (ETS+TSB)":0.96762,
+    "seasonal naive":1.04983,
+    "xgb_vs_classical_%":-31.49447
+  },
+  "Level10":{
+    "XGBoost":0.89736,
+    "classical (ETS+TSB)":0.92391,
+    "seasonal naive":1.1332,
+    "xgb_vs_classical_%":-2.87413
+  },
+  "Level11":{
+    "XGBoost":0.88109,
+    "classical (ETS+TSB)":0.90074,
+    "seasonal naive":1.13912,
+    "xgb_vs_classical_%":-2.18091
+  },
+  "Level12":{
+    "XGBoost":0.85846,
+    "classical (ETS+TSB)":0.87368,
+    "seasonal naive":1.13815,
+    "xgb_vs_classical_%":-1.74198
+  }
+}

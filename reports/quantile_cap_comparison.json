@@ -1,0 +1,551 @@
+{
+  "summary_a": {
+    "run": "20261024_075605_xgb_quantile",
+    "cv_summary": {
+      "pinball_mean": 0.34133,
+      "pinball_std": 0.00777,
+      "coverage_mean": {
+        "0.1": 0.5813,
+        "0.5": 0.6541,
+        "0.8": 0.8101,
+        "0.9": 0.8938
+      },
+      "crossing_rate_max": 0.0,
+      "hit_cap": 21,
+      "n_models": 40,
+      "train_seconds_total": 6240.1
+    },
+    "hit_cap_by_fold": {
+      "cv1": 10,
+      "cv2": 1,
+      "cv3": 3,
+      "cv4": 7
+    },
+    "hit_cap_by_store": {
+      "CA_1": 3,
+      "CA_2": 1,
+      "CA_3": 2,
+      "CA_4": 1,
+      "TX_1": 2,
+      "TX_2": 3,
+      "TX_3": 3,
+      "WI_1": 2,
+      "WI_2": 1,
+      "WI_3": 3
+    }
+  },
+  "comparison": {
+    "run_a": "20261024_075605_xgb_quantile",
+    "run_b": "20261024_120716_xgb_quantile_r3000",
+    "per_fold": {
+      "cv1": {
+        "pinball_a": 0.33088,
+        "pinball_b": 0.33165,
+        "change_pct": 0.233,
+        "coverage_a": {
+          "0.1": 0.6001,
+          "0.5": 0.6691,
+          "0.8": 0.8151,
+          "0.9": 0.8946
+        },
+        "coverage_b": {
+          "0.1": 0.6006,
+          "0.5": 0.6692,
+          "0.8": 0.8129,
+          "0.9": 0.8918
+        }
+      },
+      "cv2": {
+        "pinball_a": 0.34949,
+        "pinball_b": 0.34952,
+        "change_pct": 0.009,
+        "coverage_a": {
+          "0.1": 0.5827,
+          "0.5": 0.65,
+          "0.8": 0.8047,
+          "0.9": 0.8896
+        },
+        "coverage_b": {
+          "0.1": 0.5827,
+          "0.5": 0.65,
+          "0.8": 0.8046,
+          "0.9": 0.8895
+        }
+      },
+      "cv3": {
+        "pinball_a": 0.34364,
+        "pinball_b": 0.34366,
+        "change_pct": 0.006,
+        "coverage_a": {
+          "0.1": 0.5767,
+          "0.5": 0.6519,
+          "0.8": 0.81,
+          "0.9": 0.8949
+        },
+        "coverage_b": {
+          "0.1": 0.5768,
+          "0.5": 0.652,
+          "0.8": 0.81,
+          "0.9": 0.895
+        }
+      },
+      "cv4": {
+        "pinball_a": 0.3413,
+        "pinball_b": 0.3414,
+        "change_pct": 0.029,
+        "coverage_a": {
+          "0.1": 0.5657,
+          "0.5": 0.6453,
+          "0.8": 0.8104,
+          "0.9": 0.8959
+        },
+        "coverage_b": {
+          "0.1": 0.566,
+          "0.5": 0.6455,
+          "0.8": 0.8105,
+          "0.9": 0.8957
+        }
+      }
+    },
+    "cv_pinball_a": 0.34133,
+    "cv_pinball_b": 0.34156,
+    "cv_change_pct": 0.067,
+    "coverage_a": {
+      "0.1": 0.5813,
+      "0.5": 0.6541,
+      "0.8": 0.8101,
+      "0.9": 0.8938
+    },
+    "coverage_b": {
+      "0.1": 0.5815,
+      "0.5": 0.6542,
+      "0.8": 0.8095,
+      "0.9": 0.893
+    },
+    "hit_cap_a": 21,
+    "hit_cap_b": 2,
+    "capped_models": [
+      {
+        "store_id": "CA_1",
+        "fold": "cv1",
+        "best_iteration_b": 2070,
+        "still_capped_b": false,
+        "pinball_a": 0.35908,
+        "pinball_b": 0.36024,
+        "pinball_change_pct": 0.323,
+        "es_score_at_a_limit": 0.349237,
+        "es_best_score_b": 0.347934,
+        "es_change_pct": -0.373,
+        "seconds_a": 172.4,
+        "seconds_b": 375.2
+      },
+      {
+        "store_id": "CA_2",
+        "fold": "cv1",
+        "best_iteration_b": 1264,
+        "still_capped_b": false,
+        "pinball_a": 0.35023,
+        "pinball_b": 0.35111,
+        "pinball_change_pct": 0.251,
+        "es_score_at_a_limit": 0.34033,
+        "es_best_score_b": 0.340129,
+        "es_change_pct": -0.059,
+        "seconds_a": 172.9,
+        "seconds_b": 231.4
+      },
+      {
+        "store_id": "CA_3",
+        "fold": "cv1",
+        "best_iteration_b": 2999,
+        "still_capped_b": true,
+        "pinball_a": 0.46081,
+        "pinball_b": 0.46243,
+        "pinball_change_pct": 0.352,
+        "es_score_at_a_limit": 0.440395,
+        "es_best_score_b": 0.438364,
+        "es_change_pct": -0.461,
+        "seconds_a": 178.4,
+        "seconds_b": 529.0
+      },
+      {
+        "store_id": "CA_4",
+        "fold": "cv1",
+        "best_iteration_b": 1272,
+        "still_capped_b": false,
+        "pinball_a": 0.23962,
+        "pinball_b": 0.23978,
+        "pinball_change_pct": 0.067,
+        "es_score_at_a_limit": 0.225455,
+        "es_best_score_b": 0.225403,
+        "es_change_pct": -0.023,
+        "seconds_a": 177.6,
+        "seconds_b": 238.2
+      },
+      {
+        "store_id": "TX_1",
+        "fold": "cv1",
+        "best_iteration_b": 1288,
+        "still_capped_b": false,
+        "pinball_a": 0.27877,
+        "pinball_b": 0.27886,
+        "pinball_change_pct": 0.032,
+        "es_score_at_a_limit": 0.268022,
+        "es_best_score_b": 0.267941,
+        "es_change_pct": -0.03,
+        "seconds_a": 173.9,
+        "seconds_b": 246.1
+      },
+      {
+        "store_id": "TX_2",
+        "fold": "cv1",
+        "best_iteration_b": 1780,
+        "still_capped_b": false,
+        "pinball_a": 0.31893,
+        "pinball_b": 0.31976,
+        "pinball_change_pct": 0.26,
+        "es_score_at_a_limit": 0.321824,
+        "es_best_score_b": 0.321153,
+        "es_change_pct": -0.208,
+        "seconds_a": 180.3,
+        "seconds_b": 336.3
+      },
+      {
+        "store_id": "TX_3",
+        "fold": "cv1",
+        "best_iteration_b": 2007,
+        "still_capped_b": false,
+        "pinball_a": 0.30384,
+        "pinball_b": 0.30456,
+        "pinball_change_pct": 0.237,
+        "es_score_at_a_limit": 0.290096,
+        "es_best_score_b": 0.289233,
+        "es_change_pct": -0.297,
+        "seconds_a": 176.6,
+        "seconds_b": 370.8
+      },
+      {
+        "store_id": "WI_1",
+        "fold": "cv1",
+        "best_iteration_b": 1925,
+        "still_capped_b": false,
+        "pinball_a": 0.31088,
+        "pinball_b": 0.31145,
+        "pinball_change_pct": 0.183,
+        "es_score_at_a_limit": 0.315211,
+        "es_best_score_b": 0.314567,
+        "es_change_pct": -0.204,
+        "seconds_a": 177.5,
+        "seconds_b": 354.5
+      },
+      {
+        "store_id": "WI_2",
+        "fold": "cv1",
+        "best_iteration_b": 1918,
+        "still_capped_b": false,
+        "pinball_a": 0.38385,
+        "pinball_b": 0.38492,
+        "pinball_change_pct": 0.279,
+        "es_score_at_a_limit": 0.348895,
+        "es_best_score_b": 0.348601,
+        "es_change_pct": -0.084,
+        "seconds_a": 175.8,
+        "seconds_b": 345.9
+      },
+      {
+        "store_id": "WI_3",
+        "fold": "cv1",
+        "best_iteration_b": 2921,
+        "still_capped_b": true,
+        "pinball_a": 0.30428,
+        "pinball_b": 0.3049,
+        "pinball_change_pct": 0.204,
+        "es_score_at_a_limit": 0.290368,
+        "es_best_score_b": 0.28858,
+        "es_change_pct": -0.616,
+        "seconds_a": 176.4,
+        "seconds_b": 524.1
+      },
+      {
+        "store_id": "WI_3",
+        "fold": "cv2",
+        "best_iteration_b": 1223,
+        "still_capped_b": false,
+        "pinball_a": 0.32928,
+        "pinball_b": 0.32965,
+        "pinball_change_pct": 0.112,
+        "es_score_at_a_limit": 0.291132,
+        "es_best_score_b": 0.290988,
+        "es_change_pct": -0.049,
+        "seconds_a": 179.6,
+        "seconds_b": 235.1
+      },
+      {
+        "store_id": "CA_1",
+        "fold": "cv3",
+        "best_iteration_b": 917,
+        "still_capped_b": false,
+        "pinball_a": 0.36136,
+        "pinball_b": 0.36136,
+        "pinball_change_pct": 0.0,
+        "es_score_at_a_limit": 0.353065,
+        "es_best_score_b": 0.353065,
+        "es_change_pct": 0.0,
+        "seconds_a": 181.9,
+        "seconds_b": 183.5
+      },
+      {
+        "store_id": "TX_2",
+        "fold": "cv3",
+        "best_iteration_b": 1566,
+        "still_capped_b": false,
+        "pinball_a": 0.33093,
+        "pinball_b": 0.33114,
+        "pinball_change_pct": 0.063,
+        "es_score_at_a_limit": 0.336968,
+        "es_best_score_b": 0.336727,
+        "es_change_pct": -0.072,
+        "seconds_a": 186.1,
+        "seconds_b": 308.9
+      },
+      {
+        "store_id": "TX_3",
+        "fold": "cv3",
+        "best_iteration_b": 1120,
+        "still_capped_b": false,
+        "pinball_a": 0.31763,
+        "pinball_b": 0.31762,
+        "pinball_change_pct": -0.003,
+        "es_score_at_a_limit": 0.320551,
+        "es_best_score_b": 0.320501,
+        "es_change_pct": -0.016,
+        "seconds_a": 183.5,
+        "seconds_b": 223.5
+      },
+      {
+        "store_id": "CA_1",
+        "fold": "cv4",
+        "best_iteration_b": 1660,
+        "still_capped_b": false,
+        "pinball_a": 0.36742,
+        "pinball_b": 0.36691,
+        "pinball_change_pct": -0.139,
+        "es_score_at_a_limit": 0.351127,
+        "es_best_score_b": 0.350609,
+        "es_change_pct": -0.148,
+        "seconds_a": 185.3,
+        "seconds_b": 322.1
+      },
+      {
+        "store_id": "CA_3",
+        "fold": "cv4",
+        "best_iteration_b": 1435,
+        "still_capped_b": false,
+        "pinball_a": 0.45039,
+        "pinball_b": 0.45049,
+        "pinball_change_pct": 0.022,
+        "es_score_at_a_limit": 0.470787,
+        "es_best_score_b": 0.470396,
+        "es_change_pct": -0.083,
+        "seconds_a": 186.9,
+        "seconds_b": 278.3
+      },
+      {
+        "store_id": "TX_1",
+        "fold": "cv4",
+        "best_iteration_b": 1409,
+        "still_capped_b": false,
+        "pinball_a": 0.28769,
+        "pinball_b": 0.28798,
+        "pinball_change_pct": 0.101,
+        "es_score_at_a_limit": 0.278359,
+        "es_best_score_b": 0.278195,
+        "es_change_pct": -0.059,
+        "seconds_a": 187.1,
+        "seconds_b": 279.2
+      },
+      {
+        "store_id": "TX_2",
+        "fold": "cv4",
+        "best_iteration_b": 1139,
+        "still_capped_b": false,
+        "pinball_a": 0.31861,
+        "pinball_b": 0.31871,
+        "pinball_change_pct": 0.031,
+        "es_score_at_a_limit": 0.325578,
+        "es_best_score_b": 0.325468,
+        "es_change_pct": -0.034,
+        "seconds_a": 189.9,
+        "seconds_b": 235.5
+      },
+      {
+        "store_id": "TX_3",
+        "fold": "cv4",
+        "best_iteration_b": 1950,
+        "still_capped_b": false,
+        "pinball_a": 0.31599,
+        "pinball_b": 0.31671,
+        "pinball_change_pct": 0.228,
+        "es_score_at_a_limit": 0.309845,
+        "es_best_score_b": 0.309437,
+        "es_change_pct": -0.132,
+        "seconds_a": 186.1,
+        "seconds_b": 374.1
+      },
+      {
+        "store_id": "WI_1",
+        "fold": "cv4",
+        "best_iteration_b": 914,
+        "still_capped_b": false,
+        "pinball_a": 0.31715,
+        "pinball_b": 0.31715,
+        "pinball_change_pct": 0.0,
+        "es_score_at_a_limit": 0.310965,
+        "es_best_score_b": 0.310965,
+        "es_change_pct": 0.0,
+        "seconds_a": 186.5,
+        "seconds_b": 188.6
+      },
+      {
+        "store_id": "WI_3",
+        "fold": "cv4",
+        "best_iteration_b": 1499,
+        "still_capped_b": false,
+        "pinball_a": 0.31848,
+        "pinball_b": 0.31872,
+        "pinball_change_pct": 0.075,
+        "es_score_at_a_limit": 0.30802,
+        "es_best_score_b": 0.307858,
+        "es_change_pct": -0.053,
+        "seconds_a": 183.9,
+        "seconds_b": 290.1
+      }
+    ]
+  },
+  "cap_table": [
+    {
+      "cap": 1000,
+      "source": "20261024_075605_xgb_quantile",
+      "pinball_mean": 0.34133,
+      "pinball_std": 0.00777,
+      "coverage_mean": {
+        "0.1": 0.5813,
+        "0.5": 0.6541,
+        "0.8": 0.8101,
+        "0.9": 0.8938
+      },
+      "crossing_rate_max": 0.0,
+      "hit_cap": 21,
+      "n_models": 40,
+      "train_seconds_total": 6240.1,
+      "per_fold_pinball": {
+        "cv1": 0.33088,
+        "cv2": 0.34949,
+        "cv3": 0.34364,
+        "cv4": 0.3413
+      },
+      "checkpoint_matches_run_a": true,
+      "change_vs_a_pct": 0.0
+    },
+    {
+      "cap": 1500,
+      "source": "20261024_120716_xgb_quantile_r3000 (titik 1500)",
+      "pinball_mean": 0.34147,
+      "pinball_std": 0.00759,
+      "coverage_mean": {
+        "0.1": 0.5814,
+        "0.5": 0.6542,
+        "0.8": 0.8098,
+        "0.9": 0.8933
+      },
+      "crossing_rate_max": 0.0,
+      "hit_cap": 13,
+      "n_models": 40,
+      "per_fold_pinball": {
+        "cv1": 0.3313,
+        "cv2": 0.34952,
+        "cv3": 0.34365,
+        "cv4": 0.34139
+      },
+      "change_vs_a_pct": 0.041
+    },
+    {
+      "cap": 2000,
+      "source": "20261024_120716_xgb_quantile_r3000 (titik 2000)",
+      "pinball_mean": 0.34153,
+      "pinball_std": 0.00749,
+      "coverage_mean": {
+        "0.1": 0.5815,
+        "0.5": 0.6542,
+        "0.8": 0.8096,
+        "0.9": 0.8931
+      },
+      "crossing_rate_max": 0.0,
+      "hit_cap": 7,
+      "n_models": 40,
+      "per_fold_pinball": {
+        "cv1": 0.33154,
+        "cv2": 0.34952,
+        "cv3": 0.34366,
+        "cv4": 0.3414
+      },
+      "change_vs_a_pct": 0.059
+    },
+    {
+      "cap": 2500,
+      "source": "20261024_120716_xgb_quantile_r3000 (titik 2500)",
+      "pinball_mean": 0.34154,
+      "pinball_std": 0.00747,
+      "coverage_mean": {
+        "0.1": 0.5815,
+        "0.5": 0.6542,
+        "0.8": 0.8095,
+        "0.9": 0.8931
+      },
+      "crossing_rate_max": 0.0,
+      "hit_cap": 2,
+      "n_models": 40,
+      "per_fold_pinball": {
+        "cv1": 0.33159,
+        "cv2": 0.34952,
+        "cv3": 0.34366,
+        "cv4": 0.3414
+      },
+      "change_vs_a_pct": 0.062
+    },
+    {
+      "cap": 3000,
+      "source": "20261024_120716_xgb_quantile_r3000 (titik 3000)",
+      "pinball_mean": 0.34156,
+      "pinball_std": 0.00744,
+      "coverage_mean": {
+        "0.1": 0.5815,
+        "0.5": 0.6542,
+        "0.8": 0.8095,
+        "0.9": 0.893
+      },
+      "crossing_rate_max": 0.0,
+      "hit_cap": 2,
+      "n_models": 40,
+      "per_fold_pinball": {
+        "cv1": 0.33165,
+        "cv2": 0.34952,
+        "cv3": 0.34366,
+        "cv4": 0.3414
+      },
+      "change_vs_a_pct": 0.067
+    }
+  ],
+  "decision": {
+    "chosen_cap": 1000,
+    "best_pinball": 0.34133,
+    "chosen_pinball": 0.34133,
+    "rule": "smallest cap within 1.0% of best pinball, coverage P80/P90 not worse than reference by more than 0.01"
+  },
+  "capped_models_still_capped_by_cap": {
+    "1000": 21,
+    "1500": 13,
+    "2000": 7,
+    "2500": 2,
+    "3000": 2
+  }
+}
