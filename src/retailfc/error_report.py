@@ -1,4 +1,4 @@
-"""Fase 6: grafik dari reports/error_analysis.json (dan prediksi tersimpan untuk studi kasus).
+"""Fase 6: grafik dari reports/data/error_analysis.json (dan prediksi tersimpan untuk studi kasus).
 
 Cara pakai:
     python -m retailfc.error_report --config config.yaml
@@ -154,7 +154,7 @@ def main() -> None:
     args = ap.parse_args()
     cfg = load_config(args.config)
     rep = Path(cfg["paths"]["reports"])
-    r = json.loads((rep / "error_analysis.json").read_text(encoding="utf-8"))
+    r = json.loads((rep / "data" / "error_analysis.json").read_text(encoding="utf-8"))
     fig_dir = rep / "figures"
     plot_segments(r, fig_dir / "phase6_segments.png")
     plot_erratic_bias(r, fig_dir / "phase6_erratic_bias.png")

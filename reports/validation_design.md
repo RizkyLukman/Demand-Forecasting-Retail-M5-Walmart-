@@ -1,6 +1,6 @@
 # Fase 3 — Desain validasi (P1)
 
-Kode: `src/retailfc/folds.py`, `src/retailfc/leakage.py`. Tabel fold: `reports/folds.csv`
+Kode: `src/retailfc/folds.py`, `src/retailfc/leakage.py`. Tabel fold: `reports/data/folds.csv`
 (`python -m retailfc.folds --config config.yaml`). Tes: `tests/test_folds.py`,
 `tests/test_leakage.py`.
 

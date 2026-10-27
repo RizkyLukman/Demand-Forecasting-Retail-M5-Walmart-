@@ -134,7 +134,7 @@ def main() -> None:
     cal = load_calendar(Path(cfg["paths"]["raw_m5"]))
     table = fold_table(folds, cal, cfg)
     print(table.to_string(index=False))
-    out = Path(cfg["paths"]["reports"]) / "folds.csv"
+    out = Path(cfg["paths"]["reports"]) / "data" / "folds.csv"
     table.to_csv(out, index=False)
     print(f"Written to {out}")
 

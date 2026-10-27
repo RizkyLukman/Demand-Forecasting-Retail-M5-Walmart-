@@ -228,7 +228,7 @@ def main() -> None:
     args = ap.parse_args()
     cfg = load_config(args.config)
     report = run(cfg, args.stores)
-    out = Path(cfg["paths"]["reports"]) / "phase1_io.json"
+    out = Path(cfg["paths"]["reports"]) / "data" / "phase1_io.json"
     out.write_text(json.dumps(report, indent=2), encoding="utf-8")
     print(json.dumps({k: report[k] for k in ["totals", "peak_rss_gb", "steps"]}, indent=2))
     print(f"Written to {out}")

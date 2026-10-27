@@ -300,7 +300,7 @@ def main() -> None:
         cases.append(d)
     result["cases"] = cases
     result["growth_and_blend"] = growth_and_blend(cv, ids, sales, prices, pred_root)
-    (rep / "error_analysis.json").write_text(json.dumps(result, indent=2, default=str), encoding="utf-8")
+    (rep / "data" / "error_analysis.json").write_text(json.dumps(result, indent=2, default=str), encoding="utf-8")
     print(json.dumps({"concentration": result["concentration"], "cases": cases}, indent=1, default=str))
 
 

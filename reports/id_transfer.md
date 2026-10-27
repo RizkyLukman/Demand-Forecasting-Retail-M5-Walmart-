@@ -5,8 +5,8 @@
 > `reports/id_phase8_design.md`.
 >
 > - Kode: `src/retailfc/id_calendar.py`, `id_event_study.py`, `id_forecast.py`, `id_report.py`.
-> - Angka lengkap: `reports/id_event_study.json`, `id_event_study_daily.csv`,
->   `id_event_calibration.json`, `id_forecast.json`.
+> - Angka lengkap: `reports/data/id_event_study.json`, `reports/data/id_event_study_daily.csv`,
+>   `reports/data/id_event_calibration.json`, `reports/data/id_forecast.json`.
 > - Tes: `tests/test_id_calendar.py`, `test_id_event_study.py`, `test_id_forecast.py`.
 
 ---
@@ -71,7 +71,7 @@ luar pita.
 ### 2.1 Seberapa kokoh?
 
 Efek dihitung ulang dengan 4 cara baseline lain: median per hari dalam minggu, log-linear
-dengan tren, serta level lokal dengan margin 14 dan 42 hari (`id_event_study.json →
+dengan tren, serta level lokal dengan margin 14 dan 42 hari (`reports/data/id_event_study.json →
 sensitivity`).
 
 | Temuan | Rentang di 5 baseline | Di luar pita di semua baseline? |
@@ -202,7 +202,7 @@ RMSSE, dengan bias (% total) di belakangnya:
 
 ## 5. Yang tidak berhasil
 
-- **Run pertama XGBoost salah skala** (`reports/id_forecast_unscaled.json`). Satu model
+- **Run pertama XGBoost salah skala** (`reports/data/id_forecast_unscaled.json`). Satu model
   gabungan melatih nota (±100–300/hari) bersama unit (±14.000/hari) tanpa penyamaan skala.
   Loss tweedie didominasi deret yang besar, sehingga di fold `post_lebaran` XGBoost menebak
   nota RJ +302% dan RI +356% di atas aktual. Perbaikannya: target dan fitur tiap deret dibagi

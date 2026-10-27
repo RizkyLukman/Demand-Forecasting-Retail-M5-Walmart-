@@ -18,7 +18,7 @@ Output:
 - dengan `--checkpoints`: juga <nama run>_c<C>.npy untuk tiap batas C yang ditiru;
 - reports/runs/<timestamp>_<nama run>/: config.json, infos.json, metrics.json
   (pinball, coverage, kuantil bersilangan per fold dan per toko, juga per batas C);
-- cek konsistensi: pinball CA_3/WI_2 harus sama dengan reports/quantile_experiments.json
+- cek konsistensi: pinball CA_3/WI_2 harus sama dengan reports/data/quantile_experiments.json
   (jika batasnya sama), dan model yang dilatih ulang harus sama dengan run acuan.
 
 Uji batas iterasi (rencana di reports/quantile_cap1000.md §6): satu run berbatas 3.000
@@ -246,7 +246,7 @@ def main() -> None:
 
     # 3b. Cek konsistensi dengan eksperimen (training deterministik: harus sama persis).
     #     Hanya berlaku jika batas iterasi sama dengan eksperimen.
-    exp_path = Path(cfg["paths"]["reports"]) / "quantile_experiments.json"
+    exp_path = Path(cfg["paths"]["reports"]) / "data" / "quantile_experiments.json"
     exp_json = json.loads(exp_path.read_text(encoding="utf-8")) if exp_path.exists() else None
     if exp_json and exp_json.get("max_rounds") == opt.max_rounds:
         exp = {(r["store_id"], r["fold"]): r["pinball_mean"] for r in exp_json["runs"]

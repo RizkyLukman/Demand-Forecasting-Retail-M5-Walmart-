@@ -227,7 +227,7 @@ def main() -> None:
             del long, base
     report["feature_names_base"] = feature_names(pd.read_parquet(dst / f"store_id={stores[0]}" / "part-0.parquet"))
     report["peak_rss_gb"] = round(mem.peak_gb, 2)
-    Path(cfg["paths"]["reports"], "phase4_features.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    Path(cfg["paths"]["reports"], "data", "phase4_features.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     print(f"peak RSS {report['peak_rss_gb']} GB, {len(report['feature_names_base'])} base features")
 
 

@@ -1,4 +1,4 @@
-"""Fase 5: grafik dan tabel ringkasan dari reports/model_comparison.json.
+"""Fase 5: grafik dan tabel ringkasan dari reports/data/model_comparison.json.
 
 Cara pakai:
     python -m retailfc.phase5_report --config config.yaml
@@ -52,7 +52,7 @@ def main() -> None:
     args = ap.parse_args()
     cfg = load_config(args.config)
     rep = Path(cfg["paths"]["reports"])
-    comp = json.loads((rep / "model_comparison.json").read_text(encoding="utf-8"))["per_fold"]
+    comp = json.loads((rep / "data" / "model_comparison.json").read_text(encoding="utf-8"))["per_fold"]
     folds = list(comp.keys())
     cv = [f for f in folds if f.startswith("cv")]
 
@@ -90,7 +90,7 @@ def main() -> None:
     table = pd.DataFrame(per_level, index=levels).rename(columns=dict(MODELS))
     table["xgb_vs_classical_%"] = 100 * (table["XGBoost"] / table["classical (ETS+TSB)"] - 1)
     print(table.round(4).to_string())
-    (rep / "phase5_level_table.json").write_text(table.round(5).to_json(orient="index", indent=2),
+    (rep / "data" / "phase5_level_table.json").write_text(table.round(5).to_json(orient="index", indent=2),
                                                  encoding="utf-8")
 
 

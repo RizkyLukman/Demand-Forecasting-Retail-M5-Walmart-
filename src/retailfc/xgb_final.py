@@ -5,7 +5,7 @@ Output:
 - prediksi lebar per fold: data/processed/preds/<fold>/<nama_model>.npy (30.490 × 28);
 - folder run: reports/runs/<timestamp>_<nama_model>/ berisi config.json, metrics.json
   (WRMSSE per fold + per level, MAE/RMSE/bias), infos.json (best_iteration dll.);
-- ringkasan pembanding dengan baseline: reports/model_comparison.json.
+- ringkasan pembanding dengan baseline: reports/data/model_comparison.json.
 
 Holdout (d_1914–d_1941) TIDAK dipakai di sini.
 
@@ -120,7 +120,7 @@ def main() -> None:
     (run_dir / "metrics.json").write_text(json.dumps({"per_fold": table, "cv_summary": summary,
                                                       "peak_rss_gb": round(mem.peak_gb, 2)}, indent=2),
                                           encoding="utf-8")
-    comp_path = Path(cfg["paths"]["reports"]) / "model_comparison.json"
+    comp_path = Path(cfg["paths"]["reports"]) / "data" / "model_comparison.json"
     comp_path.write_text(json.dumps({"run_dir": str(run_dir), "per_fold": table, "cv_summary": summary},
                                     indent=2), encoding="utf-8")
     for m, s in sorted(summary.items(), key=lambda kv: kv[1]["cv_wrmsse_mean"]):

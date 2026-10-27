@@ -171,7 +171,7 @@ def main() -> None:
                                   .head(8).round(3).to_dict()}
     out["cases"] = cases
     rep = Path(cfg["paths"]["reports"])
-    (rep / args.out).write_text(json.dumps(out, indent=2, default=str), encoding="utf-8")
+    (rep / "data" / args.out).write_text(json.dumps(out, indent=2, default=str), encoding="utf-8")
     print(json.dumps({"checks": checks, "global_top10": dict(list(out["global_mean_abs"].items())[:10]),
                       "bias_drivers": out["bias_drivers"]}, indent=1, default=str))
 

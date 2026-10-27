@@ -115,7 +115,7 @@ def main() -> None:
     cfg = load_config(args.config)
     folds = {f.name: f for f in build_folds(cfg)}
     base_root = Path(cfg["paths"]["processed"]) / "base"
-    out_path = Path(cfg["paths"]["reports"], "quantile_experiments.json")
+    out_path = Path(cfg["paths"]["reports"], "data", "quantile_experiments.json")
     out = json.loads(out_path.read_text(encoding="utf-8")) if out_path.exists() else {"runs": []}
     out.update({"stores": STORES, "alphas": ALPHAS, "max_rounds": MAX_ROUNDS,
                 "early_stopping": EARLY_STOPPING, "reference_eta_0.1": REFERENCE_ETA_01})

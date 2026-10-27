@@ -1,4 +1,4 @@
-"""Fase 6: grafik SHAP dari reports/shap_summary.json.
+"""Fase 6: grafik SHAP dari reports/data/shap_summary.json.
 
 Cara pakai:
     python -m retailfc.shap_report --config config.yaml
@@ -97,10 +97,10 @@ def main() -> None:
     ap.add_argument("--config", default="config.yaml")
     args = ap.parse_args()
     rep = Path(load_config(args.config)["paths"]["reports"])
-    s = json.loads((rep / "shap_summary.json").read_text(encoding="utf-8"))
+    s = json.loads((rep / "data" / "shap_summary.json").read_text(encoding="utf-8"))
     plot_global(s, rep / "figures" / "phase6_shap_global.png")
     plot_segments(s, rep / "figures" / "phase6_shap_segments.png")
-    err = json.loads((rep / "error_analysis.json").read_text(encoding="utf-8"))
+    err = json.loads((rep / "data" / "error_analysis.json").read_text(encoding="utf-8"))
     plot_cases(s, err, rep / "figures" / "phase6_shap_cases.png")
     print("figures saved")
 

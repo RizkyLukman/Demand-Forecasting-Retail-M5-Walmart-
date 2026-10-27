@@ -1,7 +1,7 @@
 """Fase 0: verifikasi file mentah M5 terhadap skema yang terdokumentasi.
 
 Hanya membaca file asli di `paths.raw_m5`, mencetak laporan, lalu menyimpannya ke
-`reports/m5_verification.json`. Tidak ada yang diasumsikan; setiap angka berasal
+`reports/data/m5_verification.json`. Tidak ada yang diasumsikan; setiap angka berasal
 dari file.
 
 Cara pakai:
@@ -184,7 +184,7 @@ def main() -> None:
         "overlap_identical": bool((ev_aligned[va_d].to_numpy() == va[va_d].to_numpy()).all()),
     }
 
-    out_path = Path(cfg["paths"]["reports"]) / "m5_verification.json"
+    out_path = Path(cfg["paths"]["reports"]) / "data" / "m5_verification.json"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
     print(json.dumps(report, indent=2))

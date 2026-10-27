@@ -131,7 +131,7 @@ def main() -> None:
     ap.add_argument("--stage", type=int, choices=[1, 2, 3], required=True)
     args = ap.parse_args()
     cfg = load_config(args.config)
-    out_path = Path(cfg["paths"]["reports"]) / "xgb_experiments.json"
+    out_path = Path(cfg["paths"]["reports"]) / "data" / "xgb_experiments.json"
     best = None
     if args.stage in (2, 3):
         prev = json.loads(out_path.read_text(encoding="utf-8"))["runs"]

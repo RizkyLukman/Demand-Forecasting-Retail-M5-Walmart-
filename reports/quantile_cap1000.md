@@ -242,7 +242,7 @@ python -m retailfc.quantile_cap_report --runs reports/runs/20261024_075605_xgb_q
   ini perlu ada, paling lambat di simulasi stok Fase 7.
 - **Pinball bergantung skala.** Angka antar toko tidak bisa dibandingkan langsung, dan
   angka di laporan ini (semua 30.490 deret) tidak bisa dibandingkan dengan eksperimen di
-  `quantile_experiments.json` (hanya item yang sudah pernah laku, 2 toko).
+  `reports/data/quantile_experiments.json` (hanya item yang sudah pernah laku, 2 toko).
 - **Coverage P10/P50 tidak informatif** untuk data yang didominasi nol (§2).
 - Hanya fold CV. Fold khusus (Easter, akhir tahun) dan holdout belum dijalankan untuk
   model kuantil.
@@ -255,7 +255,7 @@ python -m retailfc.quantile_cap_report --runs reports/runs/20261024_075605_xgb_q
 |---|---|
 | `reports/runs/20261024_075605_xgb_quantile/metrics.json` | pinball dan coverage per fold, per toko × fold, cek vs eksperimen |
 | `reports/runs/20261024_075605_xgb_quantile/infos.json` | iterasi terbaik, waktu, crossing, `hit_cap` per model |
-| `reports/quantile_cap_r1000.json` | ringkasan model di batas per fold dan per toko |
+| `reports/data/quantile_cap_r1000.json` | ringkasan model di batas per fold dan per toko |
 | `data/processed/preds/<fold>/xgb_quantile.npy` | prediksi P10/P50/P80/P90 (30.490 × 28 × 4) |
 | `src/retailfc/quantile_final.py` | training final (tahan terhenti) |
 | `src/retailfc/quantile_cap_report.py` | grafik dan perbandingan antar batas iterasi |

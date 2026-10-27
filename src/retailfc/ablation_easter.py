@@ -111,7 +111,7 @@ def main() -> None:
     cfg = load_config(args.config)
     reports = Path(cfg["paths"]["reports"])
     if args.plot_only:
-        plot_offsets(reports / "easter_ablation.json", reports / "figures" / "easter_ablation.png")
+        plot_offsets(reports / "data" / "easter_ablation.json", reports / "figures" / "easter_ablation.png")
         return
     cal = load_calendar(Path(cfg["paths"]["raw_m5"]))
     easter = event_days(cal, "Easter")
@@ -169,8 +169,8 @@ def main() -> None:
         "runs": infos,
         "peak_rss_gb": round(mem.peak_gb, 2),
     }
-    (reports / "easter_ablation.json").write_text(json.dumps(out, indent=2, default=str), encoding="utf-8")
-    plot_offsets(reports / "easter_ablation.json", reports / "figures" / "easter_ablation.png")
+    (reports / "data" / "easter_ablation.json").write_text(json.dumps(out, indent=2, default=str), encoding="utf-8")
+    plot_offsets(reports / "data" / "easter_ablation.json", reports / "figures" / "easter_ablation.png")
     print(delta.round(4).to_string())
     print("mean delta:", out["delta_mean"])
     print("share negative:", out["delta_share_negative"])

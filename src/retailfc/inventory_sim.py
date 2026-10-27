@@ -274,7 +274,7 @@ def main() -> None:
     out["summary"] = summary
     out["sensitivity"] = sens
     rep = Path(cfg["paths"]["reports"])
-    (rep / "inventory_sim.json").write_text(json.dumps(out, indent=2, default=str), encoding="utf-8")
+    (rep / "data" / "inventory_sim.json").write_text(json.dumps(out, indent=2, default=str), encoding="utf-8")
     for k in keys:
         a = summary[k]["groups"]["all"]
         print(f"{k:22s} fill={a['fill_rate']:.4f} lost={a['lost']:.0f} cover={a['days_of_cover']:.2f}d "

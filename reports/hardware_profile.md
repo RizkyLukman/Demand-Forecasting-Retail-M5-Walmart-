@@ -1,6 +1,6 @@
 # Profil hardware (Fase 1)
 
-Diukur pada 2026-10-22/23. Angka mentah: `reports/hardware_profile.json`, `reports/phase1_io.json`.
+Diukur pada 2026-10-22/23. Angka mentah: `reports/data/hardware_profile.json`, `reports/data/phase1_io.json`.
 
 ## Mesin
 
@@ -70,7 +70,7 @@ Model 4 kuantil 1.000 iterasi dengan `item_id` kategorikal berukuran **1,6 GB** 
 ## 3b. Profil ulang di Fase 4 dengan fitur final
 
 `python -m retailfc.hardware_profile --store CA_1 --features final`
-(angka: `reports/hardware_profile_phase4.json`). Setup sama dengan bagian 2 (CA_1, cutoff
+(angka: `reports/data/hardware_profile_phase4.json`). Setup sama dengan bagian 2 (CA_1, cutoff
 d_1885, parameter sama), tetapi memakai **36 fitur** dari tabel dasar Fase 4 dan
 mengeluarkan hari tutup dari baris train. RAM tersedia saat mulai: 7,6 GB. (Fitur ke-37,
 `zero_run_lag28`, ditambahkan sesudahnya; satu kolom float32 tambahan tidak mengubah

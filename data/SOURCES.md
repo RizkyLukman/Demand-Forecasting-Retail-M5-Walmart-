@@ -1,7 +1,7 @@
 # Sumber data
 
 Semua angka di bawah berasal dari `python -m retailfc.verify_m5 --config config.yaml`
-(output lengkap: `reports/m5_verification.json`). File mentah ada di `data/raw/` dan
+(output lengkap: `reports/data/m5_verification.json`). File mentah ada di `data/raw/` dan
 tidak di-track git.
 
 ---
@@ -60,7 +60,7 @@ sama, tidak ada yang hilang atau berlebih):
   penjualan. Setelah sel-sel itu dibuang (Fase 1), tersisa **46.796.220** baris dengan
   proporsi nol 59,5%.
 
-**Harga vs penjualan pertama (dicek di Fase 1, `reports/phase1_io.json`)**
+**Harga vs penjualan pertama (dicek di Fase 1, `reports/data/phase1_io.json`)**
 - Tidak ada item-toko yang terjual sebelum punya harga (0 deret), dan tidak ada baris
   tersimpan yang tanpa harga.
 - Pada 30.346 dari 30.490 deret (99,5%), minggu harga pertama **sama dengan** minggu

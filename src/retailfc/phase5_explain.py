@@ -148,7 +148,7 @@ def main() -> None:
     fig.savefig(rep / "figures" / "phase5_accuracy_by_level.png", facecolor=SURFACE)
     plt.close(fig)
 
-    (rep / "phase5_explain.json").write_text(json.dumps(result, indent=2, default=str), encoding="utf-8")
+    (rep / "data" / "phase5_explain.json").write_text(json.dumps(result, indent=2, default=str), encoding="utf-8")
     print(json.dumps({"accuracy_pct_cv_mean": result["accuracy_pct_cv_mean"],
                       "total_28d": result["total_28d"], "example_cv4": result["example_cv4"]},
                      indent=1, default=str))

@@ -300,7 +300,7 @@ def main() -> None:
 
     fig_weekday(prof, figs / "eda_weekday.png")
     fig_easter(easter, figs / "eda_easter.png")
-    (reports / "eda.json").write_text(json.dumps(out, indent=2, default=str), encoding="utf-8")
+    (reports / "data" / "eda.json").write_text(json.dumps(out, indent=2, default=str), encoding="utf-8")
     print(json.dumps(out, indent=2, default=str))
 
 

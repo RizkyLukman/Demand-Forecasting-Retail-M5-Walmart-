@@ -2,7 +2,7 @@
 
 > **Status (28 Okt 2026):** audit selesai, belum ada modeling. Kode: `src/retailfc/id_pharmacy.py`
 > (dump SQL → Parquet), `src/retailfc/id_audit.py` (angka audit dan grafik). Angka lengkap:
-> `reports/id_data_audit.json`. Tes parser: `tests/test_id_pharmacy.py`.
+> `reports/data/id_data_audit.json`. Tes parser: `tests/test_id_pharmacy.py`.
 
 ---
 

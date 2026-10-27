@@ -1,7 +1,7 @@
 """Fase 8 langkah 1: audit kelayakan data apotek Indonesia.
 
 Membaca tabel hasil `retailfc.id_pharmacy` (data/interim/id_pharmacy/*.parquet) dan
-menulis angka audit ke reports/id_data_audit.json serta satu grafik harian.
+menulis angka audit ke reports/data/id_data_audit.json serta satu grafik harian.
 
 Tanggal nota diambil dari header (`ms_sales.TGL`). Baris detail tanpa header tidak
 bisa diberi tanggal sehingga tidak dipakai untuk deret harian; jumlahnya dilaporkan.
@@ -290,7 +290,7 @@ def run(cfg: dict) -> dict:
         },
     }
     fig_daily(daily_full, start, hol, rep / "figures" / "phase8_daily_notes.png")
-    (rep / "id_data_audit.json").write_text(json.dumps(result, indent=2, ensure_ascii=False, default=str),
+    (rep / "data" / "id_data_audit.json").write_text(json.dumps(result, indent=2, ensure_ascii=False, default=str),
                                             encoding="utf-8")
     return result
 

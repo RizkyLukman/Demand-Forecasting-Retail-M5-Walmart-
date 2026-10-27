@@ -289,7 +289,7 @@ def main() -> None:
     rep = Path(cfg["paths"]["reports"])
     if args.calibrate:
         r = calibrate(cfg)
-        (rep / "id_event_calibration.json").write_text(json.dumps(r, indent=2), encoding="utf-8")
+        (rep / "data" / "id_event_calibration.json").write_text(json.dumps(r, indent=2), encoding="utf-8")
         print(json.dumps(r, indent=2))
         return
     r, daily = effects(cfg)
@@ -301,8 +301,8 @@ def main() -> None:
         alt, _ = effects(cfg, m)
         r["sensitivity"][m] = {s: {k: {"effect": v["effect"], "outside_band": v["outside_band"]}
                                    for k, v in res.items()} for s, res in alt["series"].items()}
-    (rep / "id_event_study.json").write_text(json.dumps(r, indent=2), encoding="utf-8")
-    daily.round(2).to_csv(rep / "id_event_study_daily.csv", index_label="date")
+    (rep / "data" / "id_event_study.json").write_text(json.dumps(r, indent=2), encoding="utf-8")
+    daily.round(2).to_csv(rep / "data" / "id_event_study_daily.csv", index_label="date")
     fig_effects(r, rep / "figures" / "phase8_event_effects.png")
     for s, res in r["series"].items():
         print(s)

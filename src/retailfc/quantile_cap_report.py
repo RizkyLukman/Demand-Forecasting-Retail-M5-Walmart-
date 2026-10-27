@@ -252,7 +252,7 @@ def main() -> None:
                 cap: int(sum(i["checkpoints"][cap]["hit_cap"] for i in b["infos"].to_dict("records")))
                 for cap in b["metrics"]["checkpoints"]}
             plot_cap_curve(rows, rep / "figures" / f"quantile_cap_curve_r{b['max_rounds']}.png")
-    path = rep / ("quantile_cap_comparison.json" if len(runs) == 2 else f"quantile_cap_r{a['max_rounds']}.json")
+    path = rep / "data" / ("quantile_cap_comparison.json" if len(runs) == 2 else f"quantile_cap_r{a['max_rounds']}.json")
     path.write_text(json.dumps(out, indent=2, default=str), encoding="utf-8")
     print(json.dumps(out, indent=1, default=str)[:4000])
 

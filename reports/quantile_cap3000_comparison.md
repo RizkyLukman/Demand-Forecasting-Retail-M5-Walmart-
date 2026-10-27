@@ -166,7 +166,7 @@ terlalu lama mengejar jendela validasi, terutama di periode liburan.
 
 | File | Isi |
 |---|---|
-| `reports/quantile_cap_comparison.json` | tabel per batas, keputusan aturan, rincian 21 model yang mentok |
+| `reports/data/quantile_cap_comparison.json` | tabel per batas, keputusan aturan, rincian 21 model yang mentok |
 | `reports/runs/20261024_120716_xgb_quantile_r3000/metrics.json` | pinball/coverage per batas, per fold, per toko; cek vs run acuan |
 | `reports/runs/20261024_120716_xgb_quantile_r3000/infos.json` | kurva validasi lengkap dan hasil per titik batas per model |
 | `data/processed/preds/<fold>/xgb_quantile_r3000_c<C>.npy` | prediksi kuantil untuk tiap batas C (tidak ikut git) |

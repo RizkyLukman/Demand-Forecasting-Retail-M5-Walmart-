@@ -58,7 +58,7 @@ asli, persentil 5–95 efek plasebo, dan peringkat efek asli di antara plasebo. 
 ### 2.1 Kalibrasi baseline dan panjang jendela (sudah dijalankan)
 
 Pilihan di atas ditentukan **hanya dari data di luar periode event**. Efek Ramadan/Lebaran
-belum dihitung saat memilih. Detail: `reports/id_event_calibration.json`.
+belum dihitung saat memilih. Detail: `reports/data/id_event_calibration.json`.
 
 | Baseline | RMS log-rasio plasebo (rata-rata total/RJ/RI) |
 |---|---:|
@@ -152,6 +152,6 @@ membantu forecast. Bahan dari `reports/easter_ablation.md` dan `reports/eda.md`.
    nota RJ +302% dan RI +356% di atas aktual. Run final membagi target dan fitur tiap deret
    dengan rata-rata train deret itu (data ≤ cutoff), lalu memasukkan level deret sebagai
    fitur. Hasil kedua run dilaporkan di `reports/id_transfer.md` §5. Hasil run pertama
-   disimpan di `reports/id_forecast_unscaled.json`.
+   disimpan di `reports/data/id_forecast_unscaled.json`.
 3. **Uji sensitivitas baseline** (4 baseline lain di samping yang dipilih) ditambahkan
    untuk menilai seberapa kokoh efek. Baseline utama tetap level lokal 28 hari.

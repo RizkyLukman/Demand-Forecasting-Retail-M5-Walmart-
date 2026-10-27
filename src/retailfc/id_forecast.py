@@ -106,7 +106,7 @@ def fit_predict_xgb(Y: np.ndarray, cal: pd.DataFrame, cutoff: int, fc: dict, use
 
     `scaled=True`: target dan fitur dibagi rata-rata train tiap deret, prediksi dikalikan
     kembali. Tanpa ini, deret berskala besar mendominasi loss model gabungan
-    (run pertama, reports/id_forecast_unscaled.json).
+    (run pertama, reports/data/id_forecast_unscaled.json).
     """
     h = fc["horizon"]
     scale = series_scale(Y, cutoff) if scaled else np.ones(Y.shape[0])
@@ -247,7 +247,7 @@ def main() -> None:
     cv = [f"cv{i}" for i in range(1, len(fc["cv_cutoffs"]) + 1)]
     out = {"xgboost_version": xgb.__version__, "cv_summary": summarize(folds, cv), "folds": folds}
     rep = Path(cfg["paths"]["reports"])
-    (rep / "id_forecast.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
+    (rep / "data" / "id_forecast.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
     print(json.dumps(out["cv_summary"], indent=1))
 
 

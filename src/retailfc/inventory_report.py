@@ -1,4 +1,4 @@
-"""Fase 7: grafik dan tabel ringkasan dari reports/inventory_sim.json.
+"""Fase 7: grafik dan tabel ringkasan dari reports/data/inventory_sim.json.
 
 Cara pakai:
     python -m retailfc.inventory_report --config config.yaml
@@ -57,7 +57,7 @@ def main() -> None:
     ap.add_argument("--config", default="config.yaml")
     args = ap.parse_args()
     rep = Path(load_config(args.config)["paths"]["reports"])
-    r = json.loads((rep / "inventory_sim.json").read_text(encoding="utf-8"))
+    r = json.loads((rep / "data" / "inventory_sim.json").read_text(encoding="utf-8"))
     fig_dir = rep / "figures"
 
     # 1. Kurva trade-off, semua deret.

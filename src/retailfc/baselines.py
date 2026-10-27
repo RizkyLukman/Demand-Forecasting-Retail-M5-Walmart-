@@ -22,7 +22,7 @@ Aturan yang sama untuk semua model (termasuk XGBoost):
 
 Output: prediksi per fold ke data/processed/preds/<fold>/<metode>.npy (n_deret × 28),
 segmen per fold ke data/processed/preds/<fold>/segments.parquet, metrik ke
-reports/baselines.json.
+reports/data/baselines.json.
 
 Cara pakai:
     python -m retailfc.baselines --config config.yaml [--folds cv1 cv2]
@@ -145,7 +145,7 @@ def main() -> None:
     cal = load_calendar(Path(cfg["paths"]["raw_m5"]))
     preds_root = Path(cfg["paths"]["processed"]) / "preds"
 
-    report_path = Path(cfg["paths"]["reports"]) / "baselines.json"
+    report_path = Path(cfg["paths"]["reports"]) / "data" / "baselines.json"
     results = json.loads(report_path.read_text(encoding="utf-8")) if report_path.exists() else {}
     for fold in folds:
         r = run_fold(fold, sales, ids, prices, cal, cfg, preds_root / fold.name)

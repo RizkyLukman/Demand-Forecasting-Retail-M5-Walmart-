@@ -1,4 +1,4 @@
-"""Fase 8: grafik laporan dari reports/id_event_study_daily.csv dan reports/id_forecast.json.
+"""Fase 8: grafik laporan dari reports/data/id_event_study_daily.csv dan reports/data/id_forecast.json.
 
 Cara pakai:
     python -m retailfc.id_report --config config.yaml
@@ -27,7 +27,7 @@ METHOD_LABELS = {"snaive7": "naive 7 hari", "weekday_mean4": "rata-rata hari sam
 
 
 def fig_event_daily(cfg: dict, rep: Path) -> None:
-    d = pd.read_csv(rep / "id_event_study_daily.csv", parse_dates=["date"]).set_index("date")
+    d = pd.read_csv(rep / "data" / "id_event_study_daily.csv", parse_dates=["date"]).set_index("date")
     full = load_daily(cfg)
     p = cfg["id_pharmacy"]["event_study"]
     ev0, ev1 = (pd.Timestamp(x) for x in p["event_period"])
@@ -57,7 +57,7 @@ def fig_event_daily(cfg: dict, rep: Path) -> None:
 
 
 def fig_forecast(rep: Path) -> None:
-    r = json.loads((rep / "id_forecast.json").read_text(encoding="utf-8"))
+    r = json.loads((rep / "data" / "id_forecast.json").read_text(encoding="utf-8"))
     agg, prod = r["cv_summary"]["agg"], r["cv_summary"]["products"]
     panels = [("nota RJ", {m: agg[m]["notes_RJ"]["rmsse_mean"] for m in agg}),
               ("nota RI", {m: agg[m]["notes_RI"]["rmsse_mean"] for m in agg}),

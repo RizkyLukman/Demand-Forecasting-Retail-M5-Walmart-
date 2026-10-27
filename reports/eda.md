@@ -1,6 +1,6 @@
 # Fase 2 — EDA terarah
 
-Sumber: `python -m retailfc.eda --config config.yaml` (angka: `reports/eda.json`).
+Sumber: `python -m retailfc.eda --config config.yaml` (angka: `reports/data/eda.json`).
 Data: tabel panjang dari Fase 1 (baris sejak penjualan pertama tiap item-toko),
 **hanya d_1 … d_1913**. Holdout (d_1914–d_1941) tidak dipakai.
 
@@ -127,7 +127,7 @@ sekitar Easter 2015 (d_1528) dibutuhkan untuk hari-hari sesudahnya.
 ## P5. Kualitas data: harga anomali dan deretan nol panjang
 
 Ditambahkan setelah pertanyaan "apakah data ini tidak perlu preprocessing?". Kode:
-`q5_data_quality` di `eda.py`; angka di `reports/eda.json → q5_data_quality`. Harga dicek
+`q5_data_quality` di `eda.py`; angka di `reports/data/eda.json → q5_data_quality`. Harga dicek
 sampai minggu d_1913, penjualan sampai d_1913.
 
 ### Harga anomali: kecil

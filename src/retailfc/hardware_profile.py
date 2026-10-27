@@ -134,7 +134,7 @@ def profile_final(args, cfg: dict) -> None:
             print(json.dumps({k: v for k, v in run.items() if k != "params"}))
             del dtrain, dvalid, X
     out["peak_rss_gb_total"] = round(rss_all.peak_gb, 2)
-    path = Path(cfg["paths"]["reports"]) / "hardware_profile_phase4.json"
+    path = Path(cfg["paths"]["reports"]) / "data" / "hardware_profile_phase4.json"
     path.write_text(json.dumps(out, indent=2), encoding="utf-8")
     print(f"Written to {path}")
 
@@ -203,10 +203,10 @@ def main() -> None:
 
     out["peak_rss_gb_total"] = round(rss_all.peak_gb, 2)
     rep = Path(cfg["paths"]["reports"])
-    (rep / "hardware_profile.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
+    (rep / "data" / "hardware_profile.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
     print(json.dumps({k: out[k] for k in ["features", "dmatrix", "peak_rss_gb_total"]}, indent=2,
                      default=str))
-    print(f"Written to {rep / 'hardware_profile.json'}")
+    print(f"Written to {rep / 'data' / 'hardware_profile.json'}")
 
 
 if __name__ == "__main__":

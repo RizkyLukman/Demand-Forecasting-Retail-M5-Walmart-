@@ -1,7 +1,7 @@
 # Fase 4 — Ablation fitur hari libur bergerak: Easter (P4)
 
 Sumber: `python -m retailfc.ablation_easter --config config.yaml`
-(angka lengkap: `reports/easter_ablation.json`).
+(angka lengkap: `reports/data/easter_ablation.json`).
 
 ## Pertanyaan
 

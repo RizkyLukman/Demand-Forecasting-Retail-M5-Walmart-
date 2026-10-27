@@ -325,6 +325,27 @@ sampai 0,57 pada 98% baris). Versi CPU tepat. Semua angka SHAP di sini dihitung 
 
 ---
 
+## Isi repo
+
+```
+├── README.md, PROJECT_PLAN.md, config.yaml
+├── data/
+│   ├── SOURCES.md          # sumber, lisensi, dan checksum data
+│   └── external/           # kalender libur Indonesia 2015
+├── reports/
+│   ├── *.md                # laporan per fase (daftarnya di bawah)
+│   ├── figures/            # semua grafik
+│   ├── data/               # angka hasil (JSON/CSV) yang dikutip laporan
+│   └── runs/               # catatan teknis run model final
+├── src/retailfc/           # kode pipeline
+└── tests/
+```
+
+Data mentah dan model tidak ikut di-commit, karena ukurannya besar dan sebagian datanya terikat
+aturan kompetisi.
+
+---
+
 ## Laporan lengkap
 
 | Laporan | Isi |

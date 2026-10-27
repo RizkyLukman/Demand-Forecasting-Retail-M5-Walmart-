@@ -392,7 +392,7 @@ XGBoost final di toko yang sama mendapat 0,690.
 
 Model: satu model multi-kuantil `reg:quantileerror` per toko, α = 0,1/0,5/0,8/0,9, dilatih
 tanpa deretan nol panjang item laris (Fase 7 mensimulasikan permintaan). Rincian:
-`reports/quantile_experiments.json`, kode: `src/retailfc/quantile_experiments.py`.
+`reports/data/quantile_experiments.json`, kode: `src/retailfc/quantile_experiments.py`.
 
 ### 8.1 Riwayat rancangan
 
@@ -499,12 +499,12 @@ Dibanding acuan eta 0,1 (CA_3 cv1–cv3), eta 0,2 sama teliti (−0,07%) dan ±2
 
 | File | Isi |
 |---|---|
-| `reports/baselines.json` | skor semua baseline per fold, per level, jumlah deret per segmen |
-| `reports/xgb_experiments.json` | eksperimen konfigurasi (tahap 1–3) dan baseline di toko yang sama |
-| `reports/model_comparison.json` | XGBoost final vs baseline, per fold dan per level |
-| `reports/phase5_level_table.json` | WRMSSE per level, rata-rata CV |
-| `reports/phase5_explain.json` | WAPE per level, selisih total 28 hari, contoh hitungan RMSSE |
-| `reports/quantile_experiments.json` | eksperimen eta model kuantil: pinball, coverage, waktu per run |
+| `reports/data/baselines.json` | skor semua baseline per fold, per level, jumlah deret per segmen |
+| `reports/data/xgb_experiments.json` | eksperimen konfigurasi (tahap 1–3) dan baseline di toko yang sama |
+| `reports/data/model_comparison.json` | XGBoost final vs baseline, per fold dan per level |
+| `reports/data/phase5_level_table.json` | WRMSSE per level, rata-rata CV |
+| `reports/data/phase5_explain.json` | WAPE per level, selisih total 28 hari, contoh hitungan RMSSE |
+| `reports/data/quantile_experiments.json` | eksperimen eta model kuantil: pinball, coverage, waktu per run |
 | `reports/runs/20261024_011412_xgb_point/` | config, versi, iterasi terbaik, metrik run final |
 
 ```powershell

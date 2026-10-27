@@ -110,7 +110,7 @@ retail-forecast-gbm/
 │   ├── inventory_sim.py
 │   └── transfer_id.py
 ├── notebooks/                # eksplorasi saja
-├── reports/{figures,runs}/
+├── reports/{figures,data,runs}/   # *.md di reports/, angka JSON/CSV di reports/data/
 └── tests/
 ```
 

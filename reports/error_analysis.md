@@ -5,7 +5,7 @@
 > 12 model point dilatih ulang dan prediksinya identik dengan Fase 5 (§8).
 > Semua angka dari fold CV (cv1–cv4) dan fold khusus, data ≤ d_1913. Holdout belum disentuh.
 > Kode: `src/retailfc/error_analysis.py`, grafik: `src/retailfc/error_report.py`,
-> angka lengkap: `reports/error_analysis.json`.
+> angka lengkap: `reports/data/error_analysis.json`.
 
 ---
 
@@ -274,7 +274,7 @@ tertinggal dari perilaku terbaru produk.
 ditambah WI_2 dan TX_2 di cv1 untuk studi kasus, lalu disimpan. Prediksi ke-12 model
 **identik persis** dengan Fase 5 (selisih 0). SHAP dihitung dengan TreeSHAP bawaan XGBoost
 untuk **semua 853.720 baris horizon** cv4 (±85 ribu per toko). Kode:
-`src/retailfc/shap_analysis.py`, angka: `reports/shap_summary.json`.
+`src/retailfc/shap_analysis.py`, angka: `reports/data/shap_summary.json`.
 
 **Cara membaca:** objective tweedie memakai link log, jadi nilai SHAP adalah kontribusi ke
 **log** forecast. Kepentingan fitur = rata-rata |SHAP|. Fitur harga dibaca sebagai

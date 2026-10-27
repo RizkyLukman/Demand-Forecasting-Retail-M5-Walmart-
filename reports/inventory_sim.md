@@ -3,7 +3,7 @@
 > **Status (24 Okt 2026):** simulasi selesai di **4 fold CV** (cv1–cv4, 10 toko, 30.490 deret,
 > 112 hari horizon). Holdout (d_1914–d_1941) **belum disentuh**; simulasinya dijalankan sekali
 > di akhir proyek bersama evaluasi holdout. Kode: `src/retailfc/inventory_sim.py`, grafik:
-> `src/retailfc/inventory_report.py`, angka lengkap: `reports/inventory_sim.json`,
+> `src/retailfc/inventory_report.py`, angka lengkap: `reports/data/inventory_sim.json`,
 > tes: `tests/test_inventory_sim.py`.
 
 ---
