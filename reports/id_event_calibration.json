@@ -1,0 +1,131 @@
+{
+  "methods": {
+    "weekday_median": {
+      "notes_all": {
+        "rms_log_ratio": 0.05572717486993112,
+        "mean_log_ratio": 0.031047727734071936,
+        "n_positions": 60
+      },
+      "notes_RJ": {
+        "rms_log_ratio": 0.07818847816100825,
+        "mean_log_ratio": 0.013810941184768541,
+        "n_positions": 60
+      },
+      "notes_RI": {
+        "rms_log_ratio": 0.05873750921177424,
+        "mean_log_ratio": 0.029055449088527842,
+        "n_positions": 60
+      },
+      "mean_rms": 0.0642177207475712
+    },
+    "weekday_loglinear": {
+      "notes_all": {
+        "rms_log_ratio": 0.03749776556241902,
+        "mean_log_ratio": 0.007289369000369635,
+        "n_positions": 60
+      },
+      "notes_RJ": {
+        "rms_log_ratio": 0.1281297569679128,
+        "mean_log_ratio": -0.10992686711972449,
+        "n_positions": 60
+      },
+      "notes_RI": {
+        "rms_log_ratio": 0.07161331243108154,
+        "mean_log_ratio": 0.051106744739937045,
+        "n_positions": 60
+      },
+      "mean_rms": 0.07908027832047111
+    },
+    "local_level_14": {
+      "notes_all": {
+        "rms_log_ratio": 0.04261805873004283,
+        "mean_log_ratio": -0.005000124268192893,
+        "n_positions": 60
+      },
+      "notes_RJ": {
+        "rms_log_ratio": 0.09554370377046913,
+        "mean_log_ratio": -0.07299957895797263,
+        "n_positions": 60
+      },
+      "notes_RI": {
+        "rms_log_ratio": 0.048979768101772084,
+        "mean_log_ratio": 0.024002210483395525,
+        "n_positions": 60
+      },
+      "mean_rms": 0.06238051020076135
+    },
+    "local_level_28": {
+      "notes_all": {
+        "rms_log_ratio": 0.03898014981810869,
+        "mean_log_ratio": 0.0014129542321740262,
+        "n_positions": 60
+      },
+      "notes_RJ": {
+        "rms_log_ratio": 0.09001483231043204,
+        "mean_log_ratio": -0.06985046707761948,
+        "n_positions": 60
+      },
+      "notes_RI": {
+        "rms_log_ratio": 0.05329319235781633,
+        "mean_log_ratio": 0.03506049251767984,
+        "n_positions": 60
+      },
+      "mean_rms": 0.06076272482878569
+    },
+    "local_level_42": {
+      "notes_all": {
+        "rms_log_ratio": 0.03923644150707462,
+        "mean_log_ratio": 0.009883731781615394,
+        "n_positions": 60
+      },
+      "notes_RJ": {
+        "rms_log_ratio": 0.08156334195516853,
+        "mean_log_ratio": -0.05975732434383933,
+        "n_positions": 60
+      },
+      "notes_RI": {
+        "rms_log_ratio": 0.0637248570176505,
+        "mean_log_ratio": 0.048855706035272055,
+        "n_positions": 60
+      },
+      "mean_rms": 0.06150821349329788
+    }
+  },
+  "window_length": {
+    "14": {
+      "notes_all": {
+        "rms_log_ratio": 0.03898014981810869,
+        "p05_effect": -0.050045386800372446,
+        "p95_effect": 0.06436193171905345
+      },
+      "notes_RJ": {
+        "rms_log_ratio": 0.09001483231043204,
+        "p05_effect": -0.14036681088652092,
+        "p95_effect": 0.010606891560633025
+      },
+      "notes_RI": {
+        "rms_log_ratio": 0.05329319235781633,
+        "p05_effect": -0.020538339076603056,
+        "p95_effect": 0.09721947579583154
+      }
+    },
+    "7": {
+      "notes_all": {
+        "rms_log_ratio": 0.04503878182780936,
+        "p05_effect": -0.080202465767656,
+        "p95_effect": 0.07358186745950092
+      },
+      "notes_RJ": {
+        "rms_log_ratio": 0.09203658545871317,
+        "p05_effect": -0.15480154824778244,
+        "p95_effect": 0.015867078725861378
+      },
+      "notes_RI": {
+        "rms_log_ratio": 0.06240974416759251,
+        "p05_effect": -0.04544759967878371,
+        "p95_effect": 0.11420628393133596
+      }
+    }
+  },
+  "chosen_method": "local_level_28"
+}

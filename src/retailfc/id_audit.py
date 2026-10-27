@@ -205,7 +205,7 @@ def fig_daily(daily_full: pd.DataFrame, start, hol: list[dict], path: Path) -> N
     style_axes(ax)
     ax.grid(axis="x", visible=False)
     s = daily_full["notes"]
-    ax.axvspan(s.index.min().to_pydatetime(), (start - pd.Timedelta(days=1)).to_pydatetime(),
+    ax.axvspan(s.index.min().to_pydatetime(), (start - pd.offsets.Day(1)).to_pydatetime(),
                color=GRID, alpha=0.6, linewidth=0)
     ax.plot(s.index, s.values, color=MUTED, linewidth=0.7)
     ax.plot(s.index, s.rolling(7, center=True).mean().values, color=SERIES[0], linewidth=1.8,
@@ -247,7 +247,7 @@ def run(cfg: dict) -> dict:
     idul_dates = [pd.Timestamp(h["date"]) for h in hol if h["name"] == "Hari Raya Idul Fitri"]
     idul_window = {}
     for d0 in idul_dates:
-        w = by_pre.loc[d0 - pd.Timedelta(days=7): d0 + pd.Timedelta(days=21)]
+        w = by_pre.loc[d0 - pd.offsets.Day(7): d0 + pd.offsets.Day(21)]
         idul_window[str(d0.date())] = {
             str(d.date()): {"weekday": WEEKDAYS[d.weekday()], **{k: int(v) for k, v in row.items()}}
             for d, row in w.iterrows()}

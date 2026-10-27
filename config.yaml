@@ -95,4 +95,44 @@ inventory:
   empirical_window_days: 364        # riwayat untuk kuantil empiris permintaan selama periode proteksi
   growth_risk_ratio: 2.0            # item "tumbuh cepat" (Fase 6 §8.5): rata-rata 56 hari / rata-rata riwayat > 2
 
+# Fase 8: data apotek Indonesia (jalur "tidak cukup", reports/id_data_audit.md).
+# Desain ditetapkan SEBELUM hasil dihitung (reports/id_phase8_design.md).
+id_pharmacy:
+  complete_start: "2015-04-01"      # audit §3: header nota Jan-Mar sebagian besar hilang
+  end: "2015-12-31"
+  event_study:
+    series: [all, RJ, RI]           # nota per hari; unit per hari (all) sebagai metrik kedua
+    event_period: ["2015-06-18", "2015-08-18"]   # 1 Ramadan s.d. akhir jendela pasca Lebaran ke-2
+    windows:                        # jendela patokan [awal, akhir] inklusif, dari tanggal resmi
+      ramadan_w1_2: ["2015-06-18", "2015-07-01"]
+      ramadan_w3_4: ["2015-07-02", "2015-07-15"]
+      lebaran_cuti: ["2015-07-16", "2015-07-21"]  # cuti bersama + Idulfitri + cuti bersama
+      post_1: ["2015-07-22", "2015-08-04"]
+      post_2: ["2015-08-05", "2015-08-18"]
+    # Dipilih lewat kalibrasi plasebo di luar periode event (reports/id_event_calibration.json):
+    window_days: 7                  # jendela patokan 14 hari dipecah per minggu; noise hampir sama dengan 14 hari
+    baseline_method: local_level_28 # RMS plasebo terendah dari 5 kandidat (0,061 vs 0,062-0,079)
+  forecast:
+    horizon: 14
+    cv_cutoffs: ["2015-09-10", "2015-09-24", "2015-10-08", "2015-10-22",
+                 "2015-11-05", "2015-11-19", "2015-12-03", "2015-12-17"]
+    extra_folds:                    # dilaporkan terpisah, tidak dirata-rata ke skor CV utama
+      lebaran: "2015-07-09"         # horizon 10-23 Jul: cuti bersama + Idulfitri
+      post_lebaran: "2015-07-23"    # horizon 24 Jul-6 Agu: penurunan yang terlihat di audit §8
+    lags: [14, 21, 28]              # semua >= horizon, tanpa prediksi rekursif
+    rolling_windows: [7, 14, 28]    # mean dari lag 14
+    product_min_share_days: 0.5     # produk = terjual di >= 50% hari train fold itu
+    early_stopping_days: 14
+    params:                         # ditetapkan di awal, TIDAK di-tuning (data terlalu kecil untuk tuning + evaluasi jujur)
+      objective: "reg:tweedie"
+      tweedie_variance_power: 1.1
+      eta: 0.05
+      max_depth: 4
+      min_child_weight: 10
+      subsample: 0.8
+      colsample_bytree: 0.8
+      seed: 42
+    max_rounds: 2000
+    early_stopping: 100
+
 seed: 42
