@@ -1,0 +1,670 @@
+{
+  "source": {
+    "doi": "10.17632/2ym7v78wtd.1",
+    "license": "CC BY 4.0",
+    "file": "sales.zip",
+    "bytes": 8560326,
+    "sha256_zip": "5b77caa777993e0b01b9dd714cfaefe3aecd9b2b4b9138d550fec43d4258ca94",
+    "sha256_sql": "89e6ddb34c06c6737e575bab667e2c96506883d961abff439c018df0035f3fa0"
+  },
+  "tables": {
+    "det_sales": {
+      "rows": 514620,
+      "header_estimate": 511559
+    },
+    "ms_sales": {
+      "rows": 127064,
+      "header_estimate": 127025
+    },
+    "ms_product": {
+      "rows": 6878,
+      "header_estimate": 7057
+    },
+    "transaction": {
+      "rows": 399738,
+      "header_estimate": 403111
+    }
+  },
+  "period": {
+    "first_date": "2015-01-01",
+    "last_date": "2015-12-31",
+    "distinct_dates": 365,
+    "years_span": 1.0,
+    "complete_start": "2015-04-01",
+    "complete_days": 275
+  },
+  "header_coverage_by_month": [
+    {
+      "tag": "2015-01",
+      "with_header": 6192,
+      "without_header": 12969,
+      "missing_share": 0.6768435885392203
+    },
+    {
+      "tag": "2015-02",
+      "with_header": 8311,
+      "without_header": 11264,
+      "missing_share": 0.5754278416347381
+    },
+    {
+      "tag": "2015-03",
+      "with_header": 9034,
+      "without_header": 6517,
+      "missing_share": 0.41907272844190085
+    },
+    {
+      "tag": "2015-04",
+      "with_header": 10738,
+      "without_header": 0,
+      "missing_share": 0.0
+    },
+    {
+      "tag": "2015-05",
+      "with_header": 9859,
+      "without_header": 0,
+      "missing_share": 0.0
+    },
+    {
+      "tag": "2015-06",
+      "with_header": 11511,
+      "without_header": 0,
+      "missing_share": 0.0
+    },
+    {
+      "tag": "2015-07",
+      "with_header": 9661,
+      "without_header": 0,
+      "missing_share": 0.0
+    },
+    {
+      "tag": "2015-08",
+      "with_header": 11204,
+      "without_header": 0,
+      "missing_share": 0.0
+    },
+    {
+      "tag": "2015-09",
+      "with_header": 11797,
+      "without_header": 0,
+      "missing_share": 0.0
+    },
+    {
+      "tag": "2015-10",
+      "with_header": 11962,
+      "without_header": 0,
+      "missing_share": 0.0
+    },
+    {
+      "tag": "2015-11",
+      "with_header": 11258,
+      "without_header": 0,
+      "missing_share": 0.0
+    },
+    {
+      "tag": "2015-12",
+      "with_header": 11840,
+      "without_header": 0,
+      "missing_share": 0.0
+    },
+    {
+      "tag": "tanpa_tag",
+      "with_header": 3587,
+      "without_header": 0,
+      "missing_share": 0.0
+    }
+  ],
+  "det_rows_without_header": 102605,
+  "transaction_vs_join": {
+    "join_rows": 412015,
+    "transaction_rows": 399738,
+    "rows_only_in_join": 12277,
+    "rows_only_in_transaction": 0,
+    "dropped_with_qty_le_0": 5,
+    "dropped_ppn_share_zero": 0.9998370937525454,
+    "kept_ppn_share_zero": 0.8582571584387774,
+    "notes_with_other_date": 83,
+    "date_diff_days_abs_median": 3.0
+  },
+  "quality": {
+    "det_exact_duplicate_rows": 1948,
+    "det_qty_negative": 278,
+    "det_qty_zero": 6,
+    "det_qty_non_integer": 2512,
+    "det_price_zero": 51,
+    "det_product_not_in_master": 122,
+    "ms_duplicate_notes": 0,
+    "ms_notes_without_month_tag": 3587,
+    "ms_month_tag_mismatch_date": 2,
+    "master_products": 6878,
+    "master_products_never_sold": 4651,
+    "master_price_zero": 859,
+    "note_prefix_counts": {
+      "RJ": 72005,
+      "RI": 44880,
+      "RL": 7735,
+      "KC": 2349,
+      "B": 87,
+      "PR": 8
+    },
+    "reg_as_counts": {
+      "R": 102858,
+      "I": 24116,
+      "A": 90
+    },
+    "racik_counts": {
+      "N": 127004,
+      "Y": 60
+    },
+    "customer_umum_share": 0.0006846943272681484
+  },
+  "daily_complete_period": {
+    "notes": {
+      "min": 73.0,
+      "median": 428.0,
+      "max": 607.0
+    },
+    "lines": {
+      "min": 243.0,
+      "median": 1374.0,
+      "max": 1963.0
+    },
+    "units": {
+      "min": 912.0,
+      "median": 14139.0,
+      "max": 72667.15
+    },
+    "revenue": {
+      "min": 4380629.2,
+      "median": 42657721.4896,
+      "max": 210955442.0282
+    }
+  },
+  "days_without_notes_complete_period": 0,
+  "notes_by_weekday_mean": {
+    "Sen": 149.33333333333334,
+    "Sel": 500.46153846153845,
+    "Rab": 435.95,
+    "Kam": 442.975,
+    "Jum": 422.9230769230769,
+    "Sab": 400.61538461538464,
+    "Min": 185.28205128205127
+  },
+  "notes_by_weekday_and_prefix_mean": {
+    "Sen": {
+      "B": 0.0,
+      "KC": 1.2,
+      "PR": 0.0,
+      "RI": 111.2,
+      "RJ": 31.5,
+      "RL": 5.5
+    },
+    "Sel": {
+      "B": 0.2,
+      "KC": 12.6,
+      "PR": 0.2,
+      "RI": 123.3,
+      "RJ": 310.5,
+      "RL": 53.7
+    },
+    "Rab": {
+      "B": 0.2,
+      "KC": 9.8,
+      "PR": 0.0,
+      "RI": 133.0,
+      "RJ": 264.0,
+      "RL": 29.0
+    },
+    "Kam": {
+      "B": 0.5,
+      "KC": 11.5,
+      "PR": 0.0,
+      "RI": 128.6,
+      "RJ": 270.4,
+      "RL": 32.0
+    },
+    "Jum": {
+      "B": 0.6,
+      "KC": 10.3,
+      "PR": 0.0,
+      "RI": 127.4,
+      "RJ": 256.8,
+      "RL": 27.8
+    },
+    "Sab": {
+      "B": 0.7,
+      "KC": 10.4,
+      "PR": 0.0,
+      "RI": 122.6,
+      "RJ": 235.1,
+      "RL": 31.9
+    },
+    "Min": {
+      "B": 0.0,
+      "KC": 3.9,
+      "PR": 0.0,
+      "RI": 123.5,
+      "RJ": 41.1,
+      "RL": 16.8
+    }
+  },
+  "notes_share_outside_07_21": 0.034447207706352706,
+  "note_sequence_vs_date": {
+    "notes_parsed": 123105,
+    "groups": 183,
+    "spearman_median": 0.9775414061565788,
+    "share_groups_below_0_95": 0.2677595628415301
+  },
+  "idulfitri_window_notes_by_prefix": {
+    "2015-07-17": {
+      "2015-07-10": {
+        "weekday": "Jum",
+        "B": 0,
+        "KC": 12,
+        "PR": 0,
+        "RI": 127,
+        "RJ": 252,
+        "RL": 58
+      },
+      "2015-07-11": {
+        "weekday": "Sab",
+        "B": 0,
+        "KC": 14,
+        "PR": 0,
+        "RI": 116,
+        "RJ": 255,
+        "RL": 16
+      },
+      "2015-07-12": {
+        "weekday": "Min",
+        "B": 0,
+        "KC": 1,
+        "PR": 0,
+        "RI": 173,
+        "RJ": 41,
+        "RL": 10
+      },
+      "2015-07-13": {
+        "weekday": "Sen",
+        "B": 0,
+        "KC": 0,
+        "PR": 0,
+        "RI": 118,
+        "RJ": 24,
+        "RL": 1
+      },
+      "2015-07-14": {
+        "weekday": "Sel",
+        "B": 0,
+        "KC": 19,
+        "PR": 0,
+        "RI": 124,
+        "RJ": 249,
+        "RL": 74
+      },
+      "2015-07-15": {
+        "weekday": "Rab",
+        "B": 0,
+        "KC": 7,
+        "PR": 0,
+        "RI": 142,
+        "RJ": 236,
+        "RL": 25
+      },
+      "2015-07-16": {
+        "weekday": "Kam",
+        "B": 0,
+        "KC": 15,
+        "PR": 0,
+        "RI": 127,
+        "RJ": 253,
+        "RL": 30
+      },
+      "2015-07-17": {
+        "weekday": "Jum",
+        "B": 0,
+        "KC": 9,
+        "PR": 0,
+        "RI": 129,
+        "RJ": 225,
+        "RL": 26
+      },
+      "2015-07-18": {
+        "weekday": "Sab",
+        "B": 0,
+        "KC": 10,
+        "PR": 0,
+        "RI": 159,
+        "RJ": 210,
+        "RL": 35
+      },
+      "2015-07-19": {
+        "weekday": "Min",
+        "B": 0,
+        "KC": 3,
+        "PR": 0,
+        "RI": 136,
+        "RJ": 41,
+        "RL": 6
+      },
+      "2015-07-20": {
+        "weekday": "Sen",
+        "B": 0,
+        "KC": 0,
+        "PR": 0,
+        "RI": 103,
+        "RJ": 29,
+        "RL": 0
+      },
+      "2015-07-21": {
+        "weekday": "Sel",
+        "B": 0,
+        "KC": 14,
+        "PR": 0,
+        "RI": 105,
+        "RJ": 311,
+        "RL": 65
+      },
+      "2015-07-22": {
+        "weekday": "Rab",
+        "B": 0,
+        "KC": 11,
+        "PR": 0,
+        "RI": 129,
+        "RJ": 236,
+        "RL": 48
+      },
+      "2015-07-23": {
+        "weekday": "Kam",
+        "B": 0,
+        "KC": 13,
+        "PR": 0,
+        "RI": 130,
+        "RJ": 210,
+        "RL": 19
+      },
+      "2015-07-24": {
+        "weekday": "Jum",
+        "B": 0,
+        "KC": 11,
+        "PR": 0,
+        "RI": 122,
+        "RJ": 209,
+        "RL": 27
+      },
+      "2015-07-25": {
+        "weekday": "Sab",
+        "B": 0,
+        "KC": 8,
+        "PR": 0,
+        "RI": 100,
+        "RJ": 244,
+        "RL": 36
+      },
+      "2015-07-26": {
+        "weekday": "Min",
+        "B": 0,
+        "KC": 4,
+        "PR": 0,
+        "RI": 95,
+        "RJ": 18,
+        "RL": 29
+      },
+      "2015-07-27": {
+        "weekday": "Sen",
+        "B": 0,
+        "KC": 0,
+        "PR": 0,
+        "RI": 81,
+        "RJ": 37,
+        "RL": 1
+      },
+      "2015-07-28": {
+        "weekday": "Sel",
+        "B": 0,
+        "KC": 0,
+        "PR": 0,
+        "RI": 55,
+        "RJ": 54,
+        "RL": 1
+      },
+      "2015-07-29": {
+        "weekday": "Rab",
+        "B": 0,
+        "KC": 0,
+        "PR": 0,
+        "RI": 62,
+        "RJ": 9,
+        "RL": 2
+      },
+      "2015-07-30": {
+        "weekday": "Kam",
+        "B": 0,
+        "KC": 16,
+        "PR": 0,
+        "RI": 111,
+        "RJ": 47,
+        "RL": 150
+      },
+      "2015-07-31": {
+        "weekday": "Jum",
+        "B": 0,
+        "KC": 14,
+        "PR": 0,
+        "RI": 127,
+        "RJ": 72,
+        "RL": 46
+      },
+      "2015-08-01": {
+        "weekday": "Sab",
+        "B": 0,
+        "KC": 13,
+        "PR": 0,
+        "RI": 120,
+        "RJ": 82,
+        "RL": 36
+      },
+      "2015-08-02": {
+        "weekday": "Min",
+        "B": 0,
+        "KC": 3,
+        "PR": 0,
+        "RI": 98,
+        "RJ": 30,
+        "RL": 14
+      },
+      "2015-08-03": {
+        "weekday": "Sen",
+        "B": 0,
+        "KC": 0,
+        "PR": 0,
+        "RI": 76,
+        "RJ": 25,
+        "RL": 7
+      },
+      "2015-08-04": {
+        "weekday": "Sel",
+        "B": 0,
+        "KC": 17,
+        "PR": 0,
+        "RI": 90,
+        "RJ": 273,
+        "RL": 85
+      },
+      "2015-08-05": {
+        "weekday": "Rab",
+        "B": 0,
+        "KC": 12,
+        "PR": 0,
+        "RI": 116,
+        "RJ": 319,
+        "RL": 30
+      },
+      "2015-08-06": {
+        "weekday": "Kam",
+        "B": 0,
+        "KC": 17,
+        "PR": 0,
+        "RI": 122,
+        "RJ": 356,
+        "RL": 16
+      },
+      "2015-08-07": {
+        "weekday": "Jum",
+        "B": 0,
+        "KC": 10,
+        "PR": 0,
+        "RI": 78,
+        "RJ": 328,
+        "RL": 29
+      }
+    }
+  },
+  "products_complete_period": {
+    "days": 275,
+    "products_sold": 1826,
+    "products_by_share_of_days_sold": {
+      ">=10%": 695,
+      ">=25%": 410,
+      ">=50%": 200,
+      ">=80%": 75
+    },
+    "zero_day_share_all_products": 0.835989451161865,
+    "zero_day_share_median_product": 0.9527272727272728,
+    "products_for_80pct_revenue": 196,
+    "segments": {
+      "smooth": 26,
+      "erratic": 73,
+      "intermittent": 1243,
+      "lumpy": 484
+    }
+  },
+  "holidays_in_data": [
+    {
+      "date": "2015-01-01",
+      "name": "Tahun Baru Masehi",
+      "notes": 124,
+      "weekday_median_notes": 447.0
+    },
+    {
+      "date": "2015-01-03",
+      "name": "Maulid Nabi Muhammad",
+      "notes": 237,
+      "weekday_median_notes": 402.5
+    },
+    {
+      "date": "2015-02-19",
+      "name": "Tahun Baru Imlek",
+      "notes": 404,
+      "weekday_median_notes": 447.0
+    },
+    {
+      "date": "2015-03-21",
+      "name": "Hari Suci Nyepi",
+      "notes": 409,
+      "weekday_median_notes": 402.5
+    },
+    {
+      "date": "2015-04-03",
+      "name": "Wafat Yesus Kristus",
+      "notes": 461,
+      "weekday_median_notes": 442.5
+    },
+    {
+      "date": "2015-05-01",
+      "name": "Hari Buruh Internasional",
+      "notes": 108,
+      "weekday_median_notes": 442.5
+    },
+    {
+      "date": "2015-05-14",
+      "name": "Kenaikan Yesus Kristus",
+      "notes": 497,
+      "weekday_median_notes": 447.0
+    },
+    {
+      "date": "2015-05-16",
+      "name": "Isra Mikraj Nabi Muhammad",
+      "notes": 420,
+      "weekday_median_notes": 402.5
+    },
+    {
+      "date": "2015-06-02",
+      "name": "Hari Raya Waisak",
+      "notes": 511,
+      "weekday_median_notes": 488.0
+    },
+    {
+      "date": "2015-07-16",
+      "name": "Cuti Bersama Hari Raya Idul Fitri",
+      "notes": 424,
+      "weekday_median_notes": 447.0
+    },
+    {
+      "date": "2015-07-17",
+      "name": "Hari Raya Idul Fitri",
+      "notes": 389,
+      "weekday_median_notes": 442.5
+    },
+    {
+      "date": "2015-07-18",
+      "name": "Hari kedua dari Hari Raya Idul Fitri",
+      "notes": 414,
+      "weekday_median_notes": 402.5
+    },
+    {
+      "date": "2015-07-20",
+      "name": "Cuti Bersama Hari Raya Idul Fitri",
+      "notes": 132,
+      "weekday_median_notes": 147.5
+    },
+    {
+      "date": "2015-07-21",
+      "name": "Cuti Bersama Hari Raya Idul Fitri",
+      "notes": 495,
+      "weekday_median_notes": 488.0
+    },
+    {
+      "date": "2015-08-17",
+      "name": "Hari Kemerdekaan Republik Indonesia",
+      "notes": 166,
+      "weekday_median_notes": 147.5
+    },
+    {
+      "date": "2015-09-24",
+      "name": "Hari Raya Idul Adha",
+      "notes": 482,
+      "weekday_median_notes": 447.0
+    },
+    {
+      "date": "2015-10-14",
+      "name": "Tahun Baru Islam",
+      "notes": 452,
+      "weekday_median_notes": 441.0
+    },
+    {
+      "date": "2015-12-09",
+      "name": "Hari Pemilihan Kepala Daerah",
+      "notes": 446,
+      "weekday_median_notes": 441.0
+    },
+    {
+      "date": "2015-12-24",
+      "name": "Maulid Nabi Muhammad",
+      "notes": 464,
+      "weekday_median_notes": 447.0
+    },
+    {
+      "date": "2015-12-25",
+      "name": "Hari Raya Natal",
+      "notes": 167,
+      "weekday_median_notes": 442.5
+    }
+  ],
+  "idulfitri_years_in_data": [
+    "2015"
+  ],
+  "feasibility": {
+    "years_span_ge_2": false,
+    "ramadan_count_ge_2": false
+  }
+}

@@ -134,4 +134,24 @@ dimulai sehari sesudahnya. Tidak ada satu fold pun yang mencakup jendela sekitar
 
 ## 2. Retail sales dataset of a pharmacy in Indonesia
 
-Belum diunduh (Fase 8). DOI `10.17632/2ym7v78wtd.1`, CC BY 4.0.
+| Kolom | Nilai |
+|---|---|
+| Sitasi | Gustriansyah, R. (2022). *Retail sales dataset of a pharmacy in Indonesia*. Mendeley Data, V1. DOI `10.17632/2ym7v78wtd.1` |
+| URL | https://data.mendeley.com/datasets/2ym7v78wtd/1 |
+| Lisensi | CC BY 4.0 (http://creativecommons.org/licenses/by/4.0), menurut metadata API Mendeley |
+| Cara unduh | API publik Mendeley: `https://data.mendeley.com/public-api/datasets/2ym7v78wtd/files?folder_id=root&version=1` → `download_url` |
+| Tanggal akses | 2026-10-28 |
+| Tanggal terbit | 2022-02-14 (versi 1, satu-satunya versi) |
+| Lokasi | `data/raw/id_pharmacy/` |
+
+| File | Byte | SHA-256 |
+|---|---:|---|
+| `sales.zip` | 8.560.326 | `5b77caa777993e0b01b9dd714cfaefe3aecd9b2b4b9138d550fec43d4258ca94` (sama dengan `sha256_hash` di metadata Mendeley) |
+| `sales.sql` (isi zip) | 70.610.765 | `89e6ddb34c06c6737e575bab667e2c96506883d961abff439c018df0035f3fa0` |
+
+- Isi: dump MariaDB 10.4.6 (HeidiSQL 11.3) dengan tabel `det_sales`, `ms_product`,
+  `ms_sales`, `transaction`. Deskripsi Mendeley menyebut `ms_products`; nama di dump
+  `ms_product`.
+- Periode: 1 Jan–31 Des 2015. Header nota Jan–Mar sebagian besar hilang. Detail:
+  `reports/id_data_audit.md`.
+- Kolom `KD_CUST` dan `KD_DOKTER` berisi kode pasien/dokter; hanya dipakai untuk agregat.

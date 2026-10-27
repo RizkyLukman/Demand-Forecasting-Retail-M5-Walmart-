@@ -56,10 +56,11 @@ berikut. **Semuanya wajib dikerjakan**, bukan opsional:
   `https://data.mendeley.com/datasets/2ym7v78wtd/1`
 - **Isi menurut deskripsi:** tabel `ms_products`, `ms_sales`, `det_sales`, dan satu
   tabel transaksi hasil integrasi. Data berasal dari database apotek yang asli.
-- ⚠️ **Belum diketahui:** periode, jumlah baris, jumlah produk, format file.
-  Fase 8 diawali **audit kelayakan** (lihat §5, Fase 8). Jangan berasumsi data cukup.
-- Unduh manual (Mendeley tidak selalu bisa diunduh lewat script), lalu taruh di
-  `data/raw/id_pharmacy/`.
+- **Hasil audit (28 Okt 2026, `reports/id_data_audit.md`):** satu dump SQL, periode
+  1 Jan–31 Des 2015, header nota Jan–Mar sebagian besar hilang (deret lengkap 1 Apr–31 Des,
+  275 hari), satu Idulfitri, ±200 produk terjual di ≥ 50% hari. **Tidak memenuhi syarat
+  transfer penuh** → jalur "tidak cukup" di Fase 8.
+- Diunduh lewat API publik Mendeley ke `data/raw/id_pharmacy/` (checksum di `data/SOURCES.md`).
 
 ### 2.3 Kalender Indonesia
 - Libur nasional: paket Python `holidays` (mendukung Indonesia, kode `ID`).
