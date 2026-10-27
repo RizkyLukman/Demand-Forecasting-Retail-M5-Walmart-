@@ -4,18 +4,18 @@ Proyek ini berawal dari satu pertanyaan sederhana: kalau penjualan harian setiap
 toko diramal dengan XGBoost, seberapa akurat hasilnya, di bagian mana modelnya gagal, dan apakah
 ramalan yang lebih akurat benar-benar membuat keputusan stok lebih murah?
 
-Saya memakai data kompetisi M5 dari Walmart (30.490 kombinasi produk-toko, 1.941 hari). Rencananya,
-setelah itu pipeline yang sama akan saya coba di data penjualan apotek di Indonesia, dengan fitur
-Ramadan dan Idulfitri.
+Saya memakai data kompetisi M5 dari Walmart (30.490 kombinasi produk-toko, 1.941 hari). Setelah
+itu, metode yang sama saya coba di data penjualan sebuah apotek di Indonesia, untuk melihat
+efek Ramadan dan Lebaran.
 
 Saya sengaja tidak berhenti di skor WRMSSE. Notebook M5 di Kaggle sudah ribuan, jadi yang ingin
 saya tunjukkan di sini adalah prosesnya: backtest yang jujur, analisis error per segmen, dan
 simulasi stok yang menghubungkan forecast dengan biaya.
 
-**Status:** Fase 0–7 selesai. Fase 8 (data Indonesia) belum dimulai. Holdout terakhir
-(25 Apr–22 Mei 2016) sengaja **belum dipakai sama sekali**. Holdout baru akan dibuka sekali di akhir
-proyek, supaya ada satu angka akhir yang benar-benar tidak ikut memengaruhi keputusan saya selama
-eksperimen.
+**Status:** Fase 0–8 selesai. Holdout M5 (25 Apr–22 Mei 2016) sengaja **belum dipakai sama
+sekali**. Sebelum holdout dibuka, masih ada tuning parameter pohon XGBoost yang harus dikerjakan.
+Holdout baru dibuka sekali di akhir proyek, supaya ada satu angka akhir yang benar-benar tidak
+ikut memengaruhi keputusan saya selama eksperimen.
 
 ---
 
@@ -34,10 +34,18 @@ eksperimen.
   XGBoost paling efisien untuk target layanan menengah. Tetapi kalau kehabisan stok mahal dan
   targetnya fill rate di atas 98%, metode empiris sederhana dari riwayat 1 tahun justru paling
   murah.
+- **Data apotek Indonesia ternyata terlalu pendek untuk menguji fitur Ramadan.** Isinya hanya
+  tahun 2015, dan yang lengkap hanya April–Desember, jadi Lebarannya cuma satu. Dari data itu, pekan
+  Lebaran sendiri tidak berbeda dari minggu biasa. Penurunan besar baru muncul 1–2 minggu
+  sesudahnya: jumlah nota turun 25% lalu 37%.
+- **Di data sekecil itu, XGBoost kalah dari cara sederhana.** Untuk ramalan 14 hari, rata-rata
+  hari yang sama dari 4 minggu terakhir dan ETS lebih akurat daripada XGBoost.
 
 ---
 
 ## Data
+
+**M5 (Walmart)**
 
 | | |
 |---|---|
@@ -56,6 +64,34 @@ Beberapa hal yang saya temukan saat EDA dan ikut menentukan desain model:
 - Efek SNAP (bantuan pangan) jelas terlihat di kategori FOODS.
 - 62% produk laris pernah tidak terjual ≥ 28 hari berturut-turut. Kemungkinan besar ini stok habis,
   bukan karena tidak ada pembeli.
+
+**Apotek Indonesia**
+
+| | |
+|---|---|
+| Sumber | Gustriansyah, R. (2022). [Retail sales dataset of a pharmacy in Indonesia](https://data.mendeley.com/datasets/2ym7v78wtd/1). Mendeley Data, DOI `10.17632/2ym7v78wtd.1`, lisensi CC BY 4.0 |
+| Isi | Dump database MariaDB: header nota, detail nota, master produk (6.878 produk) |
+| Periode | 1 Jan – 31 Des 2015. Yang lengkap hanya 1 Apr – 31 Des (275 hari) |
+| Ukuran | 514.620 baris detail nota, 127.064 nota |
+
+Datanya saya unduh lewat API publik Mendeley, dan checksum-nya cocok dengan yang tercatat di
+sana. Hal-hal yang saya temukan saat audit:
+
+- Header nota Januari–Maret sebagian besar hilang (42–68% nota tidak punya tanggal), jadi tiga
+  bulan pertama tidak saya pakai.
+- Datanya berisi nomor resep, kode dokter, dan penjamin Askes, dan hampir tidak ada pembeli umum.
+  Kemungkinan besar ini apotek rumah sakit atau klinik, bukan apotek ritel.
+- Nomor nota diawali kode RJ, RI, dan beberapa kode lain. Artinya tidak dijelaskan di dataset.
+  Dugaan saya, RJ adalah rawat jalan dan RI rawat inap, tetapi itu belum pasti.
+- Nota RJ hampir nol setiap Minggu **dan** Senin, sedangkan RI stabil sepanjang minggu.
+  Penyebabnya tidak saya ketahui.
+- Kolom kode pasien dan dokter hanya saya pakai untuk menghitung agregat, dan tidak pernah
+  ditampilkan.
+
+Tanggal libur 2015 saya ambil dari sumber resmi, bukan dari ingatan: SKB 3 Menteri (lewat
+Setkab), SKB perubahan 310/2014, Keppres 25/2015 untuk Pilkada, dan pengumuman sidang isbat untuk
+awal Ramadan (18 Juni) dan Idulfitri (17 Juli). Hasilnya ada di
+[`data/external/id_calendar.csv`](data/external/id_calendar.csv), dengan sumber di setiap baris.
 
 ---
 
@@ -179,6 +215,77 @@ Dua hal lain yang saya pelajari:
 
 ---
 
+## Hasil 4: data apotek Indonesia
+
+Rencana awalnya, pipeline M5 dipakai lagi di sini dengan tambahan fitur Ramadan dan Idulfitri.
+Syarat yang saya tetapkan sejak awal adalah minimal 2 tahun data dan 2 kali Lebaran. Data ini
+hanya punya satu Lebaran, sehingga fitur Ramadan tidak bisa diuji secara jujur: kalau Lebarannya
+ada di data latih, tidak ada Lebaran lain untuk menguji; kalau ada di data uji, model belum pernah
+melihat Lebaran. Karena itu saya mengerjakan dua hal yang masih bisa dijawab: seberapa besar efek
+Lebaran, dan seberapa baik XGBoost di data sekecil ini.
+
+![Nota per hari](reports/figures/phase8_daily_notes.png)
+
+### Efek Ramadan dan Lebaran
+
+Jumlah nota tiap minggu saya bandingkan dengan nilai harapannya, yaitu pola mingguan biasa
+dikali level penjualan sebelum dan sesudah periode Ramadan–Lebaran. Masalahnya, dengan satu
+Lebaran tidak ada uji statistik biasa yang bisa dipakai. Penggantinya, saya membuat "Ramadan
+palsu" di periode biasa (Agustus–Desember) dan menghitung efeknya dengan cara yang sama. Efek
+asli baru saya anggap nyata kalau besarnya di luar rentang efek palsu tersebut. Cara menghitung
+baseline dan panjang jendelanya juga saya pilih hanya dari periode biasa itu, sebelum efek
+Lebaran dihitung.
+
+![Efek per minggu](reports/figures/phase8_event_effects.png)
+
+- Pekan Lebaran (16–21 Juli, termasuk cuti bersama) hanya −3%, masih dalam rentang minggu biasa.
+- Dua minggu sesudahnya (22 Juli–4 Agustus), nota turun **25% lalu 37%**. Nota RJ bahkan
+  turun 63% di minggu kedua. Hasilnya tetap sama walaupun baseline-nya saya hitung dengan lima
+  cara berbeda.
+- Setelah itu jumlah nota naik lagi, sekitar 8–9% di atas biasa, selama dua minggu.
+- Minggu terakhir Ramadan turun 11%. Kenaikan di awal Ramadan tidak saya simpulkan, karena
+  besarnya berubah-ubah tergantung baseline yang dipakai.
+
+Saya tidak bisa memastikan penyebab penurunan sesudah Lebaran itu. Bisa jadi layanan RJ
+memang libur setelah Lebaran, bisa juga tanggal di sistem adalah tanggal input, bukan tanggal
+pelayanan. Data ini tidak cukup untuk membedakan keduanya.
+
+### Forecast 14 hari
+
+Horizonnya saya pendekkan menjadi 14 hari karena riwayatnya hanya 9 bulan. Pengujiannya memakai
+8 fold rolling origin (September–Desember), ditambah dua fold khusus di sekitar Lebaran.
+Parameter XGBoost saya tetapkan di awal dan tidak saya tuning, karena datanya terlalu sedikit
+untuk tuning sekaligus evaluasi yang jujur.
+
+![Forecast CV](reports/figures/phase8_forecast_cv.png)
+
+| Metode | Nota RJ | Nota RI | Unit total | ±200 produk (berbobot) |
+|---|---:|---:|---:|---:|
+| Rata-rata hari yang sama, 4 minggu terakhir | **0,36** | **0,63** | 1,15 | **0,94** |
+| ETS | 0,37 | 0,67 | **1,09** | – |
+| XGBoost | 0,69 | 0,76 | 1,19 | 0,98 |
+| XGBoost tanpa fitur libur | 0,65 | 0,76 | 1,18 | 0,97 |
+
+Angka di tabel adalah RMSSE rata-rata 8 fold (lebih kecil lebih baik). Dari 24 perbandingan
+di level agregat, XGBoost tidak pernah menjadi yang terbaik. Menurut saya ada dua alasannya.
+Pertama, data latih per fold hanya ±60–220 hari per deret, padahal di M5 satu toko punya jutaan
+baris. Kedua, pola mingguannya sangat kuat dan stabil, sehingga rata-rata hari yang sama sudah
+hampir cukup.
+
+Fitur hari libur juga tidak membantu, termasuk di fold yang memuat Lebaran. Ini wajar, karena
+hari Lebarannya sendiri memang tidak berbeda. Penurunan sesudah Lebaran tidak tertebak oleh
+metode mana pun (semuanya meleset 19–51% terlalu tinggi).
+
+### Dibandingkan dengan Easter di M5
+
+Di M5, efek Easter terkumpul di sekitar hari-H (±3 hari). Di apotek ini, efek Lebaran justru
+muncul 5–18 hari sesudahnya. Kalau fitur Easter (jarak ke hari libur, dipotong ±7 hari) dipakai
+begitu saja untuk Lebaran, sebagian besar efeknya akan terlewat. Yang bisa dipindahkan dari M5
+ke sini adalah metodenya (kalender dari sumber resmi, backtest, baseline yang sama), bukan pola
+hari liburnya.
+
+---
+
 ## Yang tidak berhasil
 
 Saya catat juga eksperimen yang gagal, karena ini bagian dari hasilnya:
@@ -191,6 +298,9 @@ Saya catat juga eksperimen yang gagal, karena ini bagian dari hasilnya:
 | Fitur hari libur bergerak (Easter) | Tidak terbukti membantu di level produk, hanya di total FOODS |
 | Menaikkan batas iterasi model kuantil dari 1.000 ke 3.000 | Skor validasi membaik, tetapi ramalan sedikit memburuk (+0,07%) |
 | Metode stok gabungan XGBoost + empiris | Lebih mahal di 12 dari 12 asumsi biaya |
+| Apotek: satu model XGBoost untuk nota dan unit sekaligus, tanpa menyamakan skala | Deret unit (±14.000/hari) mendominasi model, sehingga di satu fold nota (±100–300/hari) diramal 4–4,6× terlalu tinggi. Saya perbaiki dengan membagi setiap deret dengan rata-ratanya |
+| Apotek: fitur hari libur umum untuk meramal Lebaran | Tidak membantu |
+| Apotek: menguji fitur Ramadan | Tidak bisa, karena hanya ada satu Lebaran |
 
 Satu catatan teknis yang mungkin berguna bagi orang lain: di xgboost 3.4.1, SHAP versi GPU
 (`pred_contribs`) memberi hasil yang tidak aditif untuk model dengan fitur kategorikal (selisih
@@ -209,6 +319,9 @@ sampai 0,57 pada 98% baris). Versi CPU tepat. Semua angka SHAP di sini dihitung 
   baru objective, encoding, dan perlakuan data.
 - Fitur harga di SHAP menunjukkan bagaimana model memakai harga, bukan efek harga terhadap
   permintaan.
+- Hasil apotek berasal dari satu Lebaran di satu apotek. Itu gambaran satu kejadian, bukan efek
+  yang berlaku umum. Rentang "minggu biasa" untuk pembanding juga kasar, karena periode pembandingnya
+  (Agustus–Desember) hanya sekitar 4,5 bulan.
 
 ---
 
@@ -224,6 +337,9 @@ sampai 0,57 pada 98% baris). Versi CPU tepat. Semua angka SHAP di sini dihitung 
 | [`reports/error_analysis.md`](reports/error_analysis.md) | Error per segmen, SHAP, dan studi kasus |
 | [`reports/inventory_sim.md`](reports/inventory_sim.md) | Simulasi stok dan analisis sensitivitas biaya |
 | [`reports/hardware_profile.md`](reports/hardware_profile.md) | Pemakaian RAM/VRAM dan cara menghematnya |
+| [`reports/id_data_audit.md`](reports/id_data_audit.md) | Audit kelayakan data apotek |
+| [`reports/id_phase8_design.md`](reports/id_phase8_design.md) | Desain studi efek dan forecast apotek, ditulis sebelum hasilnya dihitung |
+| [`reports/id_transfer.md`](reports/id_transfer.md) | Efek Ramadan/Lebaran, forecast 14 hari, dan perbandingan dengan Easter |
 
 ---
 
@@ -250,6 +366,16 @@ python -m retailfc.quantile_final   --config config.yaml
 python -m retailfc.error_analysis   --config config.yaml
 python -m retailfc.shap_analysis    --config config.yaml
 python -m retailfc.inventory_sim    --config config.yaml
+
+# data apotek: taruh sales.zip dari Mendeley di data/raw/id_pharmacy/, lalu ekstrak sales.sql
+# di folder yang sama
+python -m retailfc.id_pharmacy      --config config.yaml
+python -m retailfc.id_audit         --config config.yaml
+python -m retailfc.id_calendar      --config config.yaml
+python -m retailfc.id_event_study   --config config.yaml --calibrate
+python -m retailfc.id_event_study   --config config.yaml
+python -m retailfc.id_forecast      --config config.yaml
+python -m retailfc.id_report        --config config.yaml
 pytest -q
 ```
 
@@ -260,9 +386,11 @@ proyeknya ada di [`PROJECT_PLAN.md`](PROJECT_PLAN.md).
 
 ## Selanjutnya
 
-1. **Fase 8:** audit data penjualan apotek di Indonesia (Mendeley Data, DOI
-   `10.17632/2ym7v78wtd.1`, CC BY 4.0). Kalau datanya cukup, pipeline yang sama dipakai dengan
-   fitur Ramadan dan Idulfitri. Kalau tidak cukup, cakupannya saya turunkan menjadi studi efek
-   Ramadan di level agregat.
-2. **Holdout:** evaluasi forecast dan simulasi stok di 25 Apr–22 Mei 2016, sekali saja.
+1. **Tuning parameter pohon XGBoost di M5** (depth, min_child_weight, dan lainnya). Kalau modelnya
+   berubah, model kuantil dan simulasi stok saya jalankan ulang.
+2. **Holdout M5:** evaluasi forecast dan simulasi stok di 25 Apr–22 Mei 2016, sekali saja,
+   setelah modelnya tidak akan diubah lagi.
 3. **Fase 9:** rangkuman akhir.
+
+Untuk menguji fitur Ramadan dengan benar, saya butuh data Indonesia yang mencakup minimal 2–3
+kali Lebaran. Kalau nanti menemukan data seperti itu, eksperimennya akan saya lanjutkan.

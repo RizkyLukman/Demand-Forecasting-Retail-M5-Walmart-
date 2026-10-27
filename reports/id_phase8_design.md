@@ -140,3 +140,18 @@ membantu forecast. Bahan dari `reports/easter_ablation.md` dan `reports/eda.md`.
 - Tidak ada ablation dengan vs tanpa fitur Ramadan (butuh minimal 2 Ramadan).
 - Tidak ada lag 364 atau musiman tahunan.
 - Tidak ada tuning parameter.
+
+## 6. Penyimpangan dari desain (dicatat setelah dijalankan)
+
+1. **Libur non-Lebaran di periode event** (17 Agu) dikeluarkan dari jumlah jendela asli,
+   sama seperti hari libur yang dikeluarkan di jendela plasebo. Aturan ini ditetapkan sebelum
+   efek dihitung, tetapi belum tertulis di §2.
+2. **Penskalaan per deret di XGBoost.** Desain §3 tidak menyebut penyamaan skala. Run pertama
+   memakai target mentah, sehingga loss model gabungan didominasi deret berskala besar (unit
+   ±14.000/hari vs nota ±100–300/hari). Akibatnya hasilnya absurd: di fold `post_lebaran`,
+   nota RJ +302% dan RI +356% di atas aktual. Run final membagi target dan fitur tiap deret
+   dengan rata-rata train deret itu (data ≤ cutoff), lalu memasukkan level deret sebagai
+   fitur. Hasil kedua run dilaporkan di `reports/id_transfer.md` §5. Hasil run pertama
+   disimpan di `reports/id_forecast_unscaled.json`.
+3. **Uji sensitivitas baseline** (4 baseline lain di samping yang dipilih) ditambahkan
+   untuk menilai seberapa kokoh efek. Baseline utama tetap level lokal 28 hari.

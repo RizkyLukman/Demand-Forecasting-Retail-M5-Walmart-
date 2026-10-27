@@ -1,0 +1,1066 @@
+{
+  "method": "local_level_28",
+  "window_days": 7,
+  "windows": {
+    "ramadan_w1_2_1": [
+      "2015-06-18",
+      "2015-06-24"
+    ],
+    "ramadan_w1_2_2": [
+      "2015-06-25",
+      "2015-07-01"
+    ],
+    "ramadan_w3_4_1": [
+      "2015-07-02",
+      "2015-07-08"
+    ],
+    "ramadan_w3_4_2": [
+      "2015-07-09",
+      "2015-07-15"
+    ],
+    "lebaran_cuti": [
+      "2015-07-16",
+      "2015-07-21"
+    ],
+    "post_1_1": [
+      "2015-07-22",
+      "2015-07-28"
+    ],
+    "post_1_2": [
+      "2015-07-29",
+      "2015-08-04"
+    ],
+    "post_2_1": [
+      "2015-08-05",
+      "2015-08-11"
+    ],
+    "post_2_2": [
+      "2015-08-12",
+      "2015-08-18"
+    ]
+  },
+  "series": {
+    "notes_all": {
+      "ramadan_w1_2_1": {
+        "effect": 0.09663916358460199,
+        "actual": 2732.0,
+        "expected": 2491.2478878374795,
+        "days_used": 7,
+        "placebo_p05": -0.08574903505861738,
+        "placebo_p95": 0.037411747616562845,
+        "placebo_rank": 1.0,
+        "placebo_n": 60,
+        "outside_band": true
+      },
+      "ramadan_w1_2_2": {
+        "effect": 0.056548229253220006,
+        "actual": 2648.0,
+        "expected": 2506.2746088473746,
+        "days_used": 7,
+        "placebo_p05": -0.0696210495479807,
+        "placebo_p95": 0.04664195336361927,
+        "placebo_rank": 0.9666666666666667,
+        "placebo_n": 60,
+        "outside_band": true
+      },
+      "ramadan_w3_4_1": {
+        "effect": -0.04612750109636954,
+        "actual": 2405.0,
+        "expected": 2521.301329857269,
+        "days_used": 7,
+        "placebo_p05": -0.06179015640616282,
+        "placebo_p95": 0.05154523276409369,
+        "placebo_rank": 0.1,
+        "placebo_n": 60,
+        "outside_band": false
+      },
+      "ramadan_w3_4_2": {
+        "effect": -0.10579390579046877,
+        "actual": 2268.0,
+        "expected": 2536.328050867164,
+        "days_used": 7,
+        "placebo_p05": -0.06622106649762448,
+        "placebo_p95": 0.09447325977053095,
+        "placebo_rank": 0.0,
+        "placebo_n": 60,
+        "outside_band": true
+      },
+      "lebaran_cuti": {
+        "effect": -0.03131865160953351,
+        "actual": 2041.0,
+        "expected": 2106.988023864884,
+        "days_used": 6,
+        "placebo_p05": -0.09276150407630394,
+        "placebo_p95": 0.07673596802079072,
+        "placebo_rank": 0.15,
+        "placebo_n": 60,
+        "outside_band": false
+      },
+      "post_1_1": {
+        "effect": -0.24798275713264015,
+        "actual": 1928.0,
+        "expected": 2563.771001644518,
+        "days_used": 7,
+        "placebo_p05": -0.08587721312459484,
+        "placebo_p95": 0.07684824347877511,
+        "placebo_rank": 0.0,
+        "placebo_n": 60,
+        "outside_band": true
+      },
+      "post_1_2": {
+        "effect": -0.3698613948179883,
+        "actual": 1625.0,
+        "expected": 2578.797722654413,
+        "days_used": 7,
+        "placebo_p05": -0.08654015907896669,
+        "placebo_p95": 0.06559297540923738,
+        "placebo_rank": 0.0,
+        "placebo_n": 60,
+        "outside_band": true
+      },
+      "post_2_1": {
+        "effect": 0.08989642953872545,
+        "actual": 2827.0,
+        "expected": 2593.8244436643076,
+        "days_used": 7,
+        "placebo_p05": -0.03129598829216314,
+        "placebo_p95": 0.07326378838350518,
+        "placebo_rank": 0.9833333333333333,
+        "placebo_n": 60,
+        "outside_band": true
+      },
+      "post_2_2": {
+        "effect": 0.07756341516853649,
+        "actual": 2648.0,
+        "expected": 2457.3959757030534,
+        "days_used": 6,
+        "placebo_p05": -0.039725844438296236,
+        "placebo_p95": 0.07335796242760471,
+        "placebo_rank": 0.9666666666666667,
+        "placebo_n": 60,
+        "outside_band": true
+      }
+    },
+    "notes_RJ": {
+      "ramadan_w1_2_1": {
+        "effect": 0.10704429453139942,
+        "actual": 1464.0,
+        "expected": 1322.4403099604035,
+        "days_used": 7,
+        "placebo_p05": -0.1459958682874464,
+        "placebo_p95": 0.020026458555253784,
+        "placebo_rank": 1.0,
+        "placebo_n": 60,
+        "outside_band": true
+      },
+      "ramadan_w1_2_2": {
+        "effect": 0.048009764742646066,
+        "actual": 1410.0,
+        "expected": 1345.4073114922223,
+        "days_used": 7,
+        "placebo_p05": -0.15306014018321754,
+        "placebo_p95": 0.01677519685077871,
+        "placebo_rank": 0.9833333333333333,
+        "placebo_n": 60,
+        "outside_band": true
+      },
+      "ramadan_w3_4_1": {
+        "effect": -0.045582785667904635,
+        "actual": 1306.0,
+        "expected": 1368.3743130240412,
+        "days_used": 7,
+        "placebo_p05": -0.15733305927583993,
+        "placebo_p95": 0.021891752894571133,
+        "placebo_rank": 0.5666666666666667,
+        "placebo_n": 60,
+        "outside_band": false
+      },
+      "ramadan_w3_4_2": {
+        "effect": -0.21802077706050982,
+        "actual": 1088.0,
+        "expected": 1391.3413145558598,
+        "days_used": 7,
+        "placebo_p05": -0.15166881937154983,
+        "placebo_p95": 0.021173301640903027,
+        "placebo_rank": 0.0,
+        "placebo_n": 60,
+        "outside_band": true
+      },
+      "lebaran_cuti": {
+        "effect": -0.06822310033711998,
+        "actual": 1069.0,
+        "expected": 1147.2703394844493,
+        "days_used": 6,
+        "placebo_p05": -0.1731271915997154,
+        "placebo_p95": 0.003680355892759399,
+        "placebo_rank": 0.4,
+        "placebo_n": 60,
+        "outside_band": false
+      },
+      "post_1_1": {
+        "effect": -0.2965657241940829,
+        "actual": 1008.0,
+        "expected": 1432.969695491658,
+        "days_used": 7,
+        "placebo_p05": -0.15830431345442067,
+        "placebo_p95": -0.02041688812038531,
+        "placebo_rank": 0.0,
+        "placebo_n": 60,
+        "outside_band": true
+      },
+      "post_1_2": {
+        "effect": -0.6304784396877354,
+        "actual": 538.0,
+        "expected": 1455.936697023477,
+        "days_used": 7,
+        "placebo_p05": -0.15268108656779059,
+        "placebo_p95": -0.025836078038499032,
+        "placebo_rank": 0.0,
+        "placebo_n": 60,
+        "outside_band": true
+      },
+      "post_2_1": {
+        "effect": 0.13191954394007444,
+        "actual": 1674.0,
+        "expected": 1478.9036985552962,
+        "days_used": 7,
+        "placebo_p05": -0.12537379823046554,
+        "placebo_p95": 0.03160846613462922,
+        "placebo_rank": 1.0,
+        "placebo_n": 60,
+        "outside_band": true
+      },
+      "post_2_2": {
+        "effect": 0.03923244292589523,
+        "actual": 1526.0,
+        "expected": 1468.3914175192997,
+        "days_used": 6,
+        "placebo_p05": -0.1242019477197069,
+        "placebo_p95": 0.005974674943863166,
+        "placebo_rank": 1.0,
+        "placebo_n": 60,
+        "outside_band": true
+      }
+    },
+    "notes_RI": {
+      "ramadan_w1_2_1": {
+        "effect": 0.11119291036160583,
+        "actual": 983.0,
+        "expected": 884.6348737773271,
+        "days_used": 7,
+        "placebo_p05": -0.046917229391104646,
+        "placebo_p95": 0.1031341207836418,
+        "placebo_rank": 0.9666666666666667,
+        "placebo_n": 60,
+        "outside_band": true
+      },
+      "ramadan_w1_2_2": {
+        "effect": 0.06460272934547162,
+        "actual": 942.0,
+        "expected": 884.8371078093619,
+        "days_used": 7,
+        "placebo_p05": -0.029285173815040758,
+        "placebo_p95": 0.1080215693750649,
+        "placebo_rank": 0.7166666666666667,
+        "placebo_n": 60,
+        "outside_band": false
+      },
+      "ramadan_w3_4_1": {
+        "effect": -0.08252666111930373,
+        "actual": 812.0,
+        "expected": 885.0393418413965,
+        "days_used": 7,
+        "placebo_p05": -0.03216499998650179,
+        "placebo_p95": 0.11063637467709493,
+        "placebo_rank": 0.016666666666666666,
+        "placebo_n": 60,
+        "outside_band": true
+      },
+      "ramadan_w3_4_2": {
+        "effect": 0.0641163109296663,
+        "actual": 942.0,
+        "expected": 885.2415758734313,
+        "days_used": 7,
+        "placebo_p05": -0.028259742836289528,
+        "placebo_p95": 0.11452861766523013,
+        "placebo_rank": 0.6,
+        "placebo_n": 60,
+        "outside_band": false
+      },
+      "lebaran_cuti": {
+        "effect": 0.016459201160000436,
+        "actual": 759.0,
+        "expected": 746.7097539515765,
+        "days_used": 6,
+        "placebo_p05": -0.05802580978667438,
+        "placebo_p95": 0.12924955337406163,
+        "placebo_rank": 0.35,
+        "placebo_n": 60,
+        "outside_band": false
+      },
+      "post_1_1": {
+        "effect": -0.1960383301801777,
+        "actual": 712.0,
+        "expected": 885.6143603955247,
+        "days_used": 7,
+        "placebo_p05": -0.0422735694432818,
+        "placebo_p95": 0.11352339287389521,
+        "placebo_rank": 0.0,
+        "placebo_n": 60,
+        "outside_band": true
+      },
+      "post_1_2": {
+        "effect": -0.22783112858478272,
+        "actual": 684.0,
+        "expected": 885.8165944275596,
+        "days_used": 7,
+        "placebo_p05": -0.057911711048576744,
+        "placebo_p95": 0.11717524300804157,
+        "placebo_rank": 0.0,
+        "placebo_n": 60,
+        "outside_band": true
+      },
+      "post_2_1": {
+        "effect": -0.038395152977435565,
+        "actual": 852.0,
+        "expected": 886.0188284595944,
+        "days_used": 7,
+        "placebo_p05": -0.014763420335341086,
+        "placebo_p95": 0.10857666389625989,
+        "placebo_rank": 0.016666666666666666,
+        "placebo_n": 60,
+        "outside_band": true
+      },
+      "post_2_2": {
+        "effect": 0.0920689610590293,
+        "actual": 847.0,
+        "expected": 775.5920461090894,
+        "days_used": 6,
+        "placebo_p05": -0.048773811717258725,
+        "placebo_p95": 0.10839337210385466,
+        "placebo_rank": 0.8666666666666667,
+        "placebo_n": 60,
+        "outside_band": false
+      }
+    },
+    "units_all": {
+      "ramadan_w1_2_1": {
+        "effect": 0.17353669516605508,
+        "actual": 84372.1,
+        "expected": 71895.57884942097,
+        "days_used": 7,
+        "placebo_p05": -0.21531815283520106,
+        "placebo_p95": 0.5283782422731846,
+        "placebo_rank": 0.7333333333333333,
+        "placebo_n": 60,
+        "outside_band": false
+      },
+      "ramadan_w1_2_2": {
+        "effect": 0.06816233514294477,
+        "actual": 77464.6,
+        "expected": 72521.37381312312,
+        "days_used": 7,
+        "placebo_p05": -0.19842429611288306,
+        "placebo_p95": 0.5796636218351658,
+        "placebo_rank": 0.6166666666666667,
+        "placebo_n": 60,
+        "outside_band": false
+      },
+      "ramadan_w3_4_1": {
+        "effect": 0.10765667837672523,
+        "actual": 81021.95,
+        "expected": 73147.16877682527,
+        "days_used": 7,
+        "placebo_p05": -0.19749482924654238,
+        "placebo_p95": 0.5327809829065147,
+        "placebo_rank": 0.65,
+        "placebo_n": 60,
+        "outside_band": false
+      },
+      "ramadan_w3_4_2": {
+        "effect": 0.018970855832700424,
+        "actual": 75172.5,
+        "expected": 73772.96374052743,
+        "days_used": 7,
+        "placebo_p05": -0.18956367946878092,
+        "placebo_p95": 0.4449935996821145,
+        "placebo_rank": 0.5333333333333333,
+        "placebo_n": 60,
+        "outside_band": false
+      },
+      "lebaran_cuti": {
+        "effect": 0.12715936909268288,
+        "actual": 66511.8,
+        "expected": 59008.33708505593,
+        "days_used": 6,
+        "placebo_p05": -0.24118131434021275,
+        "placebo_p95": 0.7322084944632476,
+        "placebo_rank": 0.75,
+        "placebo_n": 60,
+        "outside_band": false
+      },
+      "post_1_1": {
+        "effect": -0.23261146133863608,
+        "actual": 57474.0,
+        "expected": 74895.56737485017,
+        "days_used": 7,
+        "placebo_p05": -0.24291828662682935,
+        "placebo_p95": 0.6596555550838623,
+        "placebo_rank": 0.1,
+        "placebo_n": 60,
+        "outside_band": false
+      },
+      "post_1_2": {
+        "effect": -0.556263301371976,
+        "actual": 33511.6,
+        "expected": 75521.36233855234,
+        "days_used": 7,
+        "placebo_p05": -0.25582290424407944,
+        "placebo_p95": 0.2874518132515913,
+        "placebo_rank": 0.0,
+        "placebo_n": 60,
+        "outside_band": true
+      },
+      "post_2_1": {
+        "effect": 0.4021935129657004,
+        "actual": 106773.05,
+        "expected": 76147.15730225449,
+        "days_used": 7,
+        "placebo_p05": -0.3023993761745981,
+        "placebo_p95": 0.26258365094137287,
+        "placebo_rank": 0.9666666666666667,
+        "placebo_n": 60,
+        "outside_band": true
+      },
+      "post_2_2": {
+        "effect": 0.3325547069719072,
+        "actual": 98543.2,
+        "expected": 73950.5849061381,
+        "days_used": 6,
+        "placebo_p05": -0.34050964514943466,
+        "placebo_p95": 0.25835831963015715,
+        "placebo_rank": 0.9666666666666667,
+        "placebo_n": 60,
+        "outside_band": true
+      }
+    }
+  },
+  "sensitivity": {
+    "weekday_median": {
+      "notes_all": {
+        "ramadan_w1_2_1": {
+          "effect": 0.04594180704441042,
+          "outside_band": false
+        },
+        "ramadan_w1_2_2": {
+          "effect": 0.013782542113323082,
+          "outside_band": false
+        },
+        "ramadan_w3_4_1": {
+          "effect": -0.07924961715160794,
+          "outside_band": true
+        },
+        "ramadan_w3_4_2": {
+          "effect": -0.13169984686064318,
+          "outside_band": true
+        },
+        "lebaran_cuti": {
+          "effect": -0.05355900765128685,
+          "outside_band": false
+        },
+        "post_1_1": {
+          "effect": -0.26186830015313933,
+          "outside_band": true
+        },
+        "post_1_2": {
+          "effect": -0.3778713629402757,
+          "outside_band": true
+        },
+        "post_2_1": {
+          "effect": 0.082312404287902,
+          "outside_band": false
+        },
+        "post_2_2": {
+          "effect": 0.07554833468724607,
+          "outside_band": false
+        }
+      },
+      "notes_RJ": {
+        "ramadan_w1_2_1": {
+          "effect": -0.03779165297403875,
+          "outside_band": false
+        },
+        "ramadan_w1_2_2": {
+          "effect": -0.07328294446270123,
+          "outside_band": false
+        },
+        "ramadan_w3_4_1": {
+          "effect": -0.14163654288531058,
+          "outside_band": true
+        },
+        "ramadan_w3_4_2": {
+          "effect": -0.2849162011173184,
+          "outside_band": true
+        },
+        "lebaran_cuti": {
+          "effect": -0.13441295546558707,
+          "outside_band": true
+        },
+        "post_1_1": {
+          "effect": -0.33749589221163323,
+          "outside_band": true
+        },
+        "post_1_2": {
+          "effect": -0.6464015773907328,
+          "outside_band": true
+        },
+        "post_2_1": {
+          "effect": 0.10023003614853755,
+          "outside_band": false
+        },
+        "post_2_2": {
+          "effect": 0.02381751090238171,
+          "outside_band": false
+        }
+      },
+      "notes_RI": {
+        "ramadan_w1_2_1": {
+          "effect": 0.1324884792626728,
+          "outside_band": true
+        },
+        "ramadan_w1_2_2": {
+          "effect": 0.08525345622119819,
+          "outside_band": false
+        },
+        "ramadan_w3_4_1": {
+          "effect": -0.06451612903225813,
+          "outside_band": true
+        },
+        "ramadan_w3_4_2": {
+          "effect": 0.08525345622119819,
+          "outside_band": false
+        },
+        "lebaran_cuti": {
+          "effect": 0.027758970886933017,
+          "outside_band": false
+        },
+        "post_1_1": {
+          "effect": -0.17972350230414746,
+          "outside_band": true
+        },
+        "post_1_2": {
+          "effect": -0.21198156682027647,
+          "outside_band": true
+        },
+        "post_2_1": {
+          "effect": -0.018433179723502335,
+          "outside_band": false
+        },
+        "post_2_2": {
+          "effect": 0.11447368421052628,
+          "outside_band": false
+        }
+      },
+      "units_all": {
+        "ramadan_w1_2_1": {
+          "effect": -0.019841471987906978,
+          "outside_band": false
+        },
+        "ramadan_w1_2_2": {
+          "effect": -0.10008654153392427,
+          "outside_band": true
+        },
+        "ramadan_w3_4_1": {
+          "effect": -0.058760475931387335,
+          "outside_band": false
+        },
+        "ramadan_w3_4_2": {
+          "effect": -0.12671408028259268,
+          "outside_band": true
+        },
+        "lebaran_cuti": {
+          "effect": -0.03821005192961203,
+          "outside_band": false
+        },
+        "post_1_1": {
+          "effect": -0.33231919984251873,
+          "outside_band": true
+        },
+        "post_1_2": {
+          "effect": -0.6106926279264111,
+          "outside_band": true
+        },
+        "post_2_1": {
+          "effect": 0.24039244631058845,
+          "outside_band": false
+        },
+        "post_2_2": {
+          "effect": 0.16640836425179797,
+          "outside_band": false
+        }
+      }
+    },
+    "weekday_loglinear": {
+      "notes_all": {
+        "ramadan_w1_2_1": {
+          "effect": 0.10569627042836638,
+          "outside_band": true
+        },
+        "ramadan_w1_2_2": {
+          "effect": 0.0664263238150291,
+          "outside_band": true
+        },
+        "ramadan_w3_4_1": {
+          "effect": -0.03620268277058036,
+          "outside_band": false
+        },
+        "ramadan_w3_4_2": {
+          "effect": -0.0955772689373753,
+          "outside_band": true
+        },
+        "lebaran_cuti": {
+          "effect": -0.018817308941512123,
+          "outside_band": false
+        },
+        "post_1_1": {
+          "effect": -0.23805413080004026,
+          "outside_band": true
+        },
+        "post_1_2": {
+          "effect": -0.3609595851854832,
+          "outside_band": true
+        },
+        "post_2_1": {
+          "effect": 0.10626371553059544,
+          "outside_band": true
+        },
+        "post_2_2": {
+          "effect": 0.09499760062352179,
+          "outside_band": true
+        }
+      },
+      "notes_RJ": {
+        "ramadan_w1_2_1": {
+          "effect": 0.1569477386856533,
+          "outside_band": true
+        },
+        "ramadan_w1_2_2": {
+          "effect": 0.09597287444022262,
+          "outside_band": true
+        },
+        "ramadan_w3_4_1": {
+          "effect": -0.001535587834238017,
+          "outside_band": false
+        },
+        "ramadan_w3_4_2": {
+          "effect": -0.18185984248798404,
+          "outside_band": true
+        },
+        "lebaran_cuti": {
+          "effect": -0.023401424310026345,
+          "outside_band": true
+        },
+        "post_1_1": {
+          "effect": -0.26440636647581073,
+          "outside_band": true
+        },
+        "post_1_2": {
+          "effect": -0.6138367313537184,
+          "outside_band": true
+        },
+        "post_2_1": {
+          "effect": 0.18183279071116074,
+          "outside_band": true
+        },
+        "post_2_2": {
+          "effect": 0.08309700849691937,
+          "outside_band": true
+        }
+      },
+      "notes_RI": {
+        "ramadan_w1_2_1": {
+          "effect": 0.10534044633163585,
+          "outside_band": false
+        },
+        "ramadan_w1_2_2": {
+          "effect": 0.061150258489503395,
+          "outside_band": false
+        },
+        "ramadan_w3_4_1": {
+          "effect": -0.08364140177136149,
+          "outside_band": true
+        },
+        "ramadan_w3_4_2": {
+          "effect": 0.0649857397664253,
+          "outside_band": false
+        },
+        "lebaran_cuti": {
+          "effect": 0.017870523351432688,
+          "outside_band": false
+        },
+        "post_1_1": {
+          "effect": -0.1923596078190164,
+          "outside_band": true
+        },
+        "post_1_2": {
+          "effect": -0.2227197531798334,
+          "outside_band": true
+        },
+        "post_2_1": {
+          "effect": -0.030060541592710655,
+          "outside_band": false
+        },
+        "post_2_2": {
+          "effect": 0.1042943746340237,
+          "outside_band": false
+        }
+      },
+      "units_all": {
+        "ramadan_w1_2_1": {
+          "effect": -0.0033781702679468446,
+          "outside_band": false
+        },
+        "ramadan_w1_2_2": {
+          "effect": -0.09799779841713883,
+          "outside_band": false
+        },
+        "ramadan_w3_4_1": {
+          "effect": -0.07000675727238448,
+          "outside_band": false
+        },
+        "ramadan_w3_4_2": {
+          "effect": -0.14943229169884645,
+          "outside_band": false
+        },
+        "lebaran_cuti": {
+          "effect": -0.06451829302375012,
+          "outside_band": false
+        },
+        "post_1_1": {
+          "effect": -0.3662054897450544,
+          "outside_band": true
+        },
+        "post_1_2": {
+          "effect": -0.6357118603355408,
+          "outside_band": true
+        },
+        "post_2_1": {
+          "effect": 0.14415363307564677,
+          "outside_band": false
+        },
+        "post_2_2": {
+          "effect": 0.06498214398877256,
+          "outside_band": false
+        }
+      }
+    },
+    "local_level_14": {
+      "notes_all": {
+        "ramadan_w1_2_1": {
+          "effect": 0.025695206251587832,
+          "outside_band": false
+        },
+        "ramadan_w1_2_2": {
+          "effect": 8.062227922778221e-05,
+          "outside_band": false
+        },
+        "ramadan_w3_4_1": {
+          "effect": -0.08625097913593271,
+          "outside_band": true
+        },
+        "ramadan_w3_4_2": {
+          "effect": -0.13310738545750223,
+          "outside_band": true
+        },
+        "lebaran_cuti": {
+          "effect": -0.050653452145751336,
+          "outside_band": false
+        },
+        "post_1_1": {
+          "effect": -0.25486067137042684,
+          "outside_band": true
+        },
+        "post_1_2": {
+          "effect": -0.3681131134673839,
+          "outside_band": true
+        },
+        "post_2_1": {
+          "effect": 0.10607262491047686,
+          "outside_band": true
+        },
+        "post_2_2": {
+          "effect": 0.10645795030006154,
+          "outside_band": true
+        }
+      },
+      "notes_RJ": {
+        "ramadan_w1_2_1": {
+          "effect": 0.039910617375994224,
+          "outside_band": true
+        },
+        "ramadan_w1_2_2": {
+          "effect": -0.002886978894480085,
+          "outside_band": false
+        },
+        "ramadan_w3_4_1": {
+          "effect": -0.0805093290097516,
+          "outside_band": false
+        },
+        "ramadan_w3_4_2": {
+          "effect": -0.2373585918755592,
+          "outside_band": true
+        },
+        "lebaran_cuti": {
+          "effect": -0.08141629188298193,
+          "outside_band": false
+        },
+        "post_1_1": {
+          "effect": -0.2990184556886666,
+          "outside_band": true
+        },
+        "post_1_2": {
+          "effect": -0.6274890313839403,
+          "outside_band": true
+        },
+        "post_2_1": {
+          "effect": 0.15406737493504763,
+          "outside_band": true
+        },
+        "post_2_2": {
+          "effect": 0.07129952384114156,
+          "outside_band": true
+        }
+      },
+      "notes_RI": {
+        "ramadan_w1_2_1": {
+          "effect": 0.010031366821403598,
+          "outside_band": false
+        },
+        "ramadan_w1_2_2": {
+          "effect": -0.019495194702971008,
+          "outside_band": false
+        },
+        "ramadan_w3_4_1": {
+          "effect": -0.14366055920404475,
+          "outside_band": true
+        },
+        "ramadan_w3_4_2": {
+          "effect": 0.0067171877012905945,
+          "outside_band": false
+        },
+        "lebaran_cuti": {
+          "effect": -0.02618874553252548,
+          "outside_band": false
+        },
+        "post_1_1": {
+          "effect": -0.21986210694059227,
+          "outside_band": true
+        },
+        "post_1_2": {
+          "effect": -0.24012806094054595,
+          "outside_band": true
+        },
+        "post_2_1": {
+          "effect": -0.040155939091047976,
+          "outside_band": true
+        },
+        "post_2_2": {
+          "effect": 0.10521347918511227,
+          "outside_band": true
+        }
+      },
+      "units_all": {
+        "ramadan_w1_2_1": {
+          "effect": 0.12468384930820475,
+          "outside_band": false
+        },
+        "ramadan_w1_2_2": {
+          "effect": 0.036172055364894984,
+          "outside_band": false
+        },
+        "ramadan_w3_4_1": {
+          "effect": 0.08751049097377317,
+          "outside_band": false
+        },
+        "ramadan_w3_4_2": {
+          "effect": 0.012504920242889739,
+          "outside_band": false
+        },
+        "lebaran_cuti": {
+          "effect": 0.13193807428884963,
+          "outside_band": false
+        },
+        "post_1_1": {
+          "effect": -0.22101906844588579,
+          "outside_band": false
+        },
+        "post_1_2": {
+          "effect": -0.5442016883339612,
+          "outside_band": true
+        },
+        "post_2_1": {
+          "effect": 0.45735950000076553,
+          "outside_band": false
+        },
+        "post_2_2": {
+          "effect": 0.40108106551828193,
+          "outside_band": false
+        }
+      }
+    },
+    "local_level_42": {
+      "notes_all": {
+        "ramadan_w1_2_1": {
+          "effect": 0.12290543514463083,
+          "outside_band": true
+        },
+        "ramadan_w1_2_2": {
+          "effect": 0.08006094495585826,
+          "outside_band": true
+        },
+        "ramadan_w3_4_1": {
+          "effect": -0.026494236120149894,
+          "outside_band": false
+        },
+        "ramadan_w3_4_2": {
+          "effect": -0.08886096995156134,
+          "outside_band": true
+        },
+        "lebaran_cuti": {
+          "effect": -0.014403558427040884,
+          "outside_band": false
+        },
+        "post_1_1": {
+          "effect": -0.23595606249399415,
+          "outside_band": true
+        },
+        "post_1_2": {
+          "effect": -0.3607783877538195,
+          "outside_band": true
+        },
+        "post_2_1": {
+          "effect": 0.10391153876699775,
+          "outside_band": true
+        },
+        "post_2_2": {
+          "effect": 0.0898011097938012,
+          "outside_band": true
+        }
+      },
+      "notes_RJ": {
+        "ramadan_w1_2_1": {
+          "effect": 0.15699681026882928,
+          "outside_band": true
+        },
+        "ramadan_w1_2_2": {
+          "effect": 0.09444870998537236,
+          "outside_band": true
+        },
+        "ramadan_w3_4_1": {
+          "effect": -0.004037852671007315,
+          "outside_band": false
+        },
+        "ramadan_w3_4_2": {
+          "effect": -0.18457270228018086,
+          "outside_band": true
+        },
+        "lebaran_cuti": {
+          "effect": -0.028979654071478733,
+          "outside_band": false
+        },
+        "post_1_1": {
+          "effect": -0.2673953222610421,
+          "outside_band": true
+        },
+        "post_1_2": {
+          "effect": -0.6154086877792728,
+          "outside_band": true
+        },
+        "post_2_1": {
+          "effect": 0.17732901719992974,
+          "outside_band": true
+        },
+        "post_2_2": {
+          "effect": 0.0802600040197299,
+          "outside_band": true
+        }
+      },
+      "notes_RI": {
+        "ramadan_w1_2_1": {
+          "effect": 0.13405512319875212,
+          "outside_band": true
+        },
+        "ramadan_w1_2_2": {
+          "effect": 0.0832771938777257,
+          "outside_band": false
+        },
+        "ramadan_w3_4_1": {
+          "effect": -0.06919817991370192,
+          "outside_band": true
+        },
+        "ramadan_w3_4_2": {
+          "effect": 0.07638841140725461,
+          "outside_band": false
+        },
+        "lebaran_cuti": {
+          "effect": 0.02539756504014634,
+          "outside_band": false
+        },
+        "post_1_1": {
+          "effect": -0.19116468176811707,
+          "outside_band": true
+        },
+        "post_1_2": {
+          "effect": -0.22542131401824525,
+          "outside_band": true
+        },
+        "post_2_1": {
+          "effect": -0.03820464489895647,
+          "outside_band": true
+        },
+        "post_2_2": {
+          "effect": 0.08924895983958692,
+          "outside_band": false
+        }
+      },
+      "units_all": {
+        "ramadan_w1_2_1": {
+          "effect": 0.18790723675295018,
+          "outside_band": false
+        },
+        "ramadan_w1_2_2": {
+          "effect": 0.06976661568863964,
+          "outside_band": false
+        },
+        "ramadan_w3_4_1": {
+          "effect": 0.09786730537428112,
+          "outside_band": false
+        },
+        "ramadan_w3_4_2": {
+          "effect": -0.00018202934195399312,
+          "outside_band": false
+        },
+        "lebaran_cuti": {
+          "effect": 0.09634717727245246,
+          "outside_band": false
+        },
+        "post_1_1": {
+          "effect": -0.2600604913066614,
+          "outside_band": false
+        },
+        "post_1_2": {
+          "effect": -0.5761282243734096,
+          "outside_band": true
+        },
+        "post_2_1": {
+          "effect": 0.32723910817313867,
+          "outside_band": true
+        },
+        "post_2_2": {
+          "effect": 0.2502855839254434,
+          "outside_band": false
+        }
+      }
+    }
+  }
+}

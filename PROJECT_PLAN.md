@@ -427,5 +427,12 @@ antar fold), temuan per segmen, hasil simulasi stok, hasil transfer Indonesia,
       XGBoost kuantil +8,4%; empiris termurah di 10 dari 12 asumsi biaya. Jumlah kuantil harian
       tidak terkalibrasi (P50 → 28%, P90 → 97%). Metode gabungan ditolak. Item tumbuh cepat:
       classical termurah)
-- [ ] F8: audit data apotek Indonesia → transfer atau studi efek Ramadan
+- [x] F8: audit data apotek Indonesia → transfer atau studi efek Ramadan
+      → `reports/id_data_audit.md`, `reports/id_phase8_design.md`, `reports/id_transfer.md`
+      (data hanya 2015, lengkap Apr–Des, satu Idulfitri → jalur "tidak cukup". Kalender 2015
+      bersumber SKB/Keppres/isbat. Studi efek dengan uji plasebo: pekan Lebaran normal, nota turun
+      −25%/−37% di 2 minggu sesudahnya (kokoh di 5 baseline), Ramadan mg 4 −11%. Forecast 14 hari:
+      XGBoost tidak mengalahkan baseline sederhana (agregat 0 dari 24 terbaik; produk WRMSSE 0,98 vs
+      0,94); fitur libur umum tidak membantu. Fitur ala Easter ±7 hari akan melewatkan efek
+      Lebaran, yang terjadi 5–18 hari sesudahnya)
 - [ ] F9: README hasil & keterbatasan
