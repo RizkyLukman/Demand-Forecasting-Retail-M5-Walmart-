@@ -128,9 +128,15 @@ def price_features(df: pd.DataFrame, cutoff: int, max_window: int, discount_thre
 
 # --- fitur per fold (bergantung cutoff) ---------------------------------------
 
-def fold_features(df: pd.DataFrame, cutoff: int, closed: np.ndarray) -> pd.DataFrame:
-    """Target encoding dan harga relatif rata-rata item, dari baris d <= cutoff saja."""
-    train = (df["d"].to_numpy() <= cutoff) & ~closed
+def fold_features(df: pd.DataFrame, cutoff: int, closed: np.ndarray,
+                  recent_windows: tuple[int, ...] = ()) -> pd.DataFrame:
+    """Target encoding dan harga relatif rata-rata item, dari baris d <= cutoff saja.
+
+    `recent_windows`: untuk tiap W, tambahkan `te_item_mean_W` = rata-rata penjualan item di
+    W hari terakhir sampai cutoff (hari tutup dikeluarkan). Default kosong: perilaku lama.
+    """
+    d = df["d"].to_numpy()
+    train = (d <= cutoff) & ~closed
     tr = df.loc[train]
     sales = tr["sales"].astype(np.float64)
     item_mean = sales.groupby(tr["item_id"], observed=True).mean()
@@ -143,6 +149,10 @@ def fold_features(df: pd.DataFrame, cutoff: int, closed: np.ndarray) -> pd.DataF
     out["te_item_zero_share"] = df["item_id"].map(item_zero).astype(np.float32)
     out["te_dept_mean"] = df["dept_id"].map(dept_mean).astype(np.float32)
     out["price_rel_item"] = (df["sell_price"] / df["item_id"].map(price_mean).astype(np.float32)).astype(np.float32)
+    for w in recent_windows:
+        m = train & (d > cutoff - w)
+        recent_mean = df.loc[m, "sales"].astype(np.float64).groupby(df.loc[m, "item_id"], observed=True).mean()
+        out[f"te_item_mean_{w}"] = df["item_id"].map(recent_mean).astype(np.float32)
     return out
 
 
@@ -165,11 +175,12 @@ def build_base(long: pd.DataFrame, cal: pd.DataFrame, cfg: dict, state: str) -> 
     return pd.concat(parts, axis=1)
 
 
-def add_fold_features(base: pd.DataFrame, cutoff: int, horizon: int) -> pd.DataFrame:
+def add_fold_features(base: pd.DataFrame, cutoff: int, horizon: int,
+                      recent_windows: tuple[int, ...] = ()) -> pd.DataFrame:
     """Potong `base` ke d <= cutoff + horizon lalu tambahkan fitur per fold."""
     df = base[base["d"] <= cutoff + horizon]
     closed = df["is_closed"].to_numpy().astype(bool)
-    return pd.concat([df, fold_features(df, cutoff, closed)], axis=1)
+    return pd.concat([df, fold_features(df, cutoff, closed, recent_windows)], axis=1)
 
 
 NON_FEATURES = {"d", "wm_yr_wk", "sales", "is_closed"}

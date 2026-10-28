@@ -419,7 +419,8 @@ antar fold), temuan per segmen, hasil simulasi stok, hasil transfer Indonesia,
       segmen erratic (bias +9%), akhir pekan per item, dan fold Easter 2015 per item. SHAP:
       te_item_mean 42%, harga 3%, event 0,3%; model lambat menyesuaikan level, sehingga item
       yang tumbuh −7% s.d. −32% dan item yang turun +5% s.d. +21%. Eksperimen te_item_mean jendela
-      terbaru ditunda sampai Fase 7. SHAP GPU tidak aditif untuk fitur kategorikal, jadi
+      terbaru dijalankan 29 Okt (`reports/06b_te_recent_window.md`): bias kelompok berkurang, tetapi
+      WRMSSE memburuk, jadi fitur tidak diganti. SHAP GPU tidak aditif untuk fitur kategorikal, jadi
       dihitung di CPU)
 - [ ] F7: simulasi stok + analisis sensitivitas biaya → `reports/07_inventory_sim.md`
       (**selesai di fold CV; simulasi holdout dijalankan sekali di akhir proyek.** Periodic review

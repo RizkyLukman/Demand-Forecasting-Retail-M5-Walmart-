@@ -1,0 +1,445 @@
+{
+  "configs": {
+    "base": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42
+      },
+      "per_fold": {
+        "cv1": 0.64215,
+        "cv2": 0.81742,
+        "cv3": 0.68246,
+        "cv4": 0.61897
+      },
+      "options": {
+        "item_encoding": "label",
+        "max_rounds": 3000,
+        "early_stopping": 100,
+        "exclude_censored": true,
+        "censor_run": 28,
+        "busy_share": 0.5,
+        "refit": false,
+        "checkpoints": [],
+        "save_model": "",
+        "te_recent_windows": [],
+        "te_drop_long": false
+      },
+      "growth_bias": {
+        "<0,5": 0.1207,
+        "0,5\u20130,8": 0.0548,
+        "0,8\u20131,25": -0.0364,
+        "1,25\u20132": -0.063,
+        "2\u20134": -0.1296,
+        ">4": -0.3101
+      },
+      "wrmsse_mean": 0.69025,
+      "wrmsse_std": 0.08875,
+      "peak_rss_gb": 4.66,
+      "minutes": 3.3,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 701,
+          "seconds": 46.0,
+          "model_mb": 11.91
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 129,
+          "seconds": 18.7,
+          "model_mb": 3.7
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 79,
+          "seconds": 16.5,
+          "model_mb": 3.0
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 238,
+          "seconds": 24.8,
+          "model_mb": 5.28
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 150,
+          "seconds": 18.9,
+          "model_mb": 3.77
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 86,
+          "seconds": 16.2,
+          "model_mb": 3.01
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 141,
+          "seconds": 18.9,
+          "model_mb": 3.64
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 81,
+          "seconds": 16.4,
+          "model_mb": 2.94
+        }
+      ]
+    },
+    "add_365": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42
+      },
+      "per_fold": {
+        "cv1": 0.64861,
+        "cv2": 0.8058,
+        "cv3": 0.70806,
+        "cv4": 0.60471
+      },
+      "options": {
+        "item_encoding": "label",
+        "max_rounds": 3000,
+        "early_stopping": 100,
+        "exclude_censored": true,
+        "censor_run": 28,
+        "busy_share": 0.5,
+        "refit": false,
+        "checkpoints": [],
+        "save_model": "",
+        "te_recent_windows": [
+          365
+        ],
+        "te_drop_long": false
+      },
+      "growth_bias": {
+        "<0,5": 0.1113,
+        "0,5\u20130,8": 0.0522,
+        "0,8\u20131,25": -0.0353,
+        "1,25\u20132": -0.0636,
+        "2\u20134": -0.1355,
+        ">4": -0.3423
+      },
+      "wrmsse_mean": 0.69179,
+      "wrmsse_std": 0.08701,
+      "peak_rss_gb": 4.79,
+      "minutes": 3.7,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 653,
+          "seconds": 45.1,
+          "model_mb": 11.24
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 138,
+          "seconds": 20.0,
+          "model_mb": 3.81
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 90,
+          "seconds": 17.6,
+          "model_mb": 3.15
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 282,
+          "seconds": 28.0,
+          "model_mb": 5.91
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 113,
+          "seconds": 17.7,
+          "model_mb": 3.26
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 409,
+          "seconds": 32.0,
+          "model_mb": 6.96
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 138,
+          "seconds": 20.1,
+          "model_mb": 3.64
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 98,
+          "seconds": 18.2,
+          "model_mb": 3.13
+        }
+      ]
+    },
+    "add_182": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42
+      },
+      "per_fold": {
+        "cv1": 0.64471,
+        "cv2": 0.79168,
+        "cv3": 0.69789,
+        "cv4": 0.68958
+      },
+      "options": {
+        "item_encoding": "label",
+        "max_rounds": 3000,
+        "early_stopping": 100,
+        "exclude_censored": true,
+        "censor_run": 28,
+        "busy_share": 0.5,
+        "refit": false,
+        "checkpoints": [],
+        "save_model": "",
+        "te_recent_windows": [
+          182
+        ],
+        "te_drop_long": false
+      },
+      "growth_bias": {
+        "<0,5": 0.1,
+        "0,5\u20130,8": 0.0564,
+        "0,8\u20131,25": -0.0348,
+        "1,25\u20132": -0.0591,
+        "2\u20134": -0.1226,
+        ">4": -0.3148
+      },
+      "wrmsse_mean": 0.70596,
+      "wrmsse_std": 0.06173,
+      "peak_rss_gb": 4.82,
+      "minutes": 3.1,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 367,
+          "seconds": 31.8,
+          "model_mb": 7.18
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 160,
+          "seconds": 21.4,
+          "model_mb": 4.15
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 89,
+          "seconds": 18.0,
+          "model_mb": 3.13
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 64,
+          "seconds": 17.1,
+          "model_mb": 2.76
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 168,
+          "seconds": 20.4,
+          "model_mb": 3.96
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 134,
+          "seconds": 19.3,
+          "model_mb": 3.57
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 123,
+          "seconds": 18.9,
+          "model_mb": 3.43
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 102,
+          "seconds": 18.3,
+          "model_mb": 3.17
+        }
+      ]
+    },
+    "replace_365": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42
+      },
+      "per_fold": {
+        "cv1": 0.64613,
+        "cv2": 0.81831,
+        "cv3": 0.69199,
+        "cv4": 0.62696
+      },
+      "options": {
+        "item_encoding": "label",
+        "max_rounds": 3000,
+        "early_stopping": 100,
+        "exclude_censored": true,
+        "censor_run": 28,
+        "busy_share": 0.5,
+        "refit": false,
+        "checkpoints": [],
+        "save_model": "",
+        "te_recent_windows": [
+          365
+        ],
+        "te_drop_long": true
+      },
+      "growth_bias": {
+        "<0,5": 0.0524,
+        "0,5\u20130,8": 0.0217,
+        "0,8\u20131,25": -0.0385,
+        "1,25\u20132": -0.0441,
+        "2\u20134": -0.0909,
+        ">4": -0.2628
+      },
+      "wrmsse_mean": 0.69585,
+      "wrmsse_std": 0.08608,
+      "peak_rss_gb": 4.76,
+      "minutes": 3.4,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 551,
+          "seconds": 40.5,
+          "model_mb": 9.9
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 143,
+          "seconds": 20.4,
+          "model_mb": 3.9
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 84,
+          "seconds": 17.5,
+          "model_mb": 3.05
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 100,
+          "seconds": 18.6,
+          "model_mb": 3.28
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 143,
+          "seconds": 19.0,
+          "model_mb": 3.67
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 375,
+          "seconds": 30.5,
+          "model_mb": 6.55
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 123,
+          "seconds": 18.8,
+          "model_mb": 3.38
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 121,
+          "seconds": 18.8,
+          "model_mb": 3.37
+        }
+      ]
+    }
+  },
+  "stages": {},
+  "updated": "2026-10-29T00:31:51",
+  "xgboost_version": "3.4.1",
+  "decision": {
+    "tau": 0.00705,
+    "base": 0.69025,
+    "candidates": {
+      "add_365": 0.69179,
+      "add_182": 0.70596,
+      "replace_365": 0.69585
+    },
+    "best": "add_365",
+    "best_folds_better": 2,
+    "accepted": false
+  }
+}

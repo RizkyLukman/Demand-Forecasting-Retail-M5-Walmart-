@@ -16,6 +16,7 @@ Ringkasan hasil keseluruhan ada di [README utama](../README.md).
 | 5c | [Uji batas iterasi](05c_quantile_cap3000.md) | Apakah iterasi lebih banyak membantu? | Tidak: validasi membaik, ramalan sedikit memburuk |
 | 5d | [Tuning parameter pohon](05d_tree_tuning.md) | Apakah parameter pohon bisa diperbaiki? | Hanya min_child_weight 200 yang lolos di 2 toko; di 10 toko −0,003 (< noise), jadi tidak diganti |
 | 6 | [Analisis error](06_error_analysis.md) | Di mana XGBoost gagal? | Kalah di total segmen erratic dan akhir pekan per item; terlalu bergantung pada rata-rata item lama (SHAP 42%) |
+| 6b | [Rata-rata item jendela terbaru](06b_te_recent_window.md) | Apakah rata-rata item 182/365 hari memperbaiki item yang sedang berubah? | Bias kelompok berkurang, tetapi WRMSSE memburuk; fitur tidak diganti |
 | 7 | [Simulasi stok](07_inventory_sim.md) | Apakah forecast lebih akurat membuat stok lebih murah? | XGBoost efisien di layanan menengah; di fill rate ≥ 98% metode empiris termurah (10 dari 12 asumsi biaya) |
 | 8a | [Audit data apotek](08a_id_data_audit.md) | Apakah data apotek cukup untuk fitur Ramadan? | Tidak: hanya 2015 (lengkap Apr–Des), satu Idulfitri |
 | 8b | [Desain analisis apotek](08b_id_design.md) | Apa yang masih bisa diuji dengan jujur? | Studi efek dengan uji plasebo + forecast 14 hari; ditetapkan sebelum hasil dihitung |

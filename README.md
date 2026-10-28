@@ -13,8 +13,8 @@ saya tunjukkan di sini adalah prosesnya: backtest yang jujur, analisis error per
 simulasi stok yang menghubungkan forecast dengan biaya.
 
 **Status:** Fase 0–8 selesai. Holdout M5 (25 Apr–22 Mei 2016) sengaja **belum dipakai sama
-sekali**. Tuning parameter pohon sudah selesai (tidak ada yang diganti). Sebelum holdout dibuka,
-masih ada satu eksperimen fitur yang ingin saya uji.
+sekali**. Tuning parameter pohon dan eksperimen fitur terakhir sudah selesai, dan keduanya tidak
+mengubah model, jadi model M5 sekarang sudah final.
 Holdout baru dibuka sekali di akhir proyek, supaya ada satu angka akhir yang benar-benar tidak
 ikut memengaruhi keputusan saya selama eksperimen.
 
@@ -175,8 +175,12 @@ Contoh paling jelas: FOODS_1_096 di toko WI_2 sedang laku ±42 per hari, tetapi 
 riwayatnya hanya 13 per hari. XGBoost meramal 35 per hari, sedangkan aktualnya 57. Pola ini
 sistematis di seluruh produk yang sedang tumbuh atau turun.
 
-Saya sempat menimbang untuk memperbaiki fitur ini, tetapi hitungan saya menunjukkan perbaikan
-WRMSSE totalnya kemungkinan di bawah 1%. Jadi eksperimennya saya tunda dan temuannya saya catat.
+Belakangan saya mencoba memperbaikinya dengan rata-rata item dari 182 atau 365 hari terakhir.
+Kalau rata-rata lama diganti versi 365 hari, bias per kelompok memang berkurang (item yang tumbuh
+sangat cepat dari −31% ke −26%, item yang turun tajam dari +12% ke +5%). Tetapi akurasi totalnya
+malah turun. Ternyata kebiasaan model menarik ramalan ke rata-rata lama sebagian memang benar,
+karena produk yang sedang naik atau turun sering kembali ke levelnya. Jadi fiturnya tidak saya
+ganti ([`06b`](reports/06b_te_recent_window.md)).
 
 ---
 
@@ -300,6 +304,7 @@ Saya catat juga eksperimen yang gagal, karena ini bagian dari hasilnya:
 | Menaikkan batas iterasi model kuantil dari 1.000 ke 3.000 | Skor validasi membaik, tetapi ramalan sedikit memburuk (+0,07%) |
 | Metode stok gabungan XGBoost + empiris | Lebih mahal di 12 dari 12 asumsi biaya |
 | Tuning parameter pohon (depth, min_child_weight, sampling, reg_lambda, max_bin, eta) | Hanya `min_child_weight` 200 yang lolos di 2 toko (−0,010). Di 10 toko perbaikannya menyusut jadi −0,003, di bawah batas noise, jadi tidak saya pakai |
+| Rata-rata item dari 182 atau 365 hari terakhir | Bias item yang sedang berubah berkurang, tetapi WRMSSE memburuk (terbaik 0,692 vs 0,690) |
 | Apotek: satu model XGBoost untuk nota dan unit sekaligus, tanpa menyamakan skala | Deret unit (±14.000/hari) mendominasi model, sehingga di satu fold nota (±100–300/hari) diramal 4–4,6× terlalu tinggi. Saya perbaiki dengan membagi setiap deret dengan rata-ratanya |
 | Apotek: fitur hari libur umum untuk meramal Lebaran | Tidak membantu |
 | Apotek: menguji fitur Ramadan | Tidak bisa, karena hanya ada satu Lebaran |
@@ -366,24 +371,11 @@ Laporan diberi nomor sesuai urutan pengerjaan. Ringkasan satu baris tiap laporan
 | 5 | [`05b_quantile_cap1000.md`](reports/05b_quantile_cap1000.md), [`05c_quantile_cap3000.md`](reports/05c_quantile_cap3000.md) | Uji batas iterasi model kuantil |
 | 5 | [`05d_tree_tuning.md`](reports/05d_tree_tuning.md) | Tuning parameter pohon dan konfirmasi di 10 toko |
 | 6 | [`06_error_analysis.md`](reports/06_error_analysis.md) | Error per segmen, SHAP, dan studi kasus |
+| 6 | [`06b_te_recent_window.md`](reports/06b_te_recent_window.md) | Eksperimen rata-rata item jendela terbaru |
 | 7 | [`07_inventory_sim.md`](reports/07_inventory_sim.md) | Simulasi stok dan analisis sensitivitas biaya |
 | 8 | [`08a_id_data_audit.md`](reports/08a_id_data_audit.md) | Audit kelayakan data apotek |
 | 8 | [`08b_id_design.md`](reports/08b_id_design.md) | Desain studi efek dan forecast apotek, ditulis sebelum hasilnya dihitung |
 | 8 | [`08c_id_transfer.md`](reports/08c_id_transfer.md) | Efek Ramadan/Lebaran, forecast 14 hari, dan perbandingan dengan Easter |
-
----|---|
-| [`reports/02_eda.md`](reports/02_eda.md) | EDA: hari nol, pola mingguan, SNAP, hari tutup, Easter, kualitas data |
-| [`reports/03_validation_design.md`](reports/03_validation_design.md) | Desain fold dan aturan anti-leakage |
-| [`reports/04_easter_ablation.md`](reports/04_easter_ablation.md) | Uji fitur hari libur bergerak |
-| [`reports/05a_models.md`](reports/05a_models.md) | Baseline, XGBoost, model kuantil, dan cara membaca WRMSSE |
-| [`reports/05b_quantile_cap1000.md`](reports/05b_quantile_cap1000.md), [`reports/05c_quantile_cap3000.md`](reports/05c_quantile_cap3000.md) | Uji batas iterasi model kuantil |
-| [`reports/05d_tree_tuning.md`](reports/05d_tree_tuning.md) | Tuning parameter pohon dan konfirmasi di 10 toko |
-| [`reports/06_error_analysis.md`](reports/06_error_analysis.md) | Error per segmen, SHAP, dan studi kasus |
-| [`reports/07_inventory_sim.md`](reports/07_inventory_sim.md) | Simulasi stok dan analisis sensitivitas biaya |
-| [`reports/01_hardware_profile.md`](reports/01_hardware_profile.md) | Pemakaian RAM/VRAM dan cara menghematnya |
-| [`reports/08a_id_data_audit.md`](reports/08a_id_data_audit.md) | Audit kelayakan data apotek |
-| [`reports/08b_id_design.md`](reports/08b_id_design.md) | Desain studi efek dan forecast apotek, ditulis sebelum hasilnya dihitung |
-| [`reports/08c_id_transfer.md`](reports/08c_id_transfer.md) | Efek Ramadan/Lebaran, forecast 14 hari, dan perbandingan dengan Easter |
 
 ---
 
@@ -430,13 +422,9 @@ proyeknya ada di [`PROJECT_PLAN.md`](PROJECT_PLAN.md).
 
 ## Selanjutnya
 
-1. **Eksperimen fitur rata-rata item jangka pendek.** Dari SHAP, model terlalu bergantung pada
-   rata-rata item sepanjang riwayat. Saya ingin menguji apakah versi jendela terbaru memperbaiki
-   ramalan produk yang sedang naik atau turun. Kalau modelnya berubah, model kuantil dan simulasi
-   stok saya jalankan ulang.
-2. **Holdout M5:** evaluasi forecast dan simulasi stok di 25 Apr–22 Mei 2016, sekali saja,
-   setelah modelnya tidak akan diubah lagi.
-3. **Fase 9:** rangkuman akhir.
+1. **Holdout M5:** evaluasi forecast dan simulasi stok di 25 Apr–22 Mei 2016, sekali saja.
+   Model M5 sudah final, jadi ini bisa dijalankan sekarang.
+2. **Fase 9:** rangkuman akhir.
 
 Untuk menguji fitur Ramadan dengan benar, saya butuh data Indonesia yang mencakup minimal 2–3
 kali Lebaran. Kalau nanti menemukan data seperti itu, eksperimennya akan saya lanjutkan.

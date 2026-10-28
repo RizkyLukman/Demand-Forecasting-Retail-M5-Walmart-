@@ -87,6 +87,7 @@ def test_calendar_features_no_leakage(df, cal, cutoff):
 def test_fold_features_no_leakage(df, cal, cutoff):
     closed = closed_day_mask(df["d"].to_numpy(), cal, CFG)
     assert_no_leakage(lambda d, c: fold_features(d, c, closed), df, cutoff)
+    assert_no_leakage(lambda d, c: fold_features(d, c, closed, (182, 365)), df, cutoff)
 
 
 # --- kebenaran nilai ----------------------------------------------------------------
@@ -179,6 +180,19 @@ def test_fold_features_use_train_rows_only(df, cal):
     item = df["item_id"].cat.categories[0]
     m = ((df["item_id"] == item) & (df["d"] <= cutoff)).to_numpy() & ~closed
     assert out.loc[df["item_id"] == item, "te_item_mean"].iloc[0] == pytest.approx(df.loc[m, "sales"].mean(), rel=1e-5)
+
+
+def test_recent_item_mean_uses_last_window_only(df, cal):
+    closed = closed_day_mask(df["d"].to_numpy(), cal, CFG)
+    cutoff, w = 1801, 365
+    out = fold_features(df, cutoff, closed, (w,))
+    default = fold_features(df, cutoff, closed)
+    pd.testing.assert_frame_equal(out[default.columns], default)        # kolom lama tidak berubah
+    item = df["item_id"].cat.categories[0]
+    d = df["d"].to_numpy()
+    m = ((df["item_id"] == item).to_numpy() & (d <= cutoff) & (d > cutoff - w) & ~closed)
+    got = out.loc[df["item_id"] == item, f"te_item_mean_{w}"].iloc[0]
+    assert got == pytest.approx(df.loc[m, "sales"].mean(), rel=1e-5)
 
 
 def test_item_encoding_options(df):

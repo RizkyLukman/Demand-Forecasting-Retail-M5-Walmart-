@@ -1,6 +1,6 @@
 # Fase 7: Simulasi Stok (P3)
 
-*[← 06 Analisis error](06_error_analysis.md) · [Daftar laporan](README.md) · [08a Audit data apotek →](08a_id_data_audit.md)*
+*[← 06b Rata-rata item jendela terbaru](06b_te_recent_window.md) · [Daftar laporan](README.md) · [08a Audit data apotek →](08a_id_data_audit.md)*
 
 > **Status (24 Okt 2026):** simulasi selesai di **4 fold CV** (cv1–cv4, 10 toko, 30.490 deret,
 > 112 hari horizon). Holdout (d_1914–d_1941) **belum disentuh**; simulasinya dijalankan sekali

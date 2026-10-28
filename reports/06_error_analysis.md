@@ -1,6 +1,6 @@
 # Fase 6: Analisis Error per Segmen (P2)
 
-*[← 05d Tuning parameter pohon](05d_tree_tuning.md) · [Daftar laporan](README.md) · [07 Simulasi stok →](07_inventory_sim.md)*
+*[← 05d Tuning parameter pohon](05d_tree_tuning.md) · [Daftar laporan](README.md) · [06b Rata-rata item jendela terbaru →](06b_te_recent_window.md)*
 
 > **Status (24 Okt 2026):** analisis segmen, kategori, toko, hari, event, studi kasus, dan
 > SHAP **selesai**. Analisis error memakai prediksi Fase 5 yang sudah tersimpan. Untuk SHAP,
@@ -40,6 +40,8 @@
   +21% untuk item yang turun. Classical meleset ke arah sebaliknya. Untuk item yang tumbuh cepat
   (±9% unit), P90 kuantil hanya mencakup 79–86% hari. Perbaikan lewat fitur diperkirakan
   menaikkan WRMSSE total < 1% (§8.6), jadi eksperimennya **ditunda** sampai Fase 7.
+  *(Dijalankan 29 Okt 2026, lihat [06b](06b_te_recent_window.md): bias berkurang, tetapi WRMSSE
+  memburuk, sehingga fitur tidak diganti.)*
 
 ---
 
@@ -431,6 +433,7 @@ ini punya alasan bisnis untuk dijalankan.
 1. **Fase 7:** simulasi stok memakai forecast kuantil. Laporkan hasil terpisah untuk
    **kelompok item yang tumbuh cepat** (rasio > 2, §8.5), karena P90-nya kurang.
 2. **Eksperimen yang ditunda** (§8.6): `te_item_mean` dari jendela terbaru (misalnya 365 hari).
+   *Sudah dijalankan: [06b](06b_te_recent_window.md).*
    Dijalankan hanya kalau Fase 7 menunjukkan biaya kehabisan stok yang besar di item yang
    tumbuh. Ukuran keberhasilannya: bias per kelompok pertumbuhan dan coverage kuantil, bukan
    hanya WRMSSE.

@@ -45,6 +45,8 @@ class TrainOptions:
     refit: bool = False
     checkpoints: tuple[int, ...] = ()
     save_model: str = ""        # jika diisi: path file model (.ubj) untuk disimpan setelah training
+    te_recent_windows: tuple[int, ...] = ()  # tambah te_item_mean_W (rata-rata W hari terakhir)
+    te_drop_long: bool = False  # buang te_item_mean (seluruh riwayat) dari fitur
 
 
 def emulate_cap(es_curve, cap: int, patience: int) -> tuple[int, bool]:
@@ -98,7 +100,10 @@ def fit_predict(
     """
     opt = options or TrainOptions(item_encoding=item_encoding, max_rounds=max_rounds,
                                   early_stopping=early_stopping)
-    df = add_fold_features(base, fold.cutoff, fold.horizon)
+    df = add_fold_features(base, fold.cutoff, fold.horizon, opt.te_recent_windows)
+    feats = list(feats) + [f"te_item_mean_{w}" for w in opt.te_recent_windows]
+    if opt.te_drop_long:
+        feats = [f for f in feats if f != "te_item_mean"]
     d = df["d"].to_numpy()
     closed = df["is_closed"].to_numpy().astype(bool)
     fit, es, hz = fold.fit_mask(d, closed), fold.es_mask(d, closed), fold.horizon_mask(d)

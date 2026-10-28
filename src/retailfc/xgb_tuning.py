@@ -44,6 +44,7 @@ import numpy as np
 import pandas as pd
 import xgboost as xgb
 
+from retailfc.error_analysis import GROWTH_EDGES, GROWTH_LABELS, growth_ratio
 from retailfc.features import all_feature_names
 from retailfc.folds import build_folds
 from retailfc.io import load_config, load_wide_matrices
@@ -113,13 +114,24 @@ class Runner:
                           f"{info['seconds']:5.1f}s", flush=True)
                 del base
         per_fold = {}
+        g_act = {lab: 0.0 for lab in GROWTH_LABELS}
+        g_pred = {lab: 0.0 for lab in GROWTH_LABELS}
         for fname in FOLDS:
             f = self.folds[fname]
             actual = self.sales[:, f.cutoff:f.cutoff + f.horizon].astype(np.float64)
             ev = WRMSSE(self.ids, self.sales, self.prices, cutoff=f.cutoff, horizon=f.horizon)
             per_fold[fname] = round(ev.score(actual, preds[fname])["wrmsse"], 5)
+            # Bias per kelompok pertumbuhan (Fase 6 §8.5), dijumlah atas 4 fold. Hanya dilaporkan.
+            bins = pd.cut(growth_ratio(self.sales[:, :f.cutoff]), GROWTH_EDGES, labels=GROWTH_LABELS).astype(str)
+            for lab in GROWTH_LABELS:
+                m = bins == lab
+                g_act[lab] += float(actual[m].sum())
+                g_pred[lab] += float(preds[fname][m].astype(np.float64).sum())
         w = np.array([per_fold[f] for f in FOLDS])
         r = {"params": {k: v for k, v in params.items()}, "per_fold": per_fold,
+             "options": {k: v for k, v in opt.__dict__.items()},
+             "growth_bias": {lab: round(g_pred[lab] / g_act[lab] - 1, 4) if g_act[lab] else None
+                             for lab in GROWTH_LABELS},
              "wrmsse_mean": round(float(w.mean()), 5), "wrmsse_std": round(float(w.std(ddof=1)), 5),
              "peak_rss_gb": round(mem.peak_gb, 2), "minutes": round((time.perf_counter() - t0) / 60, 1),
              "infos": infos}
