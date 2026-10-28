@@ -12,10 +12,6 @@ Saya sengaja tidak berhenti di skor WRMSSE. Notebook M5 di Kaggle sudah ribuan, 
 saya tunjukkan di sini adalah prosesnya: backtest yang jujur, analisis error per segmen, dan
 simulasi stok yang menghubungkan forecast dengan biaya.
 
-**Status:** Fase 0–8 selesai, dan holdout M5 (25 Apr–22 Mei 2016) sudah dibuka **satu kali** di
-akhir, setelah model final dikunci. Selama eksperimen, holdout tidak pernah dipakai, jadi angkanya
-tidak ikut memengaruhi keputusan saya.
-
 ---
 
 ## Ringkasan hasil
@@ -436,16 +432,3 @@ pytest -q
 
 Semua parameter dan asumsi ada di [`config.yaml`](config.yaml). Rencana kerja dan aturan
 proyeknya ada di [`PROJECT_PLAN.md`](PROJECT_PLAN.md).
-
----
-
-## Selanjutnya
-
-Proyek utama sudah selesai, termasuk evaluasi holdout. Yang masih terbuka:
-
-- baseline untuk model kuantil, supaya pinball XGBoost kuantil punya pembanding;
-- model kuantil untuk fold khusus (Easter dan akhir tahun);
-- kutipan lisensi data M5 dari halaman aturan Kaggle.
-
-Untuk menguji fitur Ramadan dengan benar, saya butuh data Indonesia yang mencakup minimal 2–3
-kali Lebaran. Kalau nanti menemukan data seperti itu, eksperimennya akan saya lanjutkan.
