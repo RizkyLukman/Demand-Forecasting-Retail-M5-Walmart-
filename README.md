@@ -1,4 +1,4 @@
-# Demand Forecasting Retail: M5 Walmart → Indonesia
+# Demand Forecasting Retail: M5 Walmart >> Indonesia
 
 Proyek ini berawal dari satu pertanyaan sederhana: kalau penjualan harian setiap produk di setiap
 toko diramal dengan XGBoost, seberapa akurat hasilnya, di bagian mana modelnya gagal, dan apakah
