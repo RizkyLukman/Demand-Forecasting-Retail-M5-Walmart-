@@ -169,79 +169,67 @@ def cost(s: dict, holding_annual: float, stockout_rate: float) -> float:
     return s["hold_value"] * holding_annual / 365 + s["lost_value"] * stockout_rate
 
 
-def main() -> None:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default="config.yaml")
-    args = ap.parse_args()
-    cfg = load_config(args.config)
+def simulate_fold(f, ids, sales, prices, cal, cfg: dict, root: Path) -> dict:
+    """Simulasi semua metode × kuantil untuk satu fold. Prediksi dibaca dari `root/<fold>/`."""
     inv = cfg["inventory"]
     R, L = inv["review_period_days"], inv["lead_time_days"]
     alphas = [a for a in inv["service_quantiles"] if a in QUANTILE_ALPHAS]   # xgb_quantile
     base_alphas = inv["baseline_quantiles"]
-    folds = [f for f in build_folds(cfg) if f.role == "cv"]
-    ids, sales, prices = load_wide_matrices(cfg, cfg["validation"]["holdout_cutoff"])
-    cal = load_calendar(Path(cfg["paths"]["raw_m5"]))
-    root = Path(cfg["paths"]["processed"]) / "preds"
     cats = ids["cat_id"].astype(str).to_numpy()
+    c, h = f.cutoff, f.horizon
+    closed = closed_day_mask(np.arange(1, c + 1), cal, cfg)
+    hist = fill_closed(sales[:, :c], closed)
+    sold_hist = hist > 0
+    has = sold_hist.any(axis=1)
+    first = np.where(has, sold_hist.argmax(axis=1), c)
+    win = inv["sigma_window_days"]
+    recent = np.where(np.arange(c - win, c)[None, :] >= first[:, None], hist[:, -win:], np.nan)
+    with warnings.catch_warnings():               # deret tanpa riwayat → NaN → 0
+        warnings.simplefilter("ignore", RuntimeWarning)
+        sigma = np.nan_to_num(np.nanstd(recent, axis=1), nan=0.0)
+    demand = sales[:, c:c + h].astype(np.float64)
+    with warnings.catch_warnings():               # item tanpa harga 28 hari terakhir → 0
+        warnings.simplefilter("ignore", RuntimeWarning)
+        p_ref = np.nan_to_num(np.nanmean(prices[:, c - 28:c], axis=1), nan=0.0)
+    price = np.where(np.isnan(prices[:, c:c + h]), p_ref[:, None], prices[:, c:c + h]).astype(np.float64)
+    point = {m: np.load(root / f.name / f"{m}.npy").astype(np.float64) for m in ("xgb_point", "classical")}
+    qpred = np.load(root / f.name / "xgb_quantile.npy").astype(np.float64)
+    windows = protection_windows(h, R, L)
+    lengths = [b - a for a, b in windows]
+    emp = {}
+    for a_ in sorted(set(alphas) | set(base_alphas)):
+        for n_days, v in empirical_targets(hist, first, lengths, a_, inv["empirical_window_days"]).items():
+            emp[(a_, n_days)] = v
+    hist_mean = history_mean(hist, first, inv["empirical_window_days"])
+    seg = pd.read_parquet(root / f.name / "segments.parquet")["segment"].astype(str).to_numpy()
+    growth = growth_ratio(sales[:, :c])
+    groups = {"all": np.ones(len(ids), bool), "has_history": has,
+              "fast_growing": growth > inv["growth_risk_ratio"],
+              "not_fast_growing": has & ~(growth > inv["growth_risk_ratio"])}
+    groups |= {f"segment={s}": seg == s for s in ["smooth", "erratic", "intermittent", "lumpy"]}
+    groups |= {f"cat={k}": cats == k for k in sorted(set(cats))}
 
-    out: dict = {"assumptions": inv, "methods": METHODS, "folds": {}}
-    for f in folds:
-        c, h = f.cutoff, f.horizon
-        closed = closed_day_mask(np.arange(1, c + 1), cal, cfg)
-        hist = fill_closed(sales[:, :c], closed)
-        sold_hist = hist > 0
-        has = sold_hist.any(axis=1)
-        first = np.where(has, sold_hist.argmax(axis=1), c)
-        win = inv["sigma_window_days"]
-        recent = np.where(np.arange(c - win, c)[None, :] >= first[:, None], hist[:, -win:], np.nan)
-        with warnings.catch_warnings():               # deret tanpa riwayat → NaN → 0
-            warnings.simplefilter("ignore", RuntimeWarning)
-            sigma = np.nan_to_num(np.nanstd(recent, axis=1), nan=0.0)
-        demand = sales[:, c:c + h].astype(np.float64)
-        with warnings.catch_warnings():               # item tanpa harga 28 hari terakhir → 0
-            warnings.simplefilter("ignore", RuntimeWarning)
-            p_ref = np.nan_to_num(np.nanmean(prices[:, c - 28:c], axis=1), nan=0.0)
-        price = np.where(np.isnan(prices[:, c:c + h]), p_ref[:, None], prices[:, c:c + h]).astype(np.float64)
-        point = {m: np.load(root / f.name / f"{m}.npy").astype(np.float64) for m in ("xgb_point", "classical")}
-        qpred = np.load(root / f.name / "xgb_quantile.npy").astype(np.float64)
-        windows = protection_windows(h, R, L)
-        lengths = [b - a for a, b in windows]
-        emp = {}
-        for a_ in sorted(set(alphas) | set(base_alphas)):
-            for n_days, v in empirical_targets(hist, first, lengths, a_, inv["empirical_window_days"]).items():
-                emp[(a_, n_days)] = v
-        hist_mean = history_mean(hist, first, inv["empirical_window_days"])
-        seg = pd.read_parquet(root / f.name / "segments.parquet")["segment"].astype(str).to_numpy()
-        growth = growth_ratio(sales[:, :c])
-        groups = {"all": np.ones(len(ids), bool), "has_history": has,
-                  "fast_growing": growth > inv["growth_risk_ratio"],
-                  "not_fast_growing": has & ~(growth > inv["growth_risk_ratio"])}
-        groups |= {f"segment={s}": seg == s for s in ["smooth", "erratic", "intermittent", "lumpy"]}
-        groups |= {f"cat={k}": cats == k for k in sorted(set(cats))}
+    fold_out: dict = {}
+    for m in METHODS:
+        for a_ in (alphas if m == "xgb_quantile" else base_alphas):
+            S = build_targets(m, a_, windows, point, qpred, sigma, emp, hist_mean)
+            res = simulate(demand, price, S, R, L)
+            key = f"{m}@{a_}"
+            fold_out[key] = {"coverage_S": round(coverage(demand, S, windows), 4),
+                             "groups": {g: summarize(res, sel, h) for g, sel in groups.items()}}
+    return fold_out
 
-        fold_out: dict = {}
-        for m in METHODS:
-            for a_ in (alphas if m == "xgb_quantile" else base_alphas):
-                S = build_targets(m, a_, windows, point, qpred, sigma, emp, hist_mean)
-                res = simulate(demand, price, S, R, L)
-                key = f"{m}@{a_}"
-                fold_out[key] = {"coverage_S": round(coverage(demand, S, windows), 4),
-                                 "groups": {g: summarize(res, sel, h) for g, sel in groups.items()}}
-        out["folds"][f.name] = fold_out
-        g = fold_out
-        print(f"{f.name}: " + " ".join(f"{k} fill={v['groups']['all']['fill_rate']:.3f}"
-                                         f" cov={v['coverage_S']:.3f}" for k, v in g.items() if k.endswith("0.9")),
-              flush=True)
 
-    # Ringkasan: jumlah 4 fold per metode × kuantil × kelompok, lalu biaya untuk tiap asumsi.
-    keys = list(out["folds"][folds[0].name])
-    group_names = list(out["folds"][folds[0].name][keys[0]]["groups"])
+def aggregate(fold_outs: dict, folds, inv: dict) -> dict:
+    """Jumlah atas fold per metode × kuantil × kelompok, biaya tiap asumsi, dan kurva trade-off."""
+    keys = list(fold_outs[folds[0].name])
+    group_names = list(fold_outs[folds[0].name][keys[0]]["groups"])
     summary = {}
     for k in keys:
-        summary[k] = {"coverage_S_mean": round(float(np.mean([out["folds"][f.name][k]["coverage_S"] for f in folds])), 4),
+        summary[k] = {"coverage_S_mean": round(float(np.mean([fold_outs[f.name][k]["coverage_S"] for f in folds])), 4),
                       "groups": {}}
         for gname in group_names:
-            tot = {m: sum(out["folds"][f.name][k]["groups"][gname][m] for f in folds)
+            tot = {m: sum(fold_outs[f.name][k]["groups"][gname][m] for f in folds)
                    for m in ("demand", "sold", "lost", "hold_units", "hold_value", "lost_value", "ending_stock", "ordered")}
             tot["fill_rate"] = tot["sold"] / tot["demand"] if tot["demand"] > 0 else None
             tot["avg_on_hand_per_day"] = tot["hold_units"] / (len(folds) * folds[0].horizon)
@@ -270,15 +258,33 @@ def main() -> None:
             xs, ys = [p[0] for p in pts], [p[1] for p in pts]
             frontier[gname][m] = {str(x): (round(float(np.interp(x, xs, ys)), 4) if xs and xs[0] <= x <= xs[-1] else None)
                                   for x in inv["cover_grid_days"]}
-    out["frontier_fill_rate_at_cover_days"] = frontier
-    out["summary"] = summary
-    out["sensitivity"] = sens
+    return {"frontier_fill_rate_at_cover_days": frontier, "summary": summary, "sensitivity": sens}
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--config", default="config.yaml")
+    args = ap.parse_args()
+    cfg = load_config(args.config)
+    inv = cfg["inventory"]
+    folds = [f for f in build_folds(cfg) if f.role == "cv"]
+    ids, sales, prices = load_wide_matrices(cfg, cfg["validation"]["holdout_cutoff"])
+    cal = load_calendar(Path(cfg["paths"]["raw_m5"]))
+    root = Path(cfg["paths"]["processed"]) / "preds"
+
+    out: dict = {"assumptions": inv, "methods": METHODS, "folds": {}}
+    for f in folds:
+        g = out["folds"][f.name] = simulate_fold(f, ids, sales, prices, cal, cfg, root)
+        print(f"{f.name}: " + " ".join(f"{k} fill={v['groups']['all']['fill_rate']:.3f}"
+                                         f" cov={v['coverage_S']:.3f}" for k, v in g.items() if k.endswith("0.9")),
+              flush=True)
+    out |= aggregate(out["folds"], folds, inv)
     rep = Path(cfg["paths"]["reports"])
     (rep / "data" / "inventory_sim.json").write_text(json.dumps(out, indent=2, default=str), encoding="utf-8")
-    for k in keys:
-        a = summary[k]["groups"]["all"]
+    for k, s in out["summary"].items():
+        a = s["groups"]["all"]
         print(f"{k:22s} fill={a['fill_rate']:.4f} lost={a['lost']:.0f} cover={a['days_of_cover']:.2f}d "
-              f"cost={a['cost_base']:.0f} covS={summary[k]['coverage_S_mean']:.3f}")
+              f"cost={a['cost_base']:.0f} covS={s['coverage_S_mean']:.3f}")
 
 
 if __name__ == "__main__":

@@ -21,6 +21,7 @@ Ringkasan hasil keseluruhan ada di [README utama](../README.md).
 | 8a | [Audit data apotek](08a_id_data_audit.md) | Apakah data apotek cukup untuk fitur Ramadan? | Tidak: hanya 2015 (lengkap Apr–Des), satu Idulfitri |
 | 8b | [Desain analisis apotek](08b_id_design.md) | Apa yang masih bisa diuji dengan jujur? | Studi efek dengan uji plasebo + forecast 14 hari; ditetapkan sebelum hasil dihitung |
 | 8c | [Transfer ke apotek](08c_id_transfer.md) | Bagaimana efek Lebaran dan kinerja XGBoost di data kecil? | Pekan Lebaran normal, nota turun 25%/37% dua minggu sesudahnya; XGBoost kalah dari baseline sederhana |
+| 9 | [Evaluasi holdout M5](09_holdout.md) | Apakah hasil CV bertahan di 28 hari yang tidak pernah disentuh? | Ya: XGBoost 0,563 (CV 0,52–0,64), 35% lebih kecil dari baseline terbaik; empiris tetap termurah untuk stok |
 
 **Folder lain:**
 - [`figures/`](figures/): semua grafik. Nama file diawali fase (`eda_`, `phase5_`, `phase8_`, dst.).

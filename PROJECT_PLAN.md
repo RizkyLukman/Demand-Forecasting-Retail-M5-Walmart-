@@ -422,8 +422,8 @@ antar fold), temuan per segmen, hasil simulasi stok, hasil transfer Indonesia,
       terbaru dijalankan 29 Okt (`reports/06b_te_recent_window.md`): bias kelompok berkurang, tetapi
       WRMSSE memburuk, jadi fitur tidak diganti. SHAP GPU tidak aditif untuk fitur kategorikal, jadi
       dihitung di CPU)
-- [ ] F7: simulasi stok + analisis sensitivitas biaya → `reports/07_inventory_sim.md`
-      (**selesai di fold CV; simulasi holdout dijalankan sekali di akhir proyek.** Periodic review
+- [x] F7: simulasi stok + analisis sensitivitas biaya → `reports/07_inventory_sim.md`
+      (holdout: `reports/09_holdout.md`, empiris termurah di 12 dari 12 asumsi. Periodic review
       R=7, L=2, lost sales, biaya = asumsi. XGBoost point + safety stock paling efisien di stok
       6–10 hari; di layanan ≥ 98% empiris paling efisien. Asumsi dasar: empiris termurah,
       XGBoost kuantil +8,4%; empiris termurah di 10 dari 12 asumsi biaya. Jumlah kuantil harian
@@ -437,4 +437,7 @@ antar fold), temuan per segmen, hasil simulasi stok, hasil transfer Indonesia,
       XGBoost tidak mengalahkan baseline sederhana (agregat 0 dari 24 terbaik; produk WRMSSE 0,98 vs
       0,94); fitur libur umum tidak membantu. Fitur ala Easter ±7 hari akan melewatkan efek
       Lebaran, yang terjadi 5–18 hari sesudahnya)
+- [x] Holdout M5 (dibuka sekali, 29 Okt 2026) → `reports/09_holdout.md`
+      (XGBoost WRMSSE 0,563, di dalam rentang CV 0,520–0,638; baseline terbaik seasonal naive 0,870;
+      kuantil P80/P90 79,5%/88,7%, sedikit di bawah fold CV terendah)
 - [ ] F9: README hasil & keterbatasan

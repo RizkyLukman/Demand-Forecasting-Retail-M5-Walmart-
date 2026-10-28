@@ -1,0 +1,107 @@
+{
+  "xgb_point": {
+    "params": {
+      "objective": "reg:tweedie",
+      "tweedie_variance_power": 1.1,
+      "max_bin": 256,
+      "eta": 0.05,
+      "max_depth": 8,
+      "min_child_weight": 10,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "seed": 42
+    },
+    "options": {
+      "item_encoding": "label",
+      "exclude_censored": true,
+      "censor_run": 28,
+      "busy_share": 0.5,
+      "refit": false,
+      "max_rounds": 3000,
+      "early_stopping": 100
+    }
+  },
+  "xgb_quantile": {
+    "params": {
+      "objective": "reg:quantileerror",
+      "quantile_alpha": [
+        0.1,
+        0.5,
+        0.8,
+        0.9
+      ],
+      "max_bin": 256,
+      "eta": 0.2,
+      "max_depth": 8,
+      "min_child_weight": 10,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "seed": 42
+    },
+    "options": {
+      "item_encoding": "label",
+      "exclude_censored": true,
+      "censor_run": 28,
+      "busy_share": 0.5,
+      "refit": false,
+      "max_rounds": 1000,
+      "early_stopping": 100
+    }
+  },
+  "inventory": {
+    "review_period_days": 7,
+    "lead_time_days": 2,
+    "service_quantiles": [
+      0.5,
+      0.8,
+      0.9
+    ],
+    "baseline_quantiles": [
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      0.95,
+      0.98,
+      0.99,
+      0.995
+    ],
+    "cover_grid_days": [
+      4,
+      6,
+      8,
+      10,
+      12,
+      14
+    ],
+    "holding_cost_annual_rate": 0.25,
+    "stockout_cost_rate": 0.3,
+    "sensitivity": {
+      "holding_cost_annual_rate": [
+        0.15,
+        0.25,
+        0.4
+      ],
+      "stockout_cost_rate": [
+        0.1,
+        0.3,
+        0.5,
+        1.0
+      ]
+    },
+    "sigma_window_days": 56,
+    "empirical_window_days": 364,
+    "growth_risk_ratio": 2.0
+  },
+  "fold": {
+    "name": "holdout",
+    "cutoff": 1913,
+    "horizon": [
+      1914,
+      1941
+    ]
+  },
+  "xgboost": "3.4.1",
+  "python": "3.12.5"
+}

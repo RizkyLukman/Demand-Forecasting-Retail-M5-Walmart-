@@ -1,6 +1,6 @@
 # Fase 8c: Transfer ke Data Apotek Indonesia (P5)
 
-*[← 08b Desain analisis apotek](08b_id_design.md) · [Daftar laporan](README.md)*
+*[← 08b Desain analisis apotek](08b_id_design.md) · [Daftar laporan](README.md) · [09 Evaluasi holdout M5 →](09_holdout.md)*
 
 > **Status (28 Okt 2026):** selesai, mengikuti jalur "tidak cukup" dari
 > `reports/08a_id_data_audit.md`. Desain ditetapkan sebelum hasil dihitung:

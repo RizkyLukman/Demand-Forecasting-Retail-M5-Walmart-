@@ -12,11 +12,9 @@ Saya sengaja tidak berhenti di skor WRMSSE. Notebook M5 di Kaggle sudah ribuan, 
 saya tunjukkan di sini adalah prosesnya: backtest yang jujur, analisis error per segmen, dan
 simulasi stok yang menghubungkan forecast dengan biaya.
 
-**Status:** Fase 0–8 selesai. Holdout M5 (25 Apr–22 Mei 2016) sengaja **belum dipakai sama
-sekali**. Tuning parameter pohon dan eksperimen fitur terakhir sudah selesai, dan keduanya tidak
-mengubah model, jadi model M5 sekarang sudah final.
-Holdout baru dibuka sekali di akhir proyek, supaya ada satu angka akhir yang benar-benar tidak
-ikut memengaruhi keputusan saya selama eksperimen.
+**Status:** Fase 0–8 selesai, dan holdout M5 (25 Apr–22 Mei 2016) sudah dibuka **satu kali** di
+akhir, setelah model final dikunci. Selama eksperimen, holdout tidak pernah dipakai, jadi angkanya
+tidak ikut memengaruhi keputusan saya.
 
 ---
 
@@ -25,6 +23,9 @@ ikut memengaruhi keputusan saya selama eksperimen.
 - **XGBoost jauh lebih akurat daripada semua baseline.** WRMSSE rata-rata 4 fold **0,582**,
   sedangkan baseline terbaik (ETS + TSB) **0,916**. Error-nya sekitar 36% lebih kecil, dan
   XGBoost menang di ketujuh periode uji.
+- **Holdout mengonfirmasi angka itu.** Di 28 hari terakhir yang tidak pernah saya sentuh,
+  WRMSSE XGBoost **0,563**, masih di dalam rentang fold CV, dan 35% lebih kecil dari baseline
+  terbaik di periode itu.
 - **Tetapi keunggulannya ada di level gabungan.** Untuk total penjualan harian 10 toko, akurasinya
   96,4% (baseline 90,4%). Untuk satu produk di satu toko per hari, akurasinya hanya 22,3%, sedikit
   di bawah baseline (24,2%). Penjualan per produk per hari memang sangat acak.
@@ -125,16 +126,24 @@ Aturan yang saya pegang selama proyek:
 
 ![WRMSSE per fold](reports/figures/phase5_wrmsse_by_fold.png)
 
-| Model | WRMSSE (rata-rata 4 fold ± sd) |
-|---|---:|
-| **XGBoost** (satu model per toko, objective tweedie) | **0,582 ± 0,051** |
-| Classical (ETS untuk deret stabil, TSB untuk deret intermiten) | 0,916 ± 0,032 |
-| Seasonal naive (nilai 7 hari lalu) | 0,986 ± 0,101 |
-| TSB | 1,100 |
-| Moving average 28 hari | 1,103 |
-| Croston | 1,128 |
+| Model | WRMSSE CV (rata-rata 4 fold ± sd) | WRMSSE holdout |
+|---|---:|---:|
+| **XGBoost** (satu model per toko, objective tweedie) | **0,582 ± 0,051** | **0,563** |
+| Classical (ETS untuk deret stabil, TSB untuk deret intermiten) | 0,916 ± 0,032 | 0,890 |
+| Seasonal naive (nilai 7 hari lalu) | 0,986 ± 0,101 | 0,870 |
+| TSB | 1,100 | 1,068 |
+| Moving average 28 hari | 1,103 | 1,082 |
+| Croston | 1,128 | 1,058 |
 
 WRMSSE lebih kecil lebih baik. Nilai 1 kira-kira setara dengan menebak "besok sama dengan hari ini".
+
+![Holdout vs CV](reports/figures/phase9_holdout_wrmsse.png)
+
+Holdout baru saya buka setelah semua eksperimen selesai. Semua model mendapat angka sedikit lebih
+baik daripada rata-rata CV-nya, jadi periode itu memang sedikit lebih mudah diramal. Yang penting,
+XGBoost tetap di dalam rentang CV, unggul di 12 dari 12 level hierarki, dan biasnya paling kecil
+(total −2,6%). Model kuantil masih dekat target (P80 79,5%, P90 88,7%), tetapi sedikit di bawah
+fold CV terendahnya. Detail: [`09_holdout.md`](reports/09_holdout.md).
 
 ![Akurasi per level](reports/figures/phase5_accuracy_by_level.png)
 
@@ -217,6 +226,10 @@ Dua hal lain yang saya pelajari:
   hanya mencakup 28% periode, sedangkan P90-nya 97%.
 - Metode gabungan (level dari XGBoost, bentuk distribusi dari riwayat) yang saya harapkan bisa
   mengambil kelebihan keduanya ternyata lebih mahal di semua asumsi biaya.
+
+Di holdout, simulasi yang sama memberi kesimpulan yang sama, bahkan lebih tegas. Metode empiris
+termurah di 12 dari 12 asumsi biaya. XGBoost + safety stock masih paling efisien di stok 6–8 hari,
+tetapi keunggulannya menyempit jadi 0,7–1,9 poin fill rate.
 
 ---
 
@@ -317,7 +330,8 @@ sampai 0,57 pada 98% baris). Versi CPU tepat. Semua angka SHAP di sini dihitung 
 
 ## Keterbatasan
 
-- Semua angka berasal dari backtest. Holdout belum dipakai.
+- Holdout hanya satu periode 28 hari. Angka holdout menguji apakah ada kebocoran atau overfit
+  terhadap fold CV, tetapi satu periode tidak lebih andal daripada rata-rata 4 fold.
 - Penjualan tidak sama dengan permintaan. Saat stok habis, penjualan tercatat lebih rendah dari
   permintaan sebenarnya, dan M5 tidak punya data persediaan untuk memastikannya.
 - Biaya di simulasi stok adalah asumsi. Kedaluwarsa, kapasitas rak, dan minimum order tidak
@@ -376,6 +390,7 @@ Laporan diberi nomor sesuai urutan pengerjaan. Ringkasan satu baris tiap laporan
 | 8 | [`08a_id_data_audit.md`](reports/08a_id_data_audit.md) | Audit kelayakan data apotek |
 | 8 | [`08b_id_design.md`](reports/08b_id_design.md) | Desain studi efek dan forecast apotek, ditulis sebelum hasilnya dihitung |
 | 8 | [`08c_id_transfer.md`](reports/08c_id_transfer.md) | Efek Ramadan/Lebaran, forecast 14 hari, dan perbandingan dengan Easter |
+| 9 | [`09_holdout.md`](reports/09_holdout.md) | Evaluasi holdout M5 (sekali): forecast, kuantil, dan simulasi stok |
 
 ---
 
@@ -403,6 +418,10 @@ python -m retailfc.error_analysis   --config config.yaml
 python -m retailfc.shap_analysis    --config config.yaml
 python -m retailfc.inventory_sim    --config config.yaml
 
+# holdout (hanya sekali, setelah model final)
+python -m retailfc.holdout_eval     --config config.yaml
+python -m retailfc.holdout_report   --config config.yaml
+
 # data apotek: taruh sales.zip dari Mendeley di data/raw/id_pharmacy/, lalu ekstrak sales.sql
 # di folder yang sama
 python -m retailfc.id_pharmacy      --config config.yaml
@@ -422,9 +441,11 @@ proyeknya ada di [`PROJECT_PLAN.md`](PROJECT_PLAN.md).
 
 ## Selanjutnya
 
-1. **Holdout M5:** evaluasi forecast dan simulasi stok di 25 Apr–22 Mei 2016, sekali saja.
-   Model M5 sudah final, jadi ini bisa dijalankan sekarang.
-2. **Fase 9:** rangkuman akhir.
+Proyek utama sudah selesai, termasuk evaluasi holdout. Yang masih terbuka:
+
+- baseline untuk model kuantil, supaya pinball XGBoost kuantil punya pembanding;
+- model kuantil untuk fold khusus (Easter dan akhir tahun);
+- kutipan lisensi data M5 dari halaman aturan Kaggle.
 
 Untuk menguji fitur Ramadan dengan benar, saya butuh data Indonesia yang mencakup minimal 2–3
 kali Lebaran. Kalau nanti menemukan data seperti itu, eksperimennya akan saya lanjutkan.

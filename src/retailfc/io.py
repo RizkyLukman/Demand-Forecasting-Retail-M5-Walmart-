@@ -79,6 +79,10 @@ def load_wide_matrices(cfg: dict, max_d: int) -> tuple[pd.DataFrame, np.ndarray,
     pr = pr[pr["wm_yr_wk"].isin(weeks)]
     key = pd.MultiIndex.from_frame(ids[["store_id", "item_id"]].astype(str))
     row = key.get_indexer(pd.MultiIndex.from_arrays([pr["store_id"].astype(str), pr["item_id"].astype(str)]))
+    # Harga untuk store-item yang tidak ada di file penjualan akan bernilai -1, dan tanpa cek
+    # ini akan diam-diam menimpa harga deret terakhir.
+    if (row < 0).any():
+        raise ValueError(f"{int((row < 0).sum())} baris harga tidak punya deret penjualan")
     col = np.searchsorted(weeks, pr["wm_yr_wk"].to_numpy())
     pw = np.full((len(ids), len(weeks)), np.nan, dtype=np.float32)
     pw[row, col] = pr["sell_price"].to_numpy()
