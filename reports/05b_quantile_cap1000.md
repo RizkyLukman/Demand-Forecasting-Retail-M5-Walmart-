@@ -1,9 +1,11 @@
-# Rekap Model Kuantil Final: Batas 1.000 Iterasi
+# Fase 5b: Model Kuantil Final, Batas 1.000 Iterasi
+
+*[← 05a Model dan baseline](05a_models.md) · [Daftar laporan](README.md) · [05c Uji batas iterasi →](05c_quantile_cap3000.md)*
 
 > **Tanggal:** 24 Okt 2026. **Run:** `reports/runs/20261024_075605_xgb_quantile/`.
 > Hanya fold CV (cv1–cv4, data ≤ d_1913). Holdout belum disentuh.
 > Lanjutan: uji batas hingga 3.000 iterasi (§6). **Hasil:** batas 1.000 tetap dipakai;
-> pohon tambahan sedikit memperburuk horizon. Lihat `reports/quantile_cap3000_comparison.md`.
+> pohon tambahan sedikit memperburuk horizon. Lihat `reports/05c_quantile_cap3000.md`.
 
 ---
 
@@ -28,7 +30,7 @@
 | | Nilai |
 |---|---|
 | Objective | `reg:quantileerror`, α = 0,1 / 0,5 / 0,8 / 0,9 dalam satu model per toko |
-| eta | 0,2 (dipilih di `reports/phase5_models.md` §8) |
+| eta | 0,2 (dipilih di `reports/05a_models.md` §8) |
 | Batas iterasi | **1.000**, early stopping 100 iterasi |
 | Validasi early stopping | 28 hari terakhir sebelum cutoff (bukan horizon) |
 | Pohon | max_depth 8, min_child_weight 10, subsample 0,8, colsample_bytree 0,8, max_bin 256, seed 42 |
@@ -61,7 +63,7 @@ dibandingkan antar model di data yang sama, bukan antar toko.
 | **rata-rata** | 58,1% | 65,4% | **81,0%** | **89,4%** |
 
 **Cara membaca coverage P10 dan P50 yang jauh di atas target:** sekitar 60% hari
-item-toko bernilai nol (`reports/eda.md`). Pada hari itu, forecast kuantil rendah juga
+item-toko bernilai nol (`reports/02_eda.md`). Pada hari itu, forecast kuantil rendah juga
 sering 0, dan "aktual 0 ≤ forecast 0" dihitung tercakup. Untuk data hitungan yang
 didominasi nol, coverage kuantil rendah pasti jauh di atas targetnya. P80 dan P90 tidak
 terdampak, dan keduanya yang dipakai simulasi stok (Fase 7).

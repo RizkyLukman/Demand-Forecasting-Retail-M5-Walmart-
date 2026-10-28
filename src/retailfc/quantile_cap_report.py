@@ -137,7 +137,7 @@ def cap_table(a: dict, b: dict) -> list[dict]:
 
 
 def choose_cap(rows: list[dict], tol_pct: float = 1.0, cov_tol: float = 0.01) -> dict:
-    """Aturan keputusan (reports/quantile_cap1000.md §6): batas terkecil yang pinball rata-rata
+    """Aturan keputusan (reports/05b_quantile_cap1000.md §6): batas terkecil yang pinball rata-rata
     4 fold-nya dalam `tol_pct`% dari pinball terbaik di semua batas, dan coverage P80/P90-nya
     tidak menjauh dari target lebih dari `cov_tol` dibanding batas acuan (baris pertama)."""
     best = min(r["pinball_mean"] for r in rows)

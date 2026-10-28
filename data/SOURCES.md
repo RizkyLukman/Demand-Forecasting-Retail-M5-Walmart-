@@ -75,12 +75,12 @@ sama, tidak ada yang hilang atau berlebih):
 - 6.841.121 baris, 10 toko, 3.049 item, `wm_yr_wk` 11101 … 11621.
 - Rentang harga 0,01 … 107,32, tanpa NaN, tanpa kunci (toko, item, minggu) ganda.
 - Kandidat anomali (sampai minggu d_1913): 405 baris < 20% median item-toko dan 34 baris
-  > 5× median. Dibiarkan; lihat `reports/eda.md` §P5.
+  > 5× median. Dibiarkan; lihat `reports/02_eda.md` §P5.
 
 **Deretan nol panjang (censored demand)**
 - 62% item laris (laku ≥ 50% hari) pernah tidak terjual ≥ 28 hari berturut-turut;
   29,5% dari semua hari bernilai nol berada di dalam deretan seperti itu. Indikasi kuat
-  stok habis. Lihat `reports/eda.md` §P5.
+  stok habis. Lihat `reports/02_eda.md` §P5.
 
 **File validation vs evaluation**
 - `sales_train_validation.csv` berakhir di `d_1913`; urutan deretnya sama dengan file
@@ -102,7 +102,7 @@ sama, tidak ada yang hilang atau berlebih):
 Catatan untuk P4: Easter 2016 (d_1885) adalah **hari terakhir horizon CV 3**, dan CV 4
 dimulai sehari sesudahnya. Tidak ada satu fold pun yang mencakup jendela sekitar Easter
 2016. Ablation Easter butuh fold tambahan di sekitar Easter tahun sebelumnya (mis.
-2015-04-05 = d_1528). Fold tambahan ini dibuat di Fase 3 (`reports/validation_design.md`).
+2015-04-05 = d_1528). Fold tambahan ini dibuat di Fase 3 (`reports/03_validation_design.md`).
 
 ---
 
@@ -153,5 +153,5 @@ dimulai sehari sesudahnya. Tidak ada satu fold pun yang mencakup jendela sekitar
   `ms_sales`, `transaction`. Deskripsi Mendeley menyebut `ms_products`; nama di dump
   `ms_product`.
 - Periode: 1 Jan–31 Des 2015. Header nota Jan–Mar sebagian besar hilang. Detail:
-  `reports/id_data_audit.md`.
+  `reports/08a_id_data_audit.md`.
 - Kolom `KD_CUST` dan `KD_DOKTER` berisi kode pasien/dokter; hanya dipakai untuk agregat.

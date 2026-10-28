@@ -1,4 +1,6 @@
-# Tuning Parameter Pohon XGBoost (sisa Fase 5)
+# Fase 5d: Tuning Parameter Pohon XGBoost
+
+*[← 05c Uji batas iterasi](05c_quantile_cap3000.md) · [Daftar laporan](README.md) · [06 Analisis error →](06_error_analysis.md)*
 
 > **Status (29 Okt 2026):** selesai. **Tidak ada parameter yang diganti.** Konfigurasi final tetap
 > `config.yaml → model.xgb_point`. Kode: `src/retailfc/xgb_tuning.py`. Angka lengkap:

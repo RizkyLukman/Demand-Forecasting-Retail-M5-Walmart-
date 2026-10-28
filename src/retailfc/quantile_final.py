@@ -1,7 +1,7 @@
 """Fase 5: model kuantil final untuk 10 toko × 4 fold CV (bahan Fase 6–7).
 
 Konfigurasi dibaca dari `config.yaml → model.xgb_quantile` (dipilih lewat
-`quantile_experiments.py`, lihat reports/phase5_models.md §8). Parameter dipakai persis
+`quantile_experiments.py`, lihat reports/05a_models.md §8). Parameter dipakai persis
 seperti di eksperimen: tanpa `eval_metric` tambahan, jadi early stopping memakai metrik
 bawaan objective kuantil.
 
@@ -21,7 +21,7 @@ Output:
 - cek konsistensi: pinball CA_3/WI_2 harus sama dengan reports/data/quantile_experiments.json
   (jika batasnya sama), dan model yang dilatih ulang harus sama dengan run acuan.
 
-Uji batas iterasi (rencana di reports/quantile_cap1000.md §6): satu run berbatas 3.000
+Uji batas iterasi (rencana di reports/05b_quantile_cap1000.md §6): satu run berbatas 3.000
 dengan titik baca 1.000/1.500/2.000/2.500/3.000. Training deterministik, jadi hasil di
 titik C sama dengan run berbatas C (lihat `train.emulate_cap`). Titik 1.000 harus memberi
 hasil yang sama persis dengan run batas 1.000 yang sudah ada; ini dicek otomatis.

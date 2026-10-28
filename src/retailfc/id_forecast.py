@@ -1,6 +1,6 @@
 """Fase 8: forecast 14 hari pada data apotek (agregat dan produk), XGBoost vs baseline.
 
-Desain: reports/id_phase8_design.md §3, parameter: config.yaml → id_pharmacy.forecast.
+Desain: reports/08b_id_design.md §3, parameter: config.yaml → id_pharmacy.forecast.
 
 - Deret agregat: nota RJ, nota RI, unit total (satu model gabungan).
 - Deret produk: unit per produk, untuk produk yang terjual di >= 50% hari train fold itu.

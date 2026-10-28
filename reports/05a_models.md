@@ -1,4 +1,6 @@
-# Fase 5: Hasil Sementara Baseline dan XGBoost
+# Fase 5a: Baseline, XGBoost, dan Model Kuantil
+
+*[← 04 Ablation Easter](04_easter_ablation.md) · [Daftar laporan](README.md) · [05b Model kuantil final →](05b_quantile_cap1000.md)*
 
 > **Status (24 Okt 2026):** point forecast **selesai** (10 toko × 7 fold).
 > Eksperimen kuantil **selesai** (eta 0,2 terpilih, §8). Model kuantil final 10 toko
@@ -33,7 +35,7 @@
 
 Data M5 punya tiga sifat yang menyulitkan metrik biasa:
 
-1. **Banyak nol.** 59,6% hari item-toko bernilai nol (`reports/eda.md`). MAPE membagi
+1. **Banyak nol.** 59,6% hari item-toko bernilai nol (`reports/02_eda.md`). MAPE membagi
    dengan nilai aktual, jadi hari bernilai nol membuat MAPE tak terhingga.
 2. **Skala sangat berbeda.** Total 10 toko terjual ±42.000 unit per hari, sedangkan satu
    item bisa terjual 0–2 unit per hari. Error "10 unit" kecil untuk total, tetapi besar
@@ -457,8 +459,8 @@ Dibanding acuan eta 0,1 (CA_3 cv1–cv3), eta 0,2 sama teliti (−0,07%) dan ±2
   eta 0,3 (3 dari 8 run).
 - Model final 10 toko × 4 fold CV dengan batas 1.000: 21 dari 40 berhenti di batas. Uji
   batas hingga 3.000 menunjukkan pohon tambahan tidak membantu (pinball +0,07%), jadi batas
-  1.000 tetap dipakai. Rincian: `reports/quantile_cap1000.md` dan
-  `reports/quantile_cap3000_comparison.md`.
+  1.000 tetap dipakai. Rincian: `reports/05b_quantile_cap1000.md` dan
+  `reports/05c_quantile_cap3000.md`.
 - Puncak RAM proses selama eksperimen 4,59 GB. RAM tersedia terendah di laptop 2,92 GB.
   Seluruh 16 model selesai dalam 39 menit.
 - Ukuran model 19,4–31,8 MB (eta 0,2).

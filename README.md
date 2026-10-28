@@ -335,10 +335,12 @@ sampai 0,57 pada 98% baris). Versi CPU tepat. Semua angka SHAP di sini dihitung 
 │   ├── SOURCES.md          # sumber, lisensi, dan checksum data
 │   └── external/           # kalender libur Indonesia 2015
 ├── reports/
-│   ├── *.md                # laporan per fase (daftarnya di bawah)
+│   ├── README.md           # daftar laporan sesuai urutan fase
+│   ├── 01_…08c_*.md        # laporan per fase, bernomor sesuai urutan pengerjaan
 │   ├── figures/            # semua grafik
 │   ├── data/               # angka hasil (JSON/CSV) yang dikutip laporan
-│   └── runs/               # catatan teknis run model final
+│   ├── runs/               # catatan teknis run model final
+│   └── archive/            # rekap lama yang tidak diperbarui
 ├── src/retailfc/           # kode pipeline
 └── tests/
 ```
@@ -350,20 +352,38 @@ aturan kompetisi.
 
 ## Laporan lengkap
 
-| Laporan | Isi |
-|---|---|
-| [`reports/eda.md`](reports/eda.md) | EDA: hari nol, pola mingguan, SNAP, hari tutup, Easter, kualitas data |
-| [`reports/validation_design.md`](reports/validation_design.md) | Desain fold dan aturan anti-leakage |
-| [`reports/easter_ablation.md`](reports/easter_ablation.md) | Uji fitur hari libur bergerak |
-| [`reports/phase5_models.md`](reports/phase5_models.md) | Baseline, XGBoost, model kuantil, dan cara membaca WRMSSE |
-| [`reports/quantile_cap1000.md`](reports/quantile_cap1000.md), [`reports/quantile_cap3000_comparison.md`](reports/quantile_cap3000_comparison.md) | Uji batas iterasi model kuantil |
-| [`reports/tree_tuning.md`](reports/tree_tuning.md) | Tuning parameter pohon dan konfirmasi di 10 toko |
-| [`reports/error_analysis.md`](reports/error_analysis.md) | Error per segmen, SHAP, dan studi kasus |
-| [`reports/inventory_sim.md`](reports/inventory_sim.md) | Simulasi stok dan analisis sensitivitas biaya |
-| [`reports/hardware_profile.md`](reports/hardware_profile.md) | Pemakaian RAM/VRAM dan cara menghematnya |
-| [`reports/id_data_audit.md`](reports/id_data_audit.md) | Audit kelayakan data apotek |
-| [`reports/id_phase8_design.md`](reports/id_phase8_design.md) | Desain studi efek dan forecast apotek, ditulis sebelum hasilnya dihitung |
-| [`reports/id_transfer.md`](reports/id_transfer.md) | Efek Ramadan/Lebaran, forecast 14 hari, dan perbandingan dengan Easter |
+Laporan diberi nomor sesuai urutan pengerjaan. Ringkasan satu baris tiap laporan ada di
+[`reports/README.md`](reports/README.md).
+
+| Fase | Laporan | Isi |
+|---|---|---|
+| 0 | [`data/SOURCES.md`](data/SOURCES.md) | Sumber data, lisensi, checksum, dan cek skema |
+| 1 | [`01_hardware_profile.md`](reports/01_hardware_profile.md) | Pemakaian RAM/VRAM dan cara menghematnya |
+| 2 | [`02_eda.md`](reports/02_eda.md) | EDA: hari nol, pola mingguan, SNAP, hari tutup, Easter, kualitas data |
+| 3 | [`03_validation_design.md`](reports/03_validation_design.md) | Desain fold dan aturan anti-leakage |
+| 4 | [`04_easter_ablation.md`](reports/04_easter_ablation.md) | Uji fitur hari libur bergerak |
+| 5 | [`05a_models.md`](reports/05a_models.md) | Baseline, XGBoost, model kuantil, dan cara membaca WRMSSE |
+| 5 | [`05b_quantile_cap1000.md`](reports/05b_quantile_cap1000.md), [`05c_quantile_cap3000.md`](reports/05c_quantile_cap3000.md) | Uji batas iterasi model kuantil |
+| 5 | [`05d_tree_tuning.md`](reports/05d_tree_tuning.md) | Tuning parameter pohon dan konfirmasi di 10 toko |
+| 6 | [`06_error_analysis.md`](reports/06_error_analysis.md) | Error per segmen, SHAP, dan studi kasus |
+| 7 | [`07_inventory_sim.md`](reports/07_inventory_sim.md) | Simulasi stok dan analisis sensitivitas biaya |
+| 8 | [`08a_id_data_audit.md`](reports/08a_id_data_audit.md) | Audit kelayakan data apotek |
+| 8 | [`08b_id_design.md`](reports/08b_id_design.md) | Desain studi efek dan forecast apotek, ditulis sebelum hasilnya dihitung |
+| 8 | [`08c_id_transfer.md`](reports/08c_id_transfer.md) | Efek Ramadan/Lebaran, forecast 14 hari, dan perbandingan dengan Easter |
+
+---|---|
+| [`reports/02_eda.md`](reports/02_eda.md) | EDA: hari nol, pola mingguan, SNAP, hari tutup, Easter, kualitas data |
+| [`reports/03_validation_design.md`](reports/03_validation_design.md) | Desain fold dan aturan anti-leakage |
+| [`reports/04_easter_ablation.md`](reports/04_easter_ablation.md) | Uji fitur hari libur bergerak |
+| [`reports/05a_models.md`](reports/05a_models.md) | Baseline, XGBoost, model kuantil, dan cara membaca WRMSSE |
+| [`reports/05b_quantile_cap1000.md`](reports/05b_quantile_cap1000.md), [`reports/05c_quantile_cap3000.md`](reports/05c_quantile_cap3000.md) | Uji batas iterasi model kuantil |
+| [`reports/05d_tree_tuning.md`](reports/05d_tree_tuning.md) | Tuning parameter pohon dan konfirmasi di 10 toko |
+| [`reports/06_error_analysis.md`](reports/06_error_analysis.md) | Error per segmen, SHAP, dan studi kasus |
+| [`reports/07_inventory_sim.md`](reports/07_inventory_sim.md) | Simulasi stok dan analisis sensitivitas biaya |
+| [`reports/01_hardware_profile.md`](reports/01_hardware_profile.md) | Pemakaian RAM/VRAM dan cara menghematnya |
+| [`reports/08a_id_data_audit.md`](reports/08a_id_data_audit.md) | Audit kelayakan data apotek |
+| [`reports/08b_id_design.md`](reports/08b_id_design.md) | Desain studi efek dan forecast apotek, ditulis sebelum hasilnya dihitung |
+| [`reports/08c_id_transfer.md`](reports/08c_id_transfer.md) | Efek Ramadan/Lebaran, forecast 14 hari, dan perbandingan dengan Easter |
 
 ---
 

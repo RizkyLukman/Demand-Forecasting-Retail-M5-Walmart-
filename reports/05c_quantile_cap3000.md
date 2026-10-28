@@ -1,9 +1,11 @@
-# Uji Batas Iterasi Model Kuantil: 1.000 vs hingga 3.000
+# Fase 5c: Uji Batas Iterasi Model Kuantil, 1.000 vs 3.000
+
+*[← 05b Model kuantil final](05b_quantile_cap1000.md) · [Daftar laporan](README.md) · [05d Tuning parameter pohon →](05d_tree_tuning.md)*
 
 > **Tanggal:** 24 Okt 2026. **Run acuan (batas 1.000):** `reports/runs/20261024_075605_xgb_quantile/`.
 > **Run uji (batas 3.000, titik baca 1.000/1.500/2.000/2.500/3.000):**
 > `reports/runs/20261024_120716_xgb_quantile_r3000/`. Rancangan dan aturan keputusan
-> ditetapkan sebelumnya di `reports/quantile_cap1000.md` §6. Hanya fold CV; holdout belum disentuh.
+> ditetapkan sebelumnya di `reports/05b_quantile_cap1000.md` §6. Hanya fold CV; holdout belum disentuh.
 
 ---
 
@@ -45,7 +47,7 @@
 | cv3 | 1–28 Feb 2016 | 0,34364 | 0,34366 | +0,01% |
 | cv4 | 29 Feb–27 Mar 2016 (Easter) | 0,34130 | 0,34140 | +0,03% |
 
-**Aturan keputusan** (`quantile_cap1000.md` §6.5): batas terkecil yang pinball-nya dalam 1%
+**Aturan keputusan** (`05b_quantile_cap1000.md` §6.5): batas terkecil yang pinball-nya dalam 1%
 dari pinball terbaik, dengan coverage P80/P90 tidak menjauh dari target > 1 poin. Pinball
 terbaik ada di batas 1.000 sendiri, jadi **batas 1.000 terpilih**. Coverage P80/P90 praktis
 tidak berubah di semua batas (selisih ≤ 0,1 poin).

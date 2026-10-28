@@ -38,7 +38,7 @@ from retailfc.train import TrainOptions, fit_predict, to_wide
 from retailfc.xgb_final import model_params
 
 MAIN_FOLD = "cv4"
-# Studi kasus Fase 6 (reports/error_analysis.md §7) yang fold terburuknya bukan cv4.
+# Studi kasus Fase 6 (reports/06_error_analysis.md §7) yang fold terburuknya bukan cv4.
 CASE_MODELS = [("WI_2", "cv1"), ("TX_2", "cv1")]
 CASES = [("FOODS_1_096", "WI_2", "cv1"), ("HOBBIES_1_354", "TX_2", "cv1")]
 

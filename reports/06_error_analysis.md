@@ -1,5 +1,7 @@
 # Fase 6: Analisis Error per Segmen (P2)
 
+*[← 05d Tuning parameter pohon](05d_tree_tuning.md) · [Daftar laporan](README.md) · [07 Simulasi stok →](07_inventory_sim.md)*
+
 > **Status (24 Okt 2026):** analisis segmen, kategori, toko, hari, event, studi kasus, dan
 > SHAP **selesai**. Analisis error memakai prediksi Fase 5 yang sudah tersimpan. Untuk SHAP,
 > 12 model point dilatih ulang dan prediksinya identik dengan Fase 5 (§8).

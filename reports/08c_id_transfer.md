@@ -1,8 +1,10 @@
-# Fase 8: Transfer ke Data Apotek Indonesia (P5)
+# Fase 8c: Transfer ke Data Apotek Indonesia (P5)
+
+*[← 08b Desain analisis apotek](08b_id_design.md) · [Daftar laporan](README.md)*
 
 > **Status (28 Okt 2026):** selesai, mengikuti jalur "tidak cukup" dari
-> `reports/id_data_audit.md`. Desain ditetapkan sebelum hasil dihitung:
-> `reports/id_phase8_design.md`.
+> `reports/08a_id_data_audit.md`. Desain ditetapkan sebelum hasil dihitung:
+> `reports/08b_id_design.md`.
 >
 > - Kode: `src/retailfc/id_calendar.py`, `id_event_study.py`, `id_forecast.py`, `id_report.py`.
 > - Angka lengkap: `reports/data/id_event_study.json`, `reports/data/id_event_study_daily.csv`,

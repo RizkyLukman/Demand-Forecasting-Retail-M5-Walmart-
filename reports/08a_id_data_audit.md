@@ -1,4 +1,6 @@
-# Fase 8 Langkah 1: Audit Kelayakan Data Apotek Indonesia
+# Fase 8a: Audit Kelayakan Data Apotek Indonesia
+
+*[← 07 Simulasi stok](07_inventory_sim.md) · [Daftar laporan](README.md) · [08b Desain analisis apotek →](08b_id_design.md)*
 
 > **Status (28 Okt 2026):** audit selesai, belum ada modeling. Kode: `src/retailfc/id_pharmacy.py`
 > (dump SQL → Parquet), `src/retailfc/id_audit.py` (angka audit dan grafik). Angka lengkap:

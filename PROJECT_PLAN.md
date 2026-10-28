@@ -56,7 +56,7 @@ berikut. **Semuanya wajib dikerjakan**, bukan opsional:
   `https://data.mendeley.com/datasets/2ym7v78wtd/1`
 - **Isi menurut deskripsi:** tabel `ms_products`, `ms_sales`, `det_sales`, dan satu
   tabel transaksi hasil integrasi. Data berasal dari database apotek yang asli.
-- **Hasil audit (28 Okt 2026, `reports/id_data_audit.md`):** satu dump SQL, periode
+- **Hasil audit (28 Okt 2026, `reports/08a_id_data_audit.md`):** satu dump SQL, periode
   1 Jan–31 Des 2015, header nota Jan–Mar sebagian besar hilang (deret lengkap 1 Apr–31 Des,
   275 hari), satu Idulfitri, ±200 produk terjual di ≥ 50% hari. **Tidak memenuhi syarat
   transfer penuh** → jalur "tidak cukup" di Fase 8.
@@ -110,7 +110,7 @@ retail-forecast-gbm/
 │   ├── inventory_sim.py
 │   └── transfer_id.py
 ├── notebooks/                # eksplorasi saja
-├── reports/{figures,data,runs}/   # *.md di reports/, angka JSON/CSV di reports/data/
+├── reports/{figures,data,runs,archive}/   # laporan bernomor 01_…08c_*.md + README.md indeks; angka di reports/data/
 └── tests/
 ```
 
@@ -142,7 +142,7 @@ pytest -q
 
 Laptop pengembang: **RAM 16 GB, GPU NVIDIA RTX 3050 Laptop dengan VRAM 4 GB.**
 
-**Angka terukur di Fase 1** (detail: `reports/hardware_profile.md`):
+**Angka terukur di Fase 1** (detail: `reports/01_hardware_profile.md`):
 - Format panjang, semua toko, setelah buang hari sebelum penjualan pertama: 46,8 juta
   baris, 672 MB di RAM, 99,8 MB Parquet. Konversi per toko dengan numpy: puncak RAM 0,51 GB.
 - Training 1 toko (CA_1, 4,5 juta baris, 27 fitur sementara) di GPU:
@@ -154,7 +154,7 @@ Laptop pengembang: **RAM 16 GB, GPU NVIDIA RTX 3050 Laptop dengan VRAM 4 GB.**
 - Fase 4 (fitur final, 36 fitur): tabel dasar per toko ±430 MB di RAM, ±70 MB Parquet;
   10 toko = 687 MB di disk. Training 1 toko: tweedie 4,3 GB RAM (label) / 4,6 GB
   (kategorikal); 4 kuantil dengan label encoding **5,0 GB** (turun dari 10,5 GB).
-  Detail: `reports/hardware_profile.md` §3b.
+  Detail: `reports/01_hardware_profile.md` §3b.
 - Fase 5: puncak RAM satu model terjadi saat `QuantileDMatrix` dibangun, bukan saat
   training. Melepas tabel fold sebelum konversi menurunkan puncak 4,87 → 4,43 GB (CA_3),
   dengan prediksi identik. Pembatas yang sebenarnya adalah **total RAM laptop**: aplikasi
@@ -179,7 +179,7 @@ Laptop pengembang: **RAM 16 GB, GPU NVIDIA RTX 3050 Laptop dengan VRAM 4 GB.**
    (`device="cpu"`). Catat langkah yang dipakai di laporan run. Jangan diam-diam
    mengurangi data.
 5. **Ukur, jangan menebak.** Di Fase 1, latih satu toko (konfigurasi default), lalu
-   catat ke `reports/hardware_profile.md`:
+   catat ke `reports/01_hardware_profile.md`:
    - puncak RAM (pakai `psutil`; `/usr/bin/time -v` tidak ada di Windows),
    - puncak VRAM (pantau `nvidia-smi --query-gpu=memory.used --format=csv -l 1`),
    - waktu training dan jumlah iterasi.
@@ -225,7 +225,7 @@ Jawab pertanyaan spesifik:
   yang mencakup akhir tahun disarankan.
 - **Fold khusus** (dilaporkan terpisah, tidak dirata-rata ke skor utama):
   `easter_2014` (cutoff d_1164), `easter_2015` (d_1514), `year_end_2015` (d_1773).
-  Detail & aturan: `reports/validation_design.md`, `config.yaml → validation`.
+  Detail & aturan: `reports/03_validation_design.md`, `config.yaml → validation`.
 - Early stopping: 28 hari terakhir **sebelum** cutoff (di dalam jendela train).
 - **Holdout final:** d_1914–d_1941 (cutoff d_1913). Hanya disentuh sekali di akhir.
   Tidak boleh ada fold CV yang horizon-nya masuk ke rentang ini.
@@ -251,7 +251,7 @@ Jawab pertanyaan spesifik:
 - **Hierarki:** target encoding level item/dept/store **dihitung per fold** dari data train saja.
 - **Stok habis (ditambahkan setelah EDA P5):** `zero_run_lag28` = panjang deretan nol per
   28 hari lalu. 62% item laris pernah tidak terjual ≥ 28 hari beruntun, indikasi kuat
-  censored demand (`reports/eda.md` §P5).
+  censored demand (`reports/02_eda.md` §P5).
 
 ### Fase 5 — Model & baseline
 **Baseline wajib** (model harus dibandingkan secara jujur dengan semuanya):
@@ -328,7 +328,7 @@ Jawab pertanyaan spesifik:
 **Langkah 1 — Audit kelayakan (wajib sebelum modeling):**
 - Periode data, jumlah produk, jumlah transaksi per hari, persentase hari nol.
 - Apakah periodenya mencakup **≥ 2 kali Ramadan/Idulfitri?**
-- Tulis hasil audit ke `reports/id_data_audit.md`.
+- Tulis hasil audit ke `reports/08a_id_data_audit.md`.
 
 **Langkah 2 — Keputusan berdasarkan audit:**
 - **Cukup** (≥ 2 tahun, cukup banyak produk aktif): jalankan pipeline yang sama
@@ -395,25 +395,25 @@ antar fold), temuan per segmen, hasil simulasi stok, hasil transfer Indonesia,
 - [x] F0: akun Kaggle + token, unduh M5, verifikasi skema → `SOURCES.md`
       (sisa: kutip lisensi/aturan data M5 dari halaman Rules Kaggle)
 - [x] F1: pipeline load/downcast/melt → Parquet, laporan jumlah baris & memori,
-      profil RAM/VRAM training 1 toko → `reports/hardware_profile.md`
+      profil RAM/VRAM training 1 toko → `reports/01_hardware_profile.md`
       (ulang profil di Fase 4 dengan fitur final)
-- [x] F2: EDA terarah (nol per kategori, SNAP, hari tutup, Easter) → `reports/eda.md`
+- [x] F2: EDA terarah (nol per kategori, SNAP, hari tutup, Easter) → `reports/02_eda.md`
       (25 Des = tutup tapi tidak persis nol; efek Easter ±3 hari; SNAP nyata di FOODS)
-- [x] F3: definisi fold rolling origin + tes anti-leakage → `reports/validation_design.md`
+- [x] F3: definisi fold rolling origin + tes anti-leakage → `reports/03_validation_design.md`
       (4 fold CV + 3 fold khusus + holdout; `leaking_columns` untuk tiap fitur di Fase 4)
-- [x] F4: fitur + ablation fitur hari libur bergerak (Easter) → `reports/easter_ablation.md`
+- [x] F4: fitur + ablation fitur hari libur bergerak (Easter) → `reports/04_easter_ablation.md`
       (37 fitur termasuk `zero_run_lag28`; Easter: tidak terbukti di level item, membantu
       di total harian FOODS; fitur tetap dipakai)
 - [x] F5: baseline (naive, MA, Croston/TSB, ETS) + XGBoost point (`reg:tweedie`) & kuantil (`reg:quantileerror`)
-      → `reports/phase5_models.md`, `reports/quantile_cap1000.md`, `reports/quantile_cap3000_comparison.md`
+      → `reports/05a_models.md`, `reports/05b_quantile_cap1000.md`, `reports/05c_quantile_cap3000.md`
       (WRMSSE diverifikasi terhadap bobot resmi M5. Point: tweedie 1,1, label encoding, tanpa
       deretan nol panjang, tanpa refit; CV WRMSSE 0,582 ± 0,051 vs classical 0,916, tetapi
       keunggulan di level item hanya 2–3%. Kuantil: satu model 4 kuantil per toko, eta 0,2,
       batas 1.000 (uji hingga 3.000 tidak membantu); P80/P90 coverage 81,0%/89,4%, tanpa
-      crossing. Tuning parameter pohon selesai 29 Okt (`reports/tree_tuning.md`): hanya
+      crossing. Tuning parameter pohon selesai 29 Okt (`reports/05d_tree_tuning.md`): hanya
       min_child_weight 200 lolos di 2 toko, tetapi di 10 toko hanya −0,003 (< tau 0,007), jadi
       konfigurasi tidak diubah. Sisa: baseline kuantil dan model kuantil untuk fold khusus belum dibuat)
-- [x] F6: analisis error per segmen ADI/CV² + SHAP + studi kasus → `reports/error_analysis.md`
+- [x] F6: analisis error per segmen ADI/CV² + SHAP + studi kasus → `reports/06_error_analysis.md`
       (per item XGBoost hanya 1–3% lebih baik dari classical di semua segmen, tetapi saat
       dijumlahkan ±54% lebih baik di intermittent/lumpy. XGBoost tidak lebih baik untuk total
       segmen erratic (bias +9%), akhir pekan per item, dan fold Easter 2015 per item. SHAP:
@@ -421,7 +421,7 @@ antar fold), temuan per segmen, hasil simulasi stok, hasil transfer Indonesia,
       yang tumbuh −7% s.d. −32% dan item yang turun +5% s.d. +21%. Eksperimen te_item_mean jendela
       terbaru ditunda sampai Fase 7. SHAP GPU tidak aditif untuk fitur kategorikal, jadi
       dihitung di CPU)
-- [ ] F7: simulasi stok + analisis sensitivitas biaya → `reports/inventory_sim.md`
+- [ ] F7: simulasi stok + analisis sensitivitas biaya → `reports/07_inventory_sim.md`
       (**selesai di fold CV; simulasi holdout dijalankan sekali di akhir proyek.** Periodic review
       R=7, L=2, lost sales, biaya = asumsi. XGBoost point + safety stock paling efisien di stok
       6–10 hari; di layanan ≥ 98% empiris paling efisien. Asumsi dasar: empiris termurah,
@@ -429,7 +429,7 @@ antar fold), temuan per segmen, hasil simulasi stok, hasil transfer Indonesia,
       tidak terkalibrasi (P50 → 28%, P90 → 97%). Metode gabungan ditolak. Item tumbuh cepat:
       classical termurah)
 - [x] F8: audit data apotek Indonesia → transfer atau studi efek Ramadan
-      → `reports/id_data_audit.md`, `reports/id_phase8_design.md`, `reports/id_transfer.md`
+      → `reports/08a_id_data_audit.md`, `reports/08b_id_design.md`, `reports/08c_id_transfer.md`
       (data hanya 2015, lengkap Apr–Des, satu Idulfitri → jalur "tidak cukup". Kalender 2015
       bersumber SKB/Keppres/isbat. Studi efek dengan uji plasebo: pekan Lebaran normal, nota turun
       −25%/−37% di 2 minggu sesudahnya (kokoh di 5 baseline), Ramadan mg 4 −11%. Forecast 14 hari:

@@ -1,4 +1,6 @@
-# Fase 2 — EDA terarah
+# Fase 2: EDA Terarah
+
+*[← 01 Profil hardware](01_hardware_profile.md) · [Daftar laporan](README.md) · [03 Desain validasi →](03_validation_design.md)*
 
 Sumber: `python -m retailfc.eda --config config.yaml` (angka: `reports/data/eda.json`).
 Data: tabel panjang dari Fase 1 (baris sejak penjualan pertama tiap item-toko),

@@ -1,4 +1,6 @@
-# Fase 3 — Desain validasi (P1)
+# Fase 3: Desain Validasi (P1)
+
+*[← 02 EDA](02_eda.md) · [Daftar laporan](README.md) · [04 Ablation Easter →](04_easter_ablation.md)*
 
 Kode: `src/retailfc/folds.py`, `src/retailfc/leakage.py`. Tabel fold: `reports/data/folds.csv`
 (`python -m retailfc.folds --config config.yaml`). Tes: `tests/test_folds.py`,

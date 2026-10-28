@@ -20,7 +20,7 @@ eta 0,1 butuh 293–524 detik. Rancangan direvisi karena waktu dan RAM, bukan ka
 pinball; aturan memilih tidak diubah. Acuan eta 0,05 tidak dijalankan.
 
 Keputusan setelah eksperimen: eta 0,2. Ini menyimpang dari aturan (yang memilih eta 0,3,
-selisih pinball 0,20% dan 11% lebih cepat). Alasannya dicatat di reports/phase5_models.md §8.2.
+selisih pinball 0,20% dan 11% lebih cepat). Alasannya dicatat di reports/05a_models.md §8.2.
 
 Kuantil yang bersilangan diurutkan ulang per baris (np.sort) sebelum dievaluasi, dan
 frekuensinya dicatat. Hasil ditulis ke JSON setiap kali satu run selesai; run yang sudah

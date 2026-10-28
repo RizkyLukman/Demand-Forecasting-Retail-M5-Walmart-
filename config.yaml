@@ -58,7 +58,7 @@ model:
       refit: false                  # E4 + tahap 3: latih ulang tidak membantu
       max_rounds: 3000
       early_stopping: 100
-  # Kandidat hasil tuning (reports/tree_tuning.md): sama dengan xgb_point kecuali
+  # Kandidat hasil tuning (reports/05d_tree_tuning.md): sama dengan xgb_point kecuali
   # min_child_weight. DITOLAK di konfirmasi 10 toko × 4 fold (0,5790 vs 0,5819, selisih < tau
   # 0,007). Disimpan agar run konfirmasinya bisa diulang; tidak dipakai di pipeline.
   xgb_point_tuned:
@@ -85,7 +85,7 @@ model:
       objective: "reg:quantileerror"
       quantile_alpha: [0.1, 0.5, 0.8, 0.9]
       max_bin: 256
-      eta: 0.2                      # reports/data/quantile_experiments.json: pinball terendah (7 dari 8 run); lihat phase5_models.md §8.2
+      eta: 0.2                      # reports/data/quantile_experiments.json: pinball terendah (7 dari 8 run); lihat 05a_models.md §8.2
       max_depth: 8
       min_child_weight: 10
       subsample: 0.8
@@ -97,7 +97,7 @@ model:
       censor_run: 28
       busy_share: 0.5
       refit: false
-      max_rounds: 1000              # uji hingga 3.000 tidak membantu (reports/quantile_cap3000_comparison.md)
+      max_rounds: 1000              # uji hingga 3.000 tidak membantu (reports/05c_quantile_cap3000.md)
       early_stopping: 100
 
 # Fase 7: simulasi stok. M5 tidak memuat data biaya maupun persediaan, jadi SEMUA nilai di
@@ -117,8 +117,8 @@ inventory:
   empirical_window_days: 364        # riwayat untuk kuantil empiris permintaan selama periode proteksi
   growth_risk_ratio: 2.0            # item "tumbuh cepat" (Fase 6 §8.5): rata-rata 56 hari / rata-rata riwayat > 2
 
-# Fase 8: data apotek Indonesia (jalur "tidak cukup", reports/id_data_audit.md).
-# Desain ditetapkan SEBELUM hasil dihitung (reports/id_phase8_design.md).
+# Fase 8: data apotek Indonesia (jalur "tidak cukup", reports/08a_id_data_audit.md).
+# Desain ditetapkan SEBELUM hasil dihitung (reports/08b_id_design.md).
 id_pharmacy:
   complete_start: "2015-04-01"      # audit §3: header nota Jan-Mar sebagian besar hilang
   end: "2015-12-31"

@@ -1,5 +1,7 @@
 # Recap Hari 1 (22–23 Oktober 2026)
 
+> **Arsip.** Rekap ini ditulis 23 Okt 2026, saat proyek baru sampai Fase 4. Status dan angka di dalamnya tidak diperbarui. Untuk kondisi terbaru, lihat [daftar laporan](../README.md) dan README utama.
+
 Ringkasan semua yang sudah dikerjakan di proyek **Demand Forecasting Retail (M5 Walmart →
 Indonesia) dengan XGBoost**: tujuan, apa yang dilakukan di tiap fase, hasil analisis,
 keputusan, kendala, dan apa yang masih terbuka.
@@ -73,10 +75,10 @@ Data M5 sudah dibahas di ribuan notebook publik. Nilai proyek ini ada di lima pe
 | Fase | Isi | Status | Laporan detail |
 |---|---|---|---|
 | 0 | Setup repo, unduh & verifikasi data M5 | ✅ (sisa: kutip lisensi) | `data/SOURCES.md` |
-| 1 | Format panjang hemat memori + profil hardware | ✅ | `reports/hardware_profile.md` |
-| 2 | EDA terarah (4 pertanyaan + kualitas data) | ✅ | `reports/eda.md` |
-| 3 | Desain validasi (fold + anti-leakage) | ✅ | `reports/validation_design.md` |
-| 4 | Fitur + ablation Easter + profil ulang | ✅ (belum di-commit) | `reports/easter_ablation.md` |
+| 1 | Format panjang hemat memori + profil hardware | ✅ | `reports/01_hardware_profile.md` |
+| 2 | EDA terarah (4 pertanyaan + kualitas data) | ✅ | `reports/02_eda.md` |
+| 3 | Desain validasi (fold + anti-leakage) | ✅ | `reports/03_validation_design.md` |
+| 4 | Fitur + ablation Easter + profil ulang | ✅ (belum di-commit) | `reports/04_easter_ablation.md` |
 | 5 | Baseline + training XGBoost utama | belum | – |
 | 6 | Analisis error per segmen + SHAP | belum | – |
 | 7 | Simulasi stok | belum | – |
@@ -376,7 +378,7 @@ Bagian ini menjawab pertanyaan: *"apakah data ini tidak perlu preprocessing?"*
 | Membuang lonjakan penjualan | Lonjakan adalah permintaan nyata (event, promo), dan itu yang ingin diramalkan |
 | Transformasi log target | `reg:tweedie` sudah dirancang untuk data hitungan yang miring dan banyak nol |
 
-### Temuan kualitas data (`reports/eda.md` §P5)
+### Temuan kualitas data (`reports/02_eda.md` §P5)
 
 **a) Harga anomali: kecil.**
 

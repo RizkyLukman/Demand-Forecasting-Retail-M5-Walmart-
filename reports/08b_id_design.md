@@ -1,9 +1,11 @@
-# Fase 8 Langkah 2: Desain Analisis (ditetapkan sebelum hasil dihitung)
+# Fase 8b: Desain Analisis Data Apotek (ditetapkan sebelum hasil dihitung)
+
+*[← 08a Audit data apotek](08a_id_data_audit.md) · [Daftar laporan](README.md) · [08c Transfer ke apotek →](08c_id_transfer.md)*
 
 > **Status (28 Okt 2026):** desain saja, belum ada hasil. Parameter ada di
 > `config.yaml → id_pharmacy`. Kalender: `data/external/id_calendar.csv`
 > (`src/retailfc/id_calendar.py`). Desain ini mengikuti jalur "tidak cukup" dari
-> `reports/id_data_audit.md`.
+> `reports/08a_id_data_audit.md`.
 >
 > **Catatan kejujuran:** desain ini disusun setelah audit, jadi beberapa pola sudah terlihat
 > (Senin sepi, penurunan setelah Lebaran pada 28 Jul–1 Agu). Untuk mencegah pemilihan jendela
@@ -132,7 +134,7 @@ produk: rata-rata RMSSE berbobot omzet 28 hari terakhir train (mirip WRMSSE). Ti
 ## 4. Perbandingan dengan Easter di M5 (Langkah 3)
 
 Tabel kualitatif: arah efek, durasi, kelompok yang terdampak, dan apakah fitur hari libur
-membantu forecast. Bahan dari `reports/easter_ablation.md` dan `reports/eda.md`.
+membantu forecast. Bahan dari `reports/04_easter_ablation.md` dan `reports/02_eda.md`.
 
 ## 5. Yang sengaja tidak dilakukan
 
@@ -151,7 +153,7 @@ membantu forecast. Bahan dari `reports/easter_ablation.md` dan `reports/eda.md`.
    ±14.000/hari vs nota ±100–300/hari). Akibatnya hasilnya absurd: di fold `post_lebaran`,
    nota RJ +302% dan RI +356% di atas aktual. Run final membagi target dan fitur tiap deret
    dengan rata-rata train deret itu (data ≤ cutoff), lalu memasukkan level deret sebagai
-   fitur. Hasil kedua run dilaporkan di `reports/id_transfer.md` §5. Hasil run pertama
+   fitur. Hasil kedua run dilaporkan di `reports/08c_id_transfer.md` §5. Hasil run pertama
    disimpan di `reports/data/id_forecast_unscaled.json`.
 3. **Uji sensitivitas baseline** (4 baseline lain di samping yang dipilih) ditambahkan
    untuk menilai seberapa kokoh efek. Baseline utama tetap level lokal 28 hari.

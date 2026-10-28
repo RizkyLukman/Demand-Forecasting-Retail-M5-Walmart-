@@ -1,4 +1,6 @@
-# Fase 4 — Ablation fitur hari libur bergerak: Easter (P4)
+# Fase 4: Ablation Fitur Hari Libur Bergerak, Easter (P4)
+
+*[← 03 Desain validasi](03_validation_design.md) · [Daftar laporan](README.md) · [05a Model dan baseline →](05a_models.md)*
 
 Sumber: `python -m retailfc.ablation_easter --config config.yaml`
 (angka lengkap: `reports/data/easter_ablation.json`).

@@ -1,4 +1,6 @@
-# Profil hardware (Fase 1)
+# Fase 1: Profil Hardware dan Pemakaian Memori
+
+*[← Data dan sumber](../data/SOURCES.md) · [Daftar laporan](README.md) · [02 EDA →](02_eda.md)*
 
 Diukur pada 2026-10-22/23. Angka mentah: `reports/data/hardware_profile.json`, `reports/data/phase1_io.json`.
 
