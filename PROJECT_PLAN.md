@@ -410,8 +410,9 @@ antar fold), temuan per segmen, hasil simulasi stok, hasil transfer Indonesia,
       deretan nol panjang, tanpa refit; CV WRMSSE 0,582 ± 0,051 vs classical 0,916, tetapi
       keunggulan di level item hanya 2–3%. Kuantil: satu model 4 kuantil per toko, eta 0,2,
       batas 1.000 (uji hingga 3.000 tidak membantu); P80/P90 coverage 81,0%/89,4%, tanpa
-      crossing. Sisa: tuning parameter pohon (depth, min_child_weight, dll.) belum dilakukan;
-      baseline kuantil dan model kuantil untuk fold khusus belum dibuat)
+      crossing. Tuning parameter pohon selesai 29 Okt (`reports/tree_tuning.md`): hanya
+      min_child_weight 200 lolos di 2 toko, tetapi di 10 toko hanya −0,003 (< tau 0,007), jadi
+      konfigurasi tidak diubah. Sisa: baseline kuantil dan model kuantil untuk fold khusus belum dibuat)
 - [x] F6: analisis error per segmen ADI/CV² + SHAP + studi kasus → `reports/error_analysis.md`
       (per item XGBoost hanya 1–3% lebih baik dari classical di semua segmen, tetapi saat
       dijumlahkan ±54% lebih baik di intermittent/lumpy. XGBoost tidak lebih baik untuk total

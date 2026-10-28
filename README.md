@@ -13,7 +13,8 @@ saya tunjukkan di sini adalah prosesnya: backtest yang jujur, analisis error per
 simulasi stok yang menghubungkan forecast dengan biaya.
 
 **Status:** Fase 0–8 selesai. Holdout M5 (25 Apr–22 Mei 2016) sengaja **belum dipakai sama
-sekali**. Sebelum holdout dibuka, masih ada tuning parameter pohon XGBoost yang harus dikerjakan.
+sekali**. Tuning parameter pohon sudah selesai (tidak ada yang diganti). Sebelum holdout dibuka,
+masih ada satu eksperimen fitur yang ingin saya uji.
 Holdout baru dibuka sekali di akhir proyek, supaya ada satu angka akhir yang benar-benar tidak
 ikut memengaruhi keputusan saya selama eksperimen.
 
@@ -298,6 +299,7 @@ Saya catat juga eksperimen yang gagal, karena ini bagian dari hasilnya:
 | Fitur hari libur bergerak (Easter) | Tidak terbukti membantu di level produk, hanya di total FOODS |
 | Menaikkan batas iterasi model kuantil dari 1.000 ke 3.000 | Skor validasi membaik, tetapi ramalan sedikit memburuk (+0,07%) |
 | Metode stok gabungan XGBoost + empiris | Lebih mahal di 12 dari 12 asumsi biaya |
+| Tuning parameter pohon (depth, min_child_weight, sampling, reg_lambda, max_bin, eta) | Hanya `min_child_weight` 200 yang lolos di 2 toko (−0,010). Di 10 toko perbaikannya menyusut jadi −0,003, di bawah batas noise, jadi tidak saya pakai |
 | Apotek: satu model XGBoost untuk nota dan unit sekaligus, tanpa menyamakan skala | Deret unit (±14.000/hari) mendominasi model, sehingga di satu fold nota (±100–300/hari) diramal 4–4,6× terlalu tinggi. Saya perbaiki dengan membagi setiap deret dengan rata-ratanya |
 | Apotek: fitur hari libur umum untuk meramal Lebaran | Tidak membantu |
 | Apotek: menguji fitur Ramadan | Tidak bisa, karena hanya ada satu Lebaran |
@@ -315,8 +317,8 @@ sampai 0,57 pada 98% baris). Versi CPU tepat. Semua angka SHAP di sini dihitung 
   permintaan sebenarnya, dan M5 tidak punya data persediaan untuk memastikannya.
 - Biaya di simulasi stok adalah asumsi. Kedaluwarsa, kapasitas rak, dan minimum order tidak
   dimodelkan.
-- Parameter pohon XGBoost (depth, min_child_weight, dan lainnya) belum saya tuning. Yang saya uji
-  baru objective, encoding, dan perlakuan data.
+- Tuning parameter pohon saya lakukan satu kelompok parameter per tahap, bukan pencarian
+  menyeluruh atas semua kombinasi. Kombinasi yang tidak diuji bisa saja sedikit lebih baik.
 - Fitur harga di SHAP menunjukkan bagaimana model memakai harga, bukan efek harga terhadap
   permintaan.
 - Hasil apotek berasal dari satu Lebaran di satu apotek. Itu gambaran satu kejadian, bukan efek
@@ -355,6 +357,7 @@ aturan kompetisi.
 | [`reports/easter_ablation.md`](reports/easter_ablation.md) | Uji fitur hari libur bergerak |
 | [`reports/phase5_models.md`](reports/phase5_models.md) | Baseline, XGBoost, model kuantil, dan cara membaca WRMSSE |
 | [`reports/quantile_cap1000.md`](reports/quantile_cap1000.md), [`reports/quantile_cap3000_comparison.md`](reports/quantile_cap3000_comparison.md) | Uji batas iterasi model kuantil |
+| [`reports/tree_tuning.md`](reports/tree_tuning.md) | Tuning parameter pohon dan konfirmasi di 10 toko |
 | [`reports/error_analysis.md`](reports/error_analysis.md) | Error per segmen, SHAP, dan studi kasus |
 | [`reports/inventory_sim.md`](reports/inventory_sim.md) | Simulasi stok dan analisis sensitivitas biaya |
 | [`reports/hardware_profile.md`](reports/hardware_profile.md) | Pemakaian RAM/VRAM dan cara menghematnya |
@@ -407,8 +410,10 @@ proyeknya ada di [`PROJECT_PLAN.md`](PROJECT_PLAN.md).
 
 ## Selanjutnya
 
-1. **Tuning parameter pohon XGBoost di M5** (depth, min_child_weight, dan lainnya). Kalau modelnya
-   berubah, model kuantil dan simulasi stok saya jalankan ulang.
+1. **Eksperimen fitur rata-rata item jangka pendek.** Dari SHAP, model terlalu bergantung pada
+   rata-rata item sepanjang riwayat. Saya ingin menguji apakah versi jendela terbaru memperbaiki
+   ramalan produk yang sedang naik atau turun. Kalau modelnya berubah, model kuantil dan simulasi
+   stok saya jalankan ulang.
 2. **Holdout M5:** evaluasi forecast dan simulasi stok di 25 Apr–22 Mei 2016, sekali saja,
    setelah modelnya tidak akan diubah lagi.
 3. **Fase 9:** rangkuman akhir.

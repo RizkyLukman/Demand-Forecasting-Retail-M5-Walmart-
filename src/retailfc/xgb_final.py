@@ -120,7 +120,10 @@ def main() -> None:
     (run_dir / "metrics.json").write_text(json.dumps({"per_fold": table, "cv_summary": summary,
                                                       "peak_rss_gb": round(mem.peak_gb, 2)}, indent=2),
                                           encoding="utf-8")
-    comp_path = Path(cfg["paths"]["reports"]) / "data" / "model_comparison.json"
+    # Hanya model utama yang menimpa ringkasan resmi; model lain (mis. kandidat tuning)
+    # ditulis ke file sendiri supaya laporan Fase 5 tidak berubah diam-diam.
+    comp_name = "model_comparison.json" if args.name == "xgb_point" else f"model_comparison_{args.name}.json"
+    comp_path = Path(cfg["paths"]["reports"]) / "data" / comp_name
     comp_path.write_text(json.dumps({"run_dir": str(run_dir), "per_fold": table, "cv_summary": summary},
                                     indent=2), encoding="utf-8")
     for m, s in sorted(summary.items(), key=lambda kv: kv[1]["cv_wrmsse_mean"]):

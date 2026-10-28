@@ -128,7 +128,8 @@ def fit_predict(
     t = time.perf_counter()
     max_bin = params.get("max_bin", 256)
     dtrain = xgb.QuantileDMatrix(X[fit], y[fit], enable_categorical=True, max_bin=max_bin)
-    dvalid = xgb.QuantileDMatrix(X[es], y[es], enable_categorical=True, ref=dtrain)
+    # max_bin harus sama dengan dtrain; tanpa ini xgboost 3.4.1 menolak max_bin != 256.
+    dvalid = xgb.QuantileDMatrix(X[es], y[es], enable_categorical=True, ref=dtrain, max_bin=max_bin)
     X_hz = X[hz]
     if not opt.refit:                             # refit masih butuh X untuk baris fit + es
         del X

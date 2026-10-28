@@ -1,0 +1,1697 @@
+{
+  "configs": {
+    "base": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42
+      },
+      "per_fold": {
+        "cv1": 0.64215,
+        "cv2": 0.81742,
+        "cv3": 0.68246,
+        "cv4": 0.61897
+      },
+      "wrmsse_mean": 0.69025,
+      "wrmsse_std": 0.08875,
+      "peak_rss_gb": 4.66,
+      "minutes": 3.4,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 701,
+          "seconds": 47.1,
+          "model_mb": 11.91
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 129,
+          "seconds": 18.8,
+          "model_mb": 3.7
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 79,
+          "seconds": 16.6,
+          "model_mb": 3.0
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 238,
+          "seconds": 25.4,
+          "model_mb": 5.28
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 150,
+          "seconds": 19.0,
+          "model_mb": 3.77
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 86,
+          "seconds": 16.7,
+          "model_mb": 3.01
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 141,
+          "seconds": 19.4,
+          "model_mb": 3.64
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 81,
+          "seconds": 16.6,
+          "model_mb": 2.94
+        }
+      ]
+    },
+    "base_seed43": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 43
+      },
+      "per_fold": {
+        "cv1": 0.64731,
+        "cv2": 0.771,
+        "cv3": 0.68672,
+        "cv4": 0.68416
+      },
+      "wrmsse_mean": 0.6973,
+      "wrmsse_std": 0.05233,
+      "peak_rss_gb": 4.72,
+      "minutes": 3.3,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 683,
+          "seconds": 46.4,
+          "model_mb": 11.72
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 151,
+          "seconds": 20.5,
+          "model_mb": 4.01
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 83,
+          "seconds": 17.6,
+          "model_mb": 3.05
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 64,
+          "seconds": 16.6,
+          "model_mb": 2.8
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 123,
+          "seconds": 17.9,
+          "model_mb": 3.41
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 181,
+          "seconds": 21.5,
+          "model_mb": 4.19
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 144,
+          "seconds": 19.7,
+          "model_mb": 3.66
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 125,
+          "seconds": 19.4,
+          "model_mb": 3.46
+        }
+      ]
+    },
+    "max_depth=6": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 6,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42
+      },
+      "per_fold": {
+        "cv1": 0.65679,
+        "cv2": 0.76037,
+        "cv3": 0.71005,
+        "cv4": 0.62129
+      },
+      "wrmsse_mean": 0.68712,
+      "wrmsse_std": 0.06095,
+      "peak_rss_gb": 4.75,
+      "minutes": 3.4,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 699,
+          "seconds": 37.2,
+          "model_mb": 3.79
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 269,
+          "seconds": 21.6,
+          "model_mb": 1.76
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 132,
+          "seconds": 16.7,
+          "model_mb": 1.13
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 681,
+          "seconds": 38.8,
+          "model_mb": 3.71
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 181,
+          "seconds": 17.2,
+          "model_mb": 1.32
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 258,
+          "seconds": 20.0,
+          "model_mb": 1.65
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 224,
+          "seconds": 19.0,
+          "model_mb": 1.51
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 113,
+          "seconds": 15.3,
+          "model_mb": 1.02
+        }
+      ]
+    },
+    "max_depth=10": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 10,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42
+      },
+      "per_fold": {
+        "cv1": 0.67015,
+        "cv2": 0.8191,
+        "cv3": 0.71852,
+        "cv4": 0.60667
+      },
+      "wrmsse_mean": 0.70361,
+      "wrmsse_std": 0.08959,
+      "peak_rss_gb": 4.79,
+      "minutes": 4.2,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 377,
+          "seconds": 47.0,
+          "model_mb": 22.42
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 104,
+          "seconds": 26.0,
+          "model_mb": 11.15
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 88,
+          "seconds": 24.8,
+          "model_mb": 10.31
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 142,
+          "seconds": 30.0,
+          "model_mb": 12.77
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 75,
+          "seconds": 21.9,
+          "model_mb": 9.1
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 204,
+          "seconds": 31.2,
+          "model_mb": 13.66
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 114,
+          "seconds": 25.3,
+          "model_mb": 10.74
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 99,
+          "seconds": 24.9,
+          "model_mb": 10.23
+        }
+      ]
+    },
+    "max_depth=12": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 12,
+        "min_child_weight": 10,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42
+      },
+      "per_fold": {
+        "cv1": 0.67671,
+        "cv2": 0.88328,
+        "cv3": 0.74808,
+        "cv4": 0.68361
+      },
+      "wrmsse_mean": 0.74792,
+      "wrmsse_std": 0.09579,
+      "peak_rss_gb": 4.75,
+      "minutes": 6.0,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 143,
+          "seconds": 50.8,
+          "model_mb": 36.99
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 117,
+          "seconds": 47.8,
+          "model_mb": 34.14
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 58,
+          "seconds": 38.7,
+          "model_mb": 27.22
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 64,
+          "seconds": 39.9,
+          "model_mb": 28.34
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 99,
+          "seconds": 39.4,
+          "model_mb": 28.8
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 116,
+          "seconds": 42.0,
+          "model_mb": 30.48
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 120,
+          "seconds": 42.9,
+          "model_mb": 30.97
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 69,
+          "seconds": 37.3,
+          "model_mb": 26.73
+        }
+      ]
+    },
+    "min_child_weight=1": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 1,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42
+      },
+      "per_fold": {
+        "cv1": 0.65082,
+        "cv2": 0.78999,
+        "cv3": 0.69193,
+        "cv4": 0.65833
+      },
+      "wrmsse_mean": 0.69777,
+      "wrmsse_std": 0.06403,
+      "peak_rss_gb": 4.62,
+      "minutes": 3.5,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 502,
+          "seconds": 39.0,
+          "model_mb": 9.52
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 197,
+          "seconds": 23.7,
+          "model_mb": 4.84
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 72,
+          "seconds": 17.2,
+          "model_mb": 2.98
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 84,
+          "seconds": 18.2,
+          "model_mb": 3.15
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 146,
+          "seconds": 19.6,
+          "model_mb": 3.92
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 322,
+          "seconds": 28.7,
+          "model_mb": 6.15
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 135,
+          "seconds": 20.3,
+          "model_mb": 3.73
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 116,
+          "seconds": 19.8,
+          "model_mb": 3.46
+        }
+      ]
+    },
+    "min_child_weight=50": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 50,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42
+      },
+      "per_fold": {
+        "cv1": 0.63741,
+        "cv2": 0.81222,
+        "cv3": 0.69303,
+        "cv4": 0.65294
+      },
+      "wrmsse_mean": 0.6989,
+      "wrmsse_std": 0.0791,
+      "peak_rss_gb": 4.56,
+      "minutes": 3.8,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 726,
+          "seconds": 51.3,
+          "model_mb": 11.09
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 151,
+          "seconds": 22.0,
+          "model_mb": 3.77
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 86,
+          "seconds": 18.8,
+          "model_mb": 2.9
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 95,
+          "seconds": 19.7,
+          "model_mb": 3.05
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 189,
+          "seconds": 21.9,
+          "model_mb": 3.9
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 422,
+          "seconds": 32.8,
+          "model_mb": 6.4
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 136,
+          "seconds": 19.9,
+          "model_mb": 3.35
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 99,
+          "seconds": 18.2,
+          "model_mb": 2.94
+        }
+      ]
+    },
+    "min_child_weight=200": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 200,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42
+      },
+      "per_fold": {
+        "cv1": 0.63642,
+        "cv2": 0.78337,
+        "cv3": 0.70647,
+        "cv4": 0.59483
+      },
+      "wrmsse_mean": 0.68027,
+      "wrmsse_std": 0.08274,
+      "peak_rss_gb": 4.56,
+      "minutes": 3.5,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 531,
+          "seconds": 39.5,
+          "model_mb": 7.25
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 157,
+          "seconds": 21.3,
+          "model_mb": 3.39
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 90,
+          "seconds": 18.0,
+          "model_mb": 2.68
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 269,
+          "seconds": 27.8,
+          "model_mb": 4.6
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 250,
+          "seconds": 24.1,
+          "model_mb": 3.9
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 150,
+          "seconds": 20.3,
+          "model_mb": 3.08
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 139,
+          "seconds": 19.5,
+          "model_mb": 2.91
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 110,
+          "seconds": 18.7,
+          "model_mb": 2.71
+        }
+      ]
+    },
+    "min_child_weight=200_subsample=0.6": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 200,
+        "subsample": 0.6,
+        "colsample_bytree": 0.8,
+        "seed": 42
+      },
+      "per_fold": {
+        "cv1": 0.63619,
+        "cv2": 0.77779,
+        "cv3": 0.67385,
+        "cv4": 0.6104
+      },
+      "wrmsse_mean": 0.67456,
+      "wrmsse_std": 0.07359,
+      "peak_rss_gb": 4.58,
+      "minutes": 3.6,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 553,
+          "seconds": 40.2,
+          "model_mb": 7.28
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 158,
+          "seconds": 21.3,
+          "model_mb": 3.27
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 78,
+          "seconds": 17.5,
+          "model_mb": 2.46
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 398,
+          "seconds": 34.5,
+          "model_mb": 5.71
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 143,
+          "seconds": 18.8,
+          "model_mb": 2.72
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 206,
+          "seconds": 22.1,
+          "model_mb": 3.31
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 146,
+          "seconds": 19.8,
+          "model_mb": 2.84
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 155,
+          "seconds": 20.4,
+          "model_mb": 2.89
+        }
+      ]
+    },
+    "min_child_weight=200_subsample=1.0": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 200,
+        "subsample": 1.0,
+        "colsample_bytree": 0.8,
+        "seed": 42
+      },
+      "per_fold": {
+        "cv1": 0.63404,
+        "cv2": 0.80519,
+        "cv3": 0.67449,
+        "cv4": 0.6074
+      },
+      "wrmsse_mean": 0.68028,
+      "wrmsse_std": 0.08772,
+      "peak_rss_gb": 4.58,
+      "minutes": 3.4,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 676,
+          "seconds": 44.9,
+          "model_mb": 8.99
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 195,
+          "seconds": 22.9,
+          "model_mb": 3.84
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 70,
+          "seconds": 17.0,
+          "model_mb": 2.5
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 235,
+          "seconds": 25.6,
+          "model_mb": 4.34
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 147,
+          "seconds": 19.3,
+          "model_mb": 3.09
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 131,
+          "seconds": 18.8,
+          "model_mb": 2.95
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 151,
+          "seconds": 19.7,
+          "model_mb": 3.19
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 95,
+          "seconds": 17.6,
+          "model_mb": 2.72
+        }
+      ]
+    },
+    "colsample_bytree=0.5_min_child_weight=200": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 200,
+        "subsample": 0.8,
+        "colsample_bytree": 0.5,
+        "seed": 42
+      },
+      "per_fold": {
+        "cv1": 0.64223,
+        "cv2": 0.78725,
+        "cv3": 0.70687,
+        "cv4": 0.62137
+      },
+      "wrmsse_mean": 0.68943,
+      "wrmsse_std": 0.07468,
+      "peak_rss_gb": 4.53,
+      "minutes": 3.6,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 435,
+          "seconds": 35.3,
+          "model_mb": 6.63
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 133,
+          "seconds": 20.5,
+          "model_mb": 3.29
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 87,
+          "seconds": 18.1,
+          "model_mb": 2.76
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 297,
+          "seconds": 29.7,
+          "model_mb": 5.19
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 216,
+          "seconds": 23.0,
+          "model_mb": 3.81
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 304,
+          "seconds": 27.0,
+          "model_mb": 4.59
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 142,
+          "seconds": 20.1,
+          "model_mb": 3.14
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 112,
+          "seconds": 18.7,
+          "model_mb": 2.88
+        }
+      ]
+    },
+    "colsample_bytree=1.0_min_child_weight=200": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 200,
+        "subsample": 0.8,
+        "colsample_bytree": 1.0,
+        "seed": 42
+      },
+      "per_fold": {
+        "cv1": 0.64391,
+        "cv2": 0.78106,
+        "cv3": 0.69291,
+        "cv4": 0.61446
+      },
+      "wrmsse_mean": 0.68308,
+      "wrmsse_std": 0.07289,
+      "peak_rss_gb": 4.55,
+      "minutes": 3.5,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 698,
+          "seconds": 47.4,
+          "model_mb": 8.98
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 157,
+          "seconds": 21.2,
+          "model_mb": 3.3
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 97,
+          "seconds": 18.2,
+          "model_mb": 2.68
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 236,
+          "seconds": 25.8,
+          "model_mb": 4.24
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 146,
+          "seconds": 19.2,
+          "model_mb": 2.95
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 150,
+          "seconds": 19.8,
+          "model_mb": 3.02
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 140,
+          "seconds": 19.6,
+          "model_mb": 2.93
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 87,
+          "seconds": 17.3,
+          "model_mb": 2.51
+        }
+      ]
+    },
+    "min_child_weight=200_reg_lambda=5": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 200,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42,
+        "reg_lambda": 5
+      },
+      "per_fold": {
+        "cv1": 0.65491,
+        "cv2": 0.82376,
+        "cv3": 0.69514,
+        "cv4": 0.59775
+      },
+      "wrmsse_mean": 0.69289,
+      "wrmsse_std": 0.09596,
+      "peak_rss_gb": 4.51,
+      "minutes": 3.2,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 250,
+          "seconds": 25.3,
+          "model_mb": 4.37
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 202,
+          "seconds": 23.7,
+          "model_mb": 3.93
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 89,
+          "seconds": 18.0,
+          "model_mb": 2.64
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 239,
+          "seconds": 26.1,
+          "model_mb": 4.28
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 191,
+          "seconds": 21.3,
+          "model_mb": 3.32
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 97,
+          "seconds": 17.0,
+          "model_mb": 2.56
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 140,
+          "seconds": 19.4,
+          "model_mb": 2.93
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 121,
+          "seconds": 18.8,
+          "model_mb": 2.79
+        }
+      ]
+    },
+    "min_child_weight=200_reg_lambda=20": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 200,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42,
+        "reg_lambda": 20
+      },
+      "per_fold": {
+        "cv1": 0.64878,
+        "cv2": 0.8298,
+        "cv3": 0.68625,
+        "cv4": 0.6031
+      },
+      "wrmsse_mean": 0.69198,
+      "wrmsse_std": 0.09797,
+      "peak_rss_gb": 4.53,
+      "minutes": 3.2,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 363,
+          "seconds": 30.8,
+          "model_mb": 5.56
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 191,
+          "seconds": 22.9,
+          "model_mb": 3.74
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 80,
+          "seconds": 17.4,
+          "model_mb": 2.54
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 291,
+          "seconds": 28.7,
+          "model_mb": 4.81
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 141,
+          "seconds": 18.9,
+          "model_mb": 2.91
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 91,
+          "seconds": 16.9,
+          "model_mb": 2.47
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 138,
+          "seconds": 19.4,
+          "model_mb": 2.88
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 102,
+          "seconds": 17.8,
+          "model_mb": 2.58
+        }
+      ]
+    },
+    "min_child_weight=200_reg_lambda=100": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 200,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42,
+        "reg_lambda": 100
+      },
+      "per_fold": {
+        "cv1": 0.64235,
+        "cv2": 0.8104,
+        "cv3": 0.69589,
+        "cv4": 0.61041
+      },
+      "wrmsse_mean": 0.68976,
+      "wrmsse_std": 0.08782,
+      "peak_rss_gb": 4.55,
+      "minutes": 3.7,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 952,
+          "seconds": 59.8,
+          "model_mb": 11.93
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 159,
+          "seconds": 21.5,
+          "model_mb": 3.35
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 84,
+          "seconds": 17.8,
+          "model_mb": 2.51
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 258,
+          "seconds": 26.9,
+          "model_mb": 4.46
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 157,
+          "seconds": 19.6,
+          "model_mb": 2.95
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 99,
+          "seconds": 17.0,
+          "model_mb": 2.45
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 207,
+          "seconds": 22.5,
+          "model_mb": 3.41
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 114,
+          "seconds": 18.5,
+          "model_mb": 2.61
+        }
+      ]
+    },
+    "max_bin=128_min_child_weight=200": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 128,
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 200,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42
+      },
+      "per_fold": {
+        "cv1": 0.63227,
+        "cv2": 0.83122,
+        "cv3": 0.69315,
+        "cv4": 0.60568
+      },
+      "wrmsse_mean": 0.69058,
+      "wrmsse_std": 0.10065,
+      "peak_rss_gb": 4.66,
+      "minutes": 3.9,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 765,
+          "seconds": 48.1,
+          "model_mb": 10.24
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 142,
+          "seconds": 19.3,
+          "model_mb": 3.36
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 79,
+          "seconds": 16.7,
+          "model_mb": 2.61
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 246,
+          "seconds": 25.4,
+          "model_mb": 4.55
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 167,
+          "seconds": 19.7,
+          "model_mb": 3.3
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 680,
+          "seconds": 42.9,
+          "model_mb": 8.02
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 168,
+          "seconds": 20.3,
+          "model_mb": 3.31
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 111,
+          "seconds": 17.9,
+          "model_mb": 2.78
+        }
+      ]
+    },
+    "max_bin=512_min_child_weight=200": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 512,
+        "eta": 0.05,
+        "max_depth": 8,
+        "min_child_weight": 200,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42
+      },
+      "per_fold": {
+        "cv1": 0.64041,
+        "cv2": 0.82811,
+        "cv3": 0.71022,
+        "cv4": 0.65843
+      },
+      "wrmsse_mean": 0.70929,
+      "wrmsse_std": 0.08456,
+      "peak_rss_gb": 4.85,
+      "minutes": 3.5,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 481,
+          "seconds": 39.1,
+          "model_mb": 6.47
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 243,
+          "seconds": 27.3,
+          "model_mb": 4.17
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 114,
+          "seconds": 21.0,
+          "model_mb": 2.83
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 87,
+          "seconds": 19.3,
+          "model_mb": 2.59
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 188,
+          "seconds": 22.7,
+          "model_mb": 3.28
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 105,
+          "seconds": 18.7,
+          "model_mb": 2.64
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 126,
+          "seconds": 20.0,
+          "model_mb": 2.79
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 133,
+          "seconds": 20.5,
+          "model_mb": 2.8
+        }
+      ]
+    },
+    "eta=0.03_min_child_weight=200": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.03,
+        "max_depth": 8,
+        "min_child_weight": 200,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42
+      },
+      "per_fold": {
+        "cv1": 0.64795,
+        "cv2": 0.79052,
+        "cv3": 0.67498,
+        "cv4": 0.60519
+      },
+      "wrmsse_mean": 0.67966,
+      "wrmsse_std": 0.0793,
+      "peak_rss_gb": 4.8,
+      "minutes": 4.7,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 836,
+          "seconds": 55.8,
+          "model_mb": 10.92
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 347,
+          "seconds": 32.5,
+          "model_mb": 5.85
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 117,
+          "seconds": 21.0,
+          "model_mb": 3.34
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 460,
+          "seconds": 40.2,
+          "model_mb": 7.1
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 258,
+          "seconds": 26.5,
+          "model_mb": 4.54
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 366,
+          "seconds": 31.6,
+          "model_mb": 5.48
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 284,
+          "seconds": 28.6,
+          "model_mb": 4.76
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 179,
+          "seconds": 23.9,
+          "model_mb": 3.89
+        }
+      ]
+    },
+    "eta=0.1_min_child_weight=200": {
+      "params": {
+        "device": "cuda",
+        "tree_method": "hist",
+        "eval_metric": "rmse",
+        "objective": "reg:tweedie",
+        "tweedie_variance_power": 1.1,
+        "max_bin": 256,
+        "eta": 0.1,
+        "max_depth": 8,
+        "min_child_weight": 200,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "seed": 42
+      },
+      "per_fold": {
+        "cv1": 0.62355,
+        "cv2": 0.76876,
+        "cv3": 0.68856,
+        "cv4": 0.64749
+      },
+      "wrmsse_mean": 0.68209,
+      "wrmsse_std": 0.06371,
+      "peak_rss_gb": 4.76,
+      "minutes": 2.5,
+      "infos": [
+        {
+          "store_id": "CA_3",
+          "fold": "cv1",
+          "best_iteration": 327,
+          "seconds": 27.4,
+          "model_mb": 4.74
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv2",
+          "best_iteration": 39,
+          "seconds": 13.8,
+          "model_mb": 1.83
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv3",
+          "best_iteration": 46,
+          "seconds": 14.3,
+          "model_mb": 1.93
+        },
+        {
+          "store_id": "CA_3",
+          "fold": "cv4",
+          "best_iteration": 56,
+          "seconds": 15.0,
+          "model_mb": 2.05
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv1",
+          "best_iteration": 67,
+          "seconds": 14.0,
+          "model_mb": 1.85
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv2",
+          "best_iteration": 75,
+          "seconds": 14.4,
+          "model_mb": 1.91
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv3",
+          "best_iteration": 76,
+          "seconds": 14.6,
+          "model_mb": 1.96
+        },
+        {
+          "store_id": "WI_2",
+          "fold": "cv4",
+          "best_iteration": 50,
+          "seconds": 13.8,
+          "model_mb": 1.79
+        }
+      ]
+    }
+  },
+  "stages": {
+    "T1_max_depth": {
+      "start": "base",
+      "start_wrmsse": 0.69025,
+      "candidates": {
+        "max_depth=6": 0.68712,
+        "max_depth=10": 0.70361,
+        "max_depth=12": 0.74792
+      },
+      "best_candidate": "max_depth=6",
+      "accepted": false
+    },
+    "T2_min_child_weight": {
+      "start": "base",
+      "start_wrmsse": 0.69025,
+      "candidates": {
+        "min_child_weight=1": 0.69777,
+        "min_child_weight=50": 0.6989,
+        "min_child_weight=200": 0.68027
+      },
+      "best_candidate": "min_child_weight=200",
+      "accepted": true
+    },
+    "T3_sampling": {
+      "start": "min_child_weight=200",
+      "start_wrmsse": 0.68027,
+      "candidates": {
+        "min_child_weight=200_subsample=0.6": 0.67456,
+        "min_child_weight=200_subsample=1.0": 0.68028,
+        "colsample_bytree=0.5_min_child_weight=200": 0.68943,
+        "colsample_bytree=1.0_min_child_weight=200": 0.68308
+      },
+      "best_candidate": "min_child_weight=200_subsample=0.6",
+      "accepted": false
+    },
+    "T4_reg_lambda": {
+      "start": "min_child_weight=200",
+      "start_wrmsse": 0.68027,
+      "candidates": {
+        "min_child_weight=200_reg_lambda=5": 0.69289,
+        "min_child_weight=200_reg_lambda=20": 0.69198,
+        "min_child_weight=200_reg_lambda=100": 0.68976
+      },
+      "best_candidate": "min_child_weight=200_reg_lambda=100",
+      "accepted": false
+    },
+    "T5_max_bin": {
+      "start": "min_child_weight=200",
+      "start_wrmsse": 0.68027,
+      "candidates": {
+        "max_bin=128_min_child_weight=200": 0.69058,
+        "max_bin=512_min_child_weight=200": 0.70929
+      },
+      "best_candidate": "max_bin=128_min_child_weight=200",
+      "accepted": false
+    },
+    "T6_eta": {
+      "start": "min_child_weight=200",
+      "start_wrmsse": 0.68027,
+      "candidates": {
+        "eta=0.03_min_child_weight=200": 0.67966,
+        "eta=0.1_min_child_weight=200": 0.68209
+      },
+      "best_candidate": "eta=0.03_min_child_weight=200",
+      "accepted": false
+    }
+  },
+  "updated": "2026-10-28T23:42:46",
+  "xgboost_version": "3.4.1",
+  "noise": {
+    "seed42": 0.69025,
+    "seed43": 0.6973,
+    "abs_diff": 0.00705,
+    "tau": 0.00705
+  },
+  "current": "min_child_weight=200",
+  "final": {
+    "name": "min_child_weight=200",
+    "params": {
+      "device": "cuda",
+      "tree_method": "hist",
+      "eval_metric": "rmse",
+      "objective": "reg:tweedie",
+      "tweedie_variance_power": 1.1,
+      "max_bin": 256,
+      "eta": 0.05,
+      "max_depth": 8,
+      "min_child_weight": 200,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "seed": 42
+    },
+    "wrmsse_mean": 0.68027
+  }
+}
